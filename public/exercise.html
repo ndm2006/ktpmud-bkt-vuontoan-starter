@@ -31,10 +31,15 @@
   <div id="estimate-activity" hidden>
     <div class="estimate-status">
       <p id="estimate-progress"></p>
-      <button id="estimate-pause" class="estimate-secondary" type="button">Nghỉ một chút</button>
+      <button id="estimate-pause" class="estimate-secondary" type="button">← Về phòng luyện tập</button>
     </div>
+    <ol id="estimate-stage-questions" class="estimate-stage-questions" aria-label="Tiến độ các câu trong chặng"></ol>
     <progress id="estimate-meter" aria-label="Số câu đã hoàn thành" max="12" value="0"></progress>
     <article class="estimate-question">
+      <ol id="estimate-steps" class="estimate-steps" aria-label="Các bước làm bài">
+        <li id="estimate-step-range">1. Chọn khoảng</li>
+        <li id="estimate-step-exact">2. Nhập đáp số</li>
+      </ol>
       <p id="estimate-phase" class="estimate-kicker"></p>
       <h3 id="estimate-prompt" tabindex="-1"></h3>
       <p id="estimate-expression"></p>
@@ -44,7 +49,13 @@
           <legend>Chọn một khoảng</legend>
           <div id="estimate-options" class="estimate-options"></div>
         </fieldset>
-        <details class="estimate-hint"><summary>Em cần gợi ý</summary><p id="estimate-hint-text"></p></details>
+        <details class="estimate-hint">
+          <summary>Em cần gợi ý</summary>
+          <div class="estimate-coach">
+            <img src="assets/img/ong-vang-hoang-mai.png" alt="" width="64" height="64">
+            <p id="estimate-hint-text"></p>
+          </div>
+        </details>
         <button class="estimate-primary" type="submit">Lưu khoảng và tiếp tục</button>
       </form>
       <form id="estimate-exact-form" hidden>
@@ -54,10 +65,16 @@
         <button class="estimate-primary" type="submit">Nộp đáp số</button>
       </form>
       <div id="estimate-feedback" hidden>
-        <p id="estimate-range-result" class="estimate-result"></p>
-        <p id="estimate-exact-result" class="estimate-result"></p>
+        <div class="estimate-results">
+          <p id="estimate-range-result" class="estimate-result"></p>
+          <p id="estimate-exact-result" class="estimate-result"></p>
+        </div>
         <details id="estimate-explanation" class="estimate-hint">
-          <summary>Xem cách nhẩm</summary><p id="estimate-explanation-text"></p>
+          <summary>Xem cách nhẩm cùng Ong Vàng</summary>
+          <div class="estimate-coach">
+            <img src="assets/img/ong-vang-hoang-mai.png" alt="" width="64" height="64">
+            <p id="estimate-explanation-text"></p>
+          </div>
         </details>
         <button id="estimate-next" class="estimate-primary" type="button">Câu tiếp theo</button>
       </div>

@@ -29,6 +29,27 @@
     history.replaceState(null, '', next);
   }
 
+  function renderStage(question) {
+    const tracker = el('stage-questions');
+    tracker.hidden = !question;
+    if (!question) return;
+    const stageQuestions = questions.filter(item => item.stage === question.stage);
+    tracker.replaceChildren(...stageQuestions.map((item, position) => {
+      const marker = document.createElement('li');
+      const completed = item.state.phase === 'completed';
+      marker.dataset.completed = String(completed);
+      if (item === question) marker.setAttribute('aria-current', 'step');
+      const symbol = document.createElement('span');
+      symbol.setAttribute('aria-hidden', 'true');
+      symbol.textContent = completed ? '✓' : String(position + 1);
+      const label = document.createElement('span');
+      label.className = 'estimate-visually-hidden';
+      label.textContent = `Câu ${position + 1}, ${completed ? 'đã nộp' : item === question ? 'đang làm' : 'chưa nộp'}`;
+      marker.append(symbol, label);
+      return marker;
+    }));
+  }
+
   function render(index, { focus = true } = {}) {
     currentIndex = index;
     const question = questions[index];
@@ -37,6 +58,11 @@
     const summary = !question;
     el('open').hidden = true;
     el('activity').hidden = false;
+    panel.classList.add('estimate-active');
+    renderStage(question);
+    el('steps').hidden = summary;
+    el('step-range').setAttribute('aria-current', state?.phase === 'estimate' ? 'step' : 'false');
+    el('step-exact').setAttribute('aria-current', state?.phase === 'exact' ? 'step' : 'false');
     el('meter').max = questions.length;
     el('meter').value = finished.length;
     el('progress').textContent = summary
@@ -69,7 +95,9 @@
         radio.name = 'range';
         radio.value = range.id;
         radio.required = true;
-        label.append(radio, rangeLabel(range));
+        const value = document.createElement('span');
+        value.textContent = rangeLabel(range);
+        label.append(radio, value);
         return label;
       }));
       el('range-form').querySelector('details').open = false;
@@ -82,6 +110,8 @@
       el('exact-result').textContent = state.exactCorrect
         ? `Tính chính xác: đúng, đáp số là ${state.correctAnswer}.`
         : `Tính chính xác: em nhập ${state.submittedAnswer}. Đáp số đúng là ${state.correctAnswer}.`;
+      el('range-result').dataset.correct = String(state.estimateCorrect);
+      el('exact-result').dataset.correct = String(state.exactCorrect);
       el('explanation-text').textContent = state.explanation;
       el('explanation').open = !state.estimateCorrect;
       const next = firstUnfinished();
@@ -142,6 +172,7 @@
   el('pause').addEventListener('click', () => {
     if (busy) return;
     el('activity').hidden = true;
+    panel.classList.remove('estimate-active');
     el('open').hidden = false;
     el('open').textContent = 'Tiếp tục bài ước lượng';
     setLocation('');

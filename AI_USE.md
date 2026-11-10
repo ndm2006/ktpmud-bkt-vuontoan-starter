@@ -90,3 +90,9 @@ Giữ tách biệt xác nhận của thành viên, kết quả kiểm thử và 
 
 - AI hỗ trợ phân tích log Node 24/npm 12 của thành viên, kiểm tra bản dựng do better-sqlite3 phát hành và bổ sung hướng dẫn cài đặt. Repo ghi phê duyệt cài đặt riêng cho better-sqlite3@11.10.0, phiên bản đã khóa trong package-lock.json.
 - Đã chạy lại 8 ca test với npm 12.2.1 và Node 24 trên Linux sau khi cài tạm better-sqlite3@12.11.1. Đã xác minh upstream phát hành tệp dựng sẵn Node 24/Windows x64 của bản này. Chờ N57-A xác nhận kết quả chạy trên Windows.
+
+## Giao diện bài ước lượng sau khi chạy thử
+
+- GPT 6.1 Sol hỗ trợ chỉnh giao diện bài ước lượng sau khi N57-A duyệt phương án. Dùng kiểu đánh dấu câu và hình Ong Vàng từ phiếu gốc, làm rõ hai bước làm bài và hai kết quả chấm. Khi mở bài, giao diện tạm ẩn phiếu gốc và hiện lại khi quay về phòng luyện tập.
+- Phạm vi triển khai gồm khối ước lượng trong `public/exercise.html` cùng CSS và JavaScript riêng của tính năng. Bộ đề, chấm điểm, lưu tiến độ và đồng hồ phiếu gốc giữ nguyên.
+- Kiểm chứng trên Linux với `npm test` (8/8) và kiểm thử DOM nối API thật qua 12 câu, gồm tải lại ở bước nhập đáp số, kết quả độc lập và quay về phiếu gốc. Chromium headless không khởi động được trong môi trường kiểm thử. N57-A phụ trách xác nhận hiển thị trên Windows.
