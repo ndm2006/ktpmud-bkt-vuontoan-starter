@@ -19,6 +19,9 @@
   "devDependencies": {
     "tailwindcss": "^3.4.19"
   },
+  "allowScripts": {
+    "better-sqlite3@11.10.0": true
+  },
   "engines": {
     "node": ">=18"
   }

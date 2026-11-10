@@ -16,14 +16,27 @@ và khu vực giáo viên (theo dõi lớp, cấp tài khoản). Đợt 1 đã n
 
 ## 1. Cách chạy
 
-Yêu cầu: máy có **Node.js 18+**.
+Yêu cầu: máy có **Node.js 18+**. Trên **Windows x64**, dùng **Node.js 22** để nhận bản dựng sẵn của `better-sqlite3@11.10.0` đã khóa trong repo.
 
 ```bash
-npm install     # chỉ cần chạy 1 lần đầu
+npm ci          # cài đúng phiên bản từ package-lock.json
 npm start       # mở http://localhost:3000
 ```
 
 Lần chạy đầu, server tự tạo `data/vuon-toan.db` và nạp dữ liệu mẫu từ `data/seed.json`.
+
+**Windows báo `Could not locate the bindings file`:** npm 12 chỉ chạy script cài đặt cho gói đã được cho phép. Repo cho phép riêng `better-sqlite3@11.10.0`. Phiên bản này có tệp dựng sẵn cho Node 22 trên Windows x64, còn Node 24 phải biên dịch tại máy nếu dùng đúng phiên bản khóa.
+
+Để chạy đúng phiên bản repo trên Windows mà không cần đổi Node toàn máy, tải và giải nén [Node.js 22 Windows x64 ZIP](https://nodejs.org/dist/latest-v22.x/), rồi mở CMD trong thư mục dự án. Thay đường dẫn dưới đây bằng **thư mục chứa `node.exe`** đã giải nén:
+
+```cmd
+set "PATH=C:\duong-dan\den\node-v22.x-win-x64;%PATH%"
+node -v
+npm ci
+npm start
+```
+
+`node -v` cần hiện `v22.x.x`. Thay đổi PATH chỉ có hiệu lực trong cửa sổ CMD hiện tại.
 
 ### Tài khoản mẫu
 

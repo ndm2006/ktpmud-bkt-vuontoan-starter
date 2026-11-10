@@ -85,3 +85,8 @@ Giữ tách biệt xác nhận của thành viên, kết quả kiểm thử và 
 | Kiểm chứng | npm ci, npm test 8/8, kiểm tra DOM nối với API thật qua 12 câu. Có kiểm tra cách ly tài khoản, khôi phục, không lộ lời giải trước bước tính, hai kết quả độc lập và hồi quy phiếu cũ. Chromium headless chưa chạy được trong môi trường kiểm thử này. |
 | Quyết định của nhóm | N57-A yêu cầu triển khai MVP để giảng viên trực tiếp tương tác, dựa trên bộ 12 câu, ba chặng, gợi ý tùy chọn và giải thích sau nộp. Phần triển khai và bằng chứng chờ N57-A chạy lại trên laptop và ghi quyết định giữ/sửa sau review. |
 | Người chịu trách nhiệm | N57-A kiểm chứng phần AI hỗ trợ. Phân công nhóm vẫn theo PROGRESS.md. |
+
+## Khắc phục cài đặt Windows trước PC-1
+
+- AI hỗ trợ phân tích log Node 24/npm 12 của thành viên, kiểm tra bản dựng do better-sqlite3 phát hành và bổ sung hướng dẫn cài đặt. Repo ghi phê duyệt cài đặt riêng cho better-sqlite3@11.10.0, phiên bản đã khóa trong package-lock.json.
+- Đã chạy lại 8 ca test với npm 12.2.1 và Node 24 trên Linux sau khi cài tạm better-sqlite3@12.11.1. Đã xác minh upstream phát hành tệp dựng sẵn Node 24/Windows x64 của bản này. Chờ N57-A xác nhận kết quả chạy trên Windows.
