@@ -10,7 +10,7 @@
 | Checkout sạch | Windows x64 build 19045, Node.js 22.23.4, npm 10.9.9, bản xuất Git tại `0408e96`. Chạy `npm ci` rồi `npm test`. | Cài thành công từ lockfile, **8/8 đạt**. `npm audit` ghi nhận hai cảnh báo, xem [checklist](SECURITY_PRIVACY_CHECKLIST.md). |
 | Luồng học sinh | Trình duyệt tích hợp, localhost, tài khoản học sinh mẫu. Xem [kịch bản](docs/PC1-DEMO.md). | Từ Phòng Luyện Tập mở được hai hoạt động; lưu khoảng, mở gợi ý, tính đúng và đọc giải thích. Đổi qua lại giữ được khoảng đã lưu và lựa chọn trên phiếu trong cùng trang. |
 | Bàn phím, T10 | Trình duyệt tích hợp, câu `48 × 6`. Dùng Tab, phím mũi tên và Enter, nhập `a` rồi sửa thành `288`. | Chọn được khoảng 240–299. Focus chuyển đến ô đáp số. Giao diện báo lỗi dễ hiểu, sau đó chấm đúng cả hai bước và chuyển focus đến tiêu đề kết quả. |
-| CI trên PR | [Workflow Track B](.github/workflows/track-b.yml) dùng Ubuntu và Node.js 22, chạy `npm ci` rồi `npm test`. | Đã có cấu hình. Chờ run trên PR nội bộ của fork để xác nhận B-10 và ghi URL. |
+| CI trên PR | [Workflow Track B](.github/workflows/track-b.yml) dùng Ubuntu và Node.js 22, chạy `npm ci` rồi `npm test` tại commit `c0d3169215cc95c0de8e2c06f9491864e685e034`. | **Đạt** trên [PR nội bộ #1](https://github.com/ndm2006/ktpmud-bkt-vuontoan-starter/actions/runs/42864978852). |
 
 ## Đối chiếu các ca tự động
 
@@ -30,4 +30,4 @@
 - Ca hồi quy bao phủ phiếu Bài 9–10. Chưa xác nhận toàn bộ dạng bài cũ, vai trò giáo viên hoặc các thiết bị.
 - Ca bàn phím bao phủ luồng chính tại một câu, chưa kiểm tra bằng trình đọc màn hình hoặc trên nhiều thiết bị.
 - Chưa có thử nghiệm sư phạm với học sinh thật. Các nhận xét về độ khó của ba chặng là giả thuyết thiết kế.
-- Ghi link CI và SHA cụ thể sau khi có run thành công. Không dùng kết quả cục bộ thay cho bằng chứng CI.
+- Khi chốt bài nộp cuối, lấy URL CI ứng với SHA freeze.
