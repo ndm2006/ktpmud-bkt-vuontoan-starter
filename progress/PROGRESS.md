@@ -3,7 +3,7 @@
 - Starter: `fossbk-spec/ktpmud-bkt-vuontoan-starter` · tag `bkt-2026-v1` · commit `057a48205f50f0f30d6260be1a44b343a167a3e7`
 - Fork: https://github.com/ndm2006/ktpmud-bkt-vuontoan-starter
 - Nhánh: `track-b-work`
-- Bản chuẩn bị ngày 10/11/2026. Trạng thái phản ánh bằng chứng trên fork tại thời điểm cập nhật.
+- Bản chuẩn bị cho ngày 11/11/2026. Các trạng thái dưới đây phản ánh bản MVP và kết quả kiểm tra đã có.
 
 ## PC-1 — 11/11/2026
 
@@ -13,18 +13,20 @@ Hồ sơ CP1 bổ sung theo [đính chính #25](https://github.com/fossbk-spec/k
 
 | Mã | Trạng thái | Bằng chứng | Ghi chú |
 |---|---|---|---|
-| B-01 | Đang | [ADR-001](../DECISIONS.md) | Đã chọn tích hợp trong Phòng Luyện Tập. Chưa có giao diện mới. |
-| B-02 | Đang | [Bảng 12 câu](../DECISIONS.md#quy-tắc-tạo-và-chấm) | Đã tính và đối chiếu bộ dữ liệu thiết kế. Chưa có fixture chạy. |
-| B-03 | Đang | [ADR-001](../DECISIONS.md), [T02–T05](../TEST_PLAN.md) | Đã đặc tả quy tắc. Chưa chạy bộ chấm mới. |
-| B-04 | Đang | [Hợp đồng API](../DECISIONS.md), [T06](../TEST_PLAN.md) | Đã xác định dữ liệu được trả ở từng bước. Chưa chạy test HTTP. |
-| B-05 | Đang | [Mô hình lưu](../DECISIONS.md), [T05/T07–T09](../TEST_PLAN.md) | Đã thiết kế lưu hai bước, phục hồi và cách ly. Chưa chạy SQLite cho tính năng. |
-| B-06 | Đang | [ADR-001](../DECISIONS.md), [T04/T10](../TEST_PLAN.md) | Đã đặc tả phản hồi riêng cho ước lượng và tính. Chưa có UI để kiểm tra. |
-| B-07 | Đang | [Phạm vi](../REQUIREMENTS.md), [T11/T12](../TEST_PLAN.md) | Hồ sơ CP1 chỉ thay đổi tài liệu. Kiểm tra diff và hồi quy sau khi code. |
-| B-08 | Đang | [Ma trận kiểm thử](../TEST_PLAN.md) | Đã soạn ca thông thường, ca biên, đầu vào lỗi và chấm. Chưa có test tự động mới. |
-| B-09 | Chưa | [T13](../TEST_PLAN.md) | Chưa có script `npm test` trên fork. |
-| B-10 | Chưa | [T14](../TEST_PLAN.md) | Chưa có workflow hoặc CI run của tính năng. |
-| B-11 | Đang | [Phạm vi](../REQUIREMENTS.md), [T11](../TEST_PLAN.md) | Báo cáo dùng alias. Cần review dữ liệu và diff của phần triển khai. |
-| B-12 | Đang | [Thiết kế giao diện](../DECISIONS.md), [T10](../TEST_PLAN.md) | Đã nêu bàn phím và báo lỗi. Chưa thử trên trình duyệt. |
+| B-01 | Đang | [Phòng Luyện Tập](../public/exercise.html), [JS](../public/assets/js/pages/estimation-practice.js) | Đã tích hợp ngay trên trang luyện tập. Luồng DOM nối API thật đã qua. Cần thử lại từ menu và kiểm tra hiển thị trên laptop. |
+| B-02 | Xong | [12 câu synthetic](../server/estimation-questions.js), [test](../test/estimation-practice.test.js) | 6 phép nhân và 6 phép chia, ba chặng cố định. |
+| B-03 | Xong | [Quy tắc chấm](../server/estimation-practice.js), [test](../test/estimation-practice.test.js) | Mọi kết quả nguyên giữa hai mốc dễ nhẩm nằm trong duy nhất một khoảng. Server chấm bằng hai cờ độc lập. |
+| B-04 | Xong | [API](../server/estimation-practice.js), [test](../test/estimation-practice.test.js) | Kiểm tra tải bài và bước ước lượng không trả đáp số hoặc lời giải. |
+| B-05 | Xong | [Schema](../server/db.js), [API](../server/estimation-practice.js), [test](../test/estimation-practice.test.js) | Kiểm tra nộp đúng thứ tự, khôi phục sau khởi động lại server và cách ly hai tài khoản. DOM kiểm tra tải lại cả hai bước. |
+| B-06 | Xong | [JS](../public/assets/js/pages/estimation-practice.js), [test](../test/estimation-practice.test.js) | Kiểm tra hai phản hồi riêng trên DOM với ca sai khoảng nhưng tính đúng. Có giải thích mốc sau khi nộp. |
+| B-07 | Đang | [test hồi quy phiếu cũ](../test/estimation-practice.test.js) | Phiếu Bài 9–10 nộp thành công. Diff MVP không sửa auth/session, tài khoản mẫu hoặc deployment. Hồi quy thêm các luồng cũ trước CP2. |
+| B-08 | Xong | [8 ca tự động](../test/estimation-practice.test.js) | Đủ ca thông thường, biên đầu vào, dữ liệu lỗi, chấm, nộp lặp và gửi đồng thời. |
+| B-09 | Xong | [npm test](../package.json), [test](../test/estimation-practice.test.js) | Worktree mới cài bằng npm ci. npm test dùng DB tạm và đạt 8/8 trên Node.js 24. |
+| B-10 | Chưa | [T14](../TEST_PLAN.md) | Chưa có workflow chạy trên PR của fork. |
+| B-11 | Xong | [Fixture synthetic](../server/estimation-questions.js), [nhật ký AI](../AI_USE.md) | Diff MVP dùng dữ liệu bài synthetic và alias. DB thử được tạo cục bộ, ngoài repo. |
+| B-12 | Đang | [Form và nhãn](../public/exercise.html), [xử lý focus](../public/assets/js/pages/estimation-practice.js) | Đã kiểm tra focus và thông báo lỗi trên DOM. Cần kiểm tra Tab, phím mũi tên, Enter và bố cục trên trình duyệt. |
+
+Kiểm tra MVP: `npm test` đạt **8/8**. Kiểm tra DOM nối với server thật đã đi hết **12 câu**, gồm mở gợi ý, chọn sai khoảng/tính đúng, nhập sai định dạng, tải lại, nghỉ/tiếp tục và tổng kết. Chromium headless chưa chạy được trong môi trường kiểm thử này. [Các bước demo và chạy lại](../README.md#demo-track-b--ước-lượng-trước-khi-tính-đúng).
 
 ### 1.2. Sửa đổi bắt buộc từ Checkpoint 1
 
@@ -36,8 +38,8 @@ Không có tại thời điểm lập bản chuẩn bị. Nhóm xác nhận chư
 |---|---|---|---|
 | Bổ sung yêu cầu, tiêu chí nghiệm thu, ADR và kế hoạch test lên fork | N57-A, N57-B cùng đọc và kiểm tra | CP1 bổ sung | 10/11, trước 9:30 ngày 11/11 |
 | Cập nhật báo cáo, trình bày tại lớp và xác nhận SHA trên Issue #17 | Cả nhóm | PC-1 | 11/11, 9:30–11:30 |
-| Thêm fixture phía server, bộ chấm, API và SQLite | N57-A | M2 | 11–12/11 |
-| Tích hợp Phòng Luyện Tập, phản hồi hai bước, phục hồi và bàn phím | N57-B | M2 | 12–14/11 |
+| Đã có fixture, bộ chấm, API và SQLite trong MVP. Đối chiếu kết quả và nhận góp ý | N57-A | PC-1 / M2 | 11–12/11 |
+| Đã tích hợp UI hai bước và khôi phục. Kiểm tra bàn phím, bố cục và chỉnh theo góp ý | N57-B | M2 | 12–14/11 |
 | Test API/chấm/lưu, hồi quy UI, chạy test công khai và chuẩn bị demo nội bộ | N57-A, N57-B | CP2 | 14–15/11 |
 | Hoàn thiện test, CI trên PR nội bộ, kiểm tra dữ liệu và tài liệu | N57-A, N57-B | M3 / PC-2 | 16–18/11 |
 | Đối chiếu tiêu chí, chốt tag và SHA | Cả nhóm | Freeze | 19/11 trước 23:59 |
@@ -48,12 +50,13 @@ Không có tại thời điểm lập bản chuẩn bị. Nhóm xác nhận chư
 
 - CP1 bổ sung sau hạn gốc. Cần xác nhận phạm vi với GV/TA tại PC-1 và dành thời gian xử lý góp ý.
 - Kiểm tra các phản hồi ở giữa hai bước để tránh lộ đáp số. Khi refresh hoặc nhấn nộp hai lần, server phải khôi phục đúng trạng thái và không ghi đè kết quả.
-- Hiện chưa có kết quả thực thi của dạng bài mới. Demo phụ thuộc việc tích hợp UI, API và SQLite trước ngày 15/11.
+- MVP chạy trên máy cục bộ. Nhóm cần thử đường đi từ menu, bố cục và bàn phím trên laptop trước demo. Độ khó ba chặng chưa được thử với học sinh.
 
 ### 1.5. Câu hỏi cho GV
 
 - Q1: Với hồ sơ CP1 bổ sung theo #25, nhóm nên nhận và theo dõi phản hồi duyệt phạm vi ở đâu sau PC-1?
 - Q2: Lưu kết quả ước lượng trong mục luyện tập riêng, giữ nguyên điểm và sao của phiếu cũ, có phù hợp phạm vi B-05 không?
+- Q3: Hai mốc và gợi ý ở từng chặng đã phù hợp với học sinh lớp 3 chưa?
 
 ### 1.6. Phân công
 

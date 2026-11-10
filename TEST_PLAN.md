@@ -1,6 +1,6 @@
 # Kế hoạch kiểm thử CP1 — N57 — Track B
 
-Ngày **10/11/2026**. Bản kế hoạch này thiết kế tiêu chí và dữ liệu kiểm thử. Kết quả thực thi sẽ được ghi theo commit khi có triển khai. Quy tắc chi tiết nằm trong [ADR-001](DECISIONS.md) và [yêu cầu](REQUIREMENTS.md).
+Ngày **10/11/2026**. Kế hoạch kiểm thử CP1 được dùng để đối chiếu MVP PC-1. Xem kết quả và giới hạn tại [PROGRESS.md](progress/PROGRESS.md). Quy tắc chi tiết nằm trong [ADR-001](DECISIONS.md) và [yêu cầu](REQUIREMENTS.md).
 
 ## Phạm vi, môi trường và cách ghi kết quả
 
@@ -15,9 +15,9 @@ Ngày **10/11/2026**. Bản kế hoạch này thiết kế tiêu chí và dữ l
 | ID | Loại | Thao tác / đầu vào | Kết quả mong đợi | AC |
 |---|---|---|---|---|
 | T01 | UI | Đăng nhập demo, mở Phòng Luyện Tập từ menu, vào mục ước lượng. | Dạng bài xuất hiện trong trang luyện tập hiện có, mở câu đầu. | B-01 |
-| T02 | Unit / dữ liệu | Đọc fixture hai lần từ khởi tạo sạch. Kiểm đếm ID và đối chiếu bảng ADR. | 12 ID duy nhất, 6 nhân và 6 chia hết. Cùng thứ tự, đáp số và khoảng. | B-02, B-03 |
-| T03 | Unit / biên | Kiểm tra các cặp 20/21, 40/41 trên hàm khoảng và 3/4, 7/8, 10 trên miền chia. | 20 và 40 thuộc khoảng phía dưới. 21 và 41 thuộc khoảng phía trên. 3/4 và 7/8 phân vào hai khoảng liền nhau. 10 thuộc 8–10. | B-03, B-08 |
-| T04 | Unit / chấm điểm | Câu 42 ÷ 6, thử khoảng đúng/sai với đáp số 7/8. | Bốn tổ hợp cờ đúng/sai độc lập. Khoảng hợp lệ nhưng sai vẫn mở bước tính. | B-03, B-06, B-08 |
+| T02 | Unit / dữ liệu | Đọc fixture hai lần từ khởi tạo sạch. Kiểm đếm ID và đối chiếu bảng ADR. | 12 ID duy nhất, 6 nhân và 6 chia hết. Cùng thứ tự, đáp số và khoảng. Hai mốc của từng câu đủ suy ra đúng một khoảng. | B-02, B-03 |
+| T03 | Unit / biên | Đối chiếu các cận nguyên suy ra từ hai mốc với ba khoảng ở cả 12 câu. Thử số ngay dưới và tại biên đầu vào, cùng 99/100 với phép chia. | Mỗi câu có đúng một khoảng chứa mọi số nguyên giữa hai mốc sau phép tính. API chấp nhận 99 và từ chối 100 với phép chia. | B-03, B-08 |
+| T04 | Unit / chấm điểm | Thử 48 × 6 với khoảng 300–359 và đáp số 288. Thử 76 × 4 với khoảng 280–319 và đáp số 320. | Ước lượng sai vẫn có thể đi cùng đáp số đúng và ngược lại. Khoảng hợp lệ nhưng sai vẫn mở bước tính. | B-03, B-06, B-08 |
 | T05 | HTTP / lỗi | Gửi bước tính trước, ID câu/khoảng lạ, thiếu answer, chuỗi, số lẻ, số ngoài miền. | Lỗi 4xx rõ nghĩa. Trạng thái và dữ liệu lưu không bị thay đổi bởi yêu cầu lỗi. | B-03, B-05, B-08 |
 | T06 | HTTP / lộ đáp án | Kiểm tra tải bài, phản hồi bước ước lượng, khôi phục và yêu cầu nộp sai thứ tự. Kiểm tra URL tệp fixture. | Không có đáp số, mã khoảng đúng hay cờ chấm trước bước tính hợp lệ. Fixture server không tải qua web. | B-04 |
 | T07 | HTTP + UI / lưu | Lưu ước lượng, refresh, nhập đáp số, refresh lần nữa. Khởi động lại server cùng DB. | Lần đầu hiện bước tính và khoảng đã chọn. Lần sau hiện hai kết quả đã chấm. Restart vẫn khôi phục. | B-05, B-08 |

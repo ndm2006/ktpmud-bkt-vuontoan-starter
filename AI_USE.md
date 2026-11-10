@@ -74,3 +74,14 @@ Sự chấp thuận hồ sơ M0 không phải xác nhận sản phẩm đã đ�
 | Người chịu trách nhiệm | N57-A. Xác nhận thiết kế cấp luồng và phân công đã có, còn xác nhận nội dung hồ sơ cuối chờ đọc lại. |
 
 Giữ tách biệt xác nhận của thành viên, kết quả kiểm thử và duyệt phạm vi của GV/TA.
+
+## 7. MVP tương tác cho PC-1
+
+| Trường | Nội dung |
+|---|---|
+| Công cụ | ChatGPT/Codex (GPT-6) |
+| Mục đích | Triển khai và kiểm tra MVP theo thảo luận với N57-A. |
+| Phạm vi | Bộ câu synthetic, bộ chấm và API hai bước, lưu SQLite, giao diện Phòng Luyện Tập, test, tài liệu và báo cáo PC-1. Xem lịch sử nhánh track-b-work. |
+| Kiểm chứng | npm ci, npm test 8/8, kiểm tra DOM nối với API thật qua 12 câu. Có kiểm tra cách ly tài khoản, khôi phục, không lộ lời giải trước bước tính, hai kết quả độc lập và hồi quy phiếu cũ. Chromium headless chưa chạy được trong môi trường kiểm thử này. |
+| Quyết định của nhóm | N57-A yêu cầu triển khai MVP để giảng viên trực tiếp tương tác, dựa trên bộ 12 câu, ba chặng, gợi ý tùy chọn và giải thích sau nộp. Phần triển khai và bằng chứng chờ N57-A chạy lại trên laptop và ghi quyết định giữ/sửa sau review. |
+| Người chịu trách nhiệm | N57-A kiểm chứng phần AI hỗ trợ. Phân công nhóm vẫn theo PROGRESS.md. |

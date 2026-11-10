@@ -35,6 +35,16 @@ Lần chạy đầu, server tự tạo `data/vuon-toan.db` và nạp dữ liệu
 > Khi đưa lên Internet thật: đổi mật khẩu các tài khoản mẫu, và đặt biến môi trường
 > `SESSION_SECRET` bằng một chuỗi bí mật dài trước khi chạy `npm start`.
 
+### Demo Track B — Ước lượng trước khi tính đúng
+
+Từ thư mục dự án, chạy `npm ci`, rồi `npm start`. Mở http://localhost:3000, đăng nhập bằng một tài khoản học sinh mẫu ở trên, chọn **Phòng Luyện Tập** → **Vào bài ước lượng**. Sau khi đăng nhập có thể mở trực tiếp http://localhost:3000/exercise.html#uoc-luong.
+
+1. Ở câu đầu `6 × 7`, mở **Em cần gợi ý** để xem cách chọn mốc. Cố ý chọn **60–88** và bấm **Lưu khoảng và tiếp tục**.
+2. Tải lại trang. Ô nhập đáp số và khoảng đã chọn xuất hiện lại. Nhập **42** rồi nộp để thấy hai phản hồi riêng và lời giải thích mốc.
+3. Tiếp tục qua ba chặng, thử **Nghỉ một chút** rồi mở lại. Sau 12 câu có tổng kết riêng cho ước lượng và tính chính xác.
+
+Chạy `npm test` để kiểm tra tự động. Test tự tạo DB tạm. Để demo lại, có thể dùng tài khoản mẫu khác hoặc DB cục bộ mới. Kết quả ước lượng được lưu riêng, bảng điểm và sao của phiếu cũ tiếp tục dùng quy tắc hiện có.
+
 ## 2. Cấu trúc thư mục
 
 ```

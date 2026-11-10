@@ -1,0 +1,30 @@
+'use strict';
+
+// Bộ câu cố định, theo thứ tự ba chặng. Tất cả số liệu là hư cấu.
+module.exports = [
+  { id: 'est-01', op: '×', a: 6, b: 7, marks: [5, 10], markFactor: 6,
+    ranges: [[1, 30], [31, 59], [60, 88]] },
+  { id: 'est-02', op: '÷', a: 42, b: 6, marks: [30, 60],
+    ranges: [[1, 5], [6, 9], [10, 14]] },
+  { id: 'est-03', op: '×', a: 23, b: 4, marks: [20, 30],
+    ranges: [[40, 79], [80, 119], [120, 159]] },
+  { id: 'est-04', op: '÷', a: 56, b: 4, marks: [40, 80],
+    ranges: [[10, 19], [20, 29], [30, 39]] },
+  { id: 'est-05', op: '×', a: 37, b: 3, marks: [30, 40],
+    ranges: [[30, 59], [60, 89], [90, 119]] },
+  { id: 'est-06', op: '×', a: 48, b: 6, marks: [40, 50],
+    prompt: 'Có 6 hộp bút, mỗi hộp có 48 chiếc. Tổng số bút nằm trong khoảng nào?',
+    ranges: [[180, 239], [240, 299], [300, 359]] },
+  { id: 'est-07', op: '÷', a: 78, b: 3, marks: [60, 90],
+    ranges: [[10, 19], [20, 29], [30, 39]] },
+  { id: 'est-08', op: '÷', a: 72, b: 2, marks: [60, 80],
+    ranges: [[10, 19], [20, 29], [30, 39]] },
+  { id: 'est-09', op: '×', a: 64, b: 5, marks: [60, 70],
+    ranges: [[300, 349], [350, 399], [400, 449]] },
+  { id: 'est-10', op: '×', a: 76, b: 4, marks: [70, 80],
+    ranges: [[200, 239], [240, 279], [280, 319]] },
+  { id: 'est-11', op: '÷', a: 65, b: 5, marks: [50, 100],
+    ranges: [[1, 9], [10, 19], [20, 29]] },
+  { id: 'est-12', op: '÷', a: 96, b: 3, marks: [90, 120],
+    ranges: [[30, 39], [40, 49], [50, 59]] },
+];

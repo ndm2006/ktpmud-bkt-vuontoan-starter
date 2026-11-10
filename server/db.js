@@ -68,6 +68,16 @@ CREATE TABLE IF NOT EXISTS attempts (
   answers_json  TEXT DEFAULT '{}',
   created_at    TEXT NOT NULL DEFAULT (datetime('now','localtime'))
 );
+CREATE TABLE IF NOT EXISTS estimation_answers (
+  user_id          INTEGER NOT NULL REFERENCES users(id),
+  question_id      TEXT NOT NULL,
+  range_id         TEXT NOT NULL,
+  exact_answer     INTEGER,
+  estimate_correct INTEGER CHECK (estimate_correct IN (0, 1)),
+  exact_correct    INTEGER CHECK (exact_correct IN (0, 1)),
+  completed_at     TEXT,
+  PRIMARY KEY (user_id, question_id)
+);
 CREATE TABLE IF NOT EXISTS progress (
   user_id     INTEGER NOT NULL REFERENCES users(id),
   lesson_id   TEXT NOT NULL REFERENCES lessons(id),
