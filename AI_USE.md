@@ -96,3 +96,8 @@ Giữ tách biệt xác nhận của thành viên, kết quả kiểm thử và 
 - GPT 6.1 Sol hỗ trợ chỉnh giao diện bài ước lượng sau khi N57-A duyệt phương án. Dùng kiểu đánh dấu câu và hình Ong Vàng từ phiếu gốc, làm rõ hai bước làm bài và hai kết quả chấm. Khi mở bài, giao diện tạm ẩn phiếu gốc và hiện lại khi quay về phòng luyện tập.
 - Phạm vi triển khai gồm khối ước lượng trong `public/exercise.html` cùng CSS và JavaScript riêng của tính năng. Bộ đề, chấm điểm, lưu tiến độ và đồng hồ phiếu gốc giữ nguyên.
 - Kiểm chứng trên Linux với `npm test` (8/8) và kiểm thử DOM nối API thật qua 12 câu, gồm tải lại ở bước nhập đáp số, kết quả độc lập và quay về phiếu gốc. Chromium headless không khởi động được trong môi trường kiểm thử. N57-A phụ trách xác nhận hiển thị trên Windows.
+
+## Bổ sung thông tin khi xem lại bài ước lượng
+
+- GPT 6.1 Sol hỗ trợ đánh dấu câu đang xem trong danh sách và hiển thị khoảng đã chọn, khoảng đúng, số đã nhập và đáp số đúng trong hai thẻ kết quả. Giữ phần giải thích và dùng dữ liệu chấm sẵn có từ API.
+- Kiểm tra JavaScript với dữ liệu API giả lập, gồm mở lại câu đã nộp từ đường dẫn, chuyển giữa các câu đã làm và trở lại câu chưa hoàn thành. N57-A phụ trách xác nhận hiển thị trên Windows.

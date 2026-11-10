@@ -187,6 +187,7 @@
 .estimate-practice .estimate-result {
   margin: 0;
   padding: .7rem .85rem;
+  white-space: pre-line;
   border-radius: .65rem;
   background: #e4f5e7;
 }
@@ -194,6 +195,13 @@
 .estimate-result[data-correct="false"] {
   background: #fff1cb;
   color: #583c03;
+}
+
+.estimate-review-list [aria-current="true"] {
+  background: #ffe28a;
+  border-color: #b68a25;
+  color: #483000;
+  box-shadow: 0 2px 0 #b68a25;
 }
 
 @media (min-width: 40rem) {

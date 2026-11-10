@@ -71,7 +71,7 @@
     el('phase').textContent = summary ? 'TỔNG KẾT' : ({
       estimate: 'BƯỚC 1 · ƯỚC LƯỢNG',
       exact: 'BƯỚC 2 · TÍNH CHÍNH XÁC',
-      completed: 'KẾT QUẢ CỦA EM',
+      completed: `KẾT QUẢ CÂU ${index + 1}`,
     })[state.phase];
     el('prompt').textContent = summary ? 'Em đã hoàn thành cả ba chặng!'
       : (state.phase === 'estimate' && question.prompt) || (
@@ -106,10 +106,18 @@
       el('chosen').textContent = `Em đã chọn khoảng ${rangeLabel(question.choices.find(range => range.id === state.rangeId))}.`;
       el('answer').value = '';
     } else if (state?.phase === 'completed') {
-      el('range-result').textContent = state.estimateCorrect ? 'Ước lượng: hợp lý.' : 'Ước lượng: chưa hợp lý.';
-      el('exact-result').textContent = state.exactCorrect
-        ? `Tính chính xác: đúng, đáp số là ${state.correctAnswer}.`
-        : `Tính chính xác: em nhập ${state.submittedAnswer}. Đáp số đúng là ${state.correctAnswer}.`;
+      const chosenRange = question.choices.find(range => range.id === state.rangeId);
+      const correctRange = question.choices.find(range => range.min <= state.correctAnswer && state.correctAnswer <= range.max);
+      el('range-result').textContent = [
+        state.estimateCorrect ? 'Ước lượng: hợp lý.' : 'Ước lượng: chưa hợp lý.',
+        `Em đã chọn: ${rangeLabel(chosenRange)}`,
+        `Khoảng đúng: ${rangeLabel(correctRange)}`,
+      ].join('\n');
+      el('exact-result').textContent = [
+        state.exactCorrect ? 'Tính chính xác: đúng.' : 'Tính chính xác: chưa đúng.',
+        `Em đã nhập: ${state.submittedAnswer}`,
+        `Đáp số đúng: ${state.correctAnswer}`,
+      ].join('\n');
       el('range-result').dataset.correct = String(state.estimateCorrect);
       el('exact-result').dataset.correct = String(state.exactCorrect);
       el('explanation-text').textContent = state.explanation;
@@ -123,13 +131,20 @@
       el('summary-text').textContent = `Ước lượng hợp lý: ${estimateCount}/${questions.length}. Tính chính xác: ${exactCount}/${questions.length}.`;
     }
 
-    el('review').hidden = !finished.length;
+    const review = el('review');
+    const reviewing = state?.phase === 'completed';
+    review.hidden = !finished.length;
+    if (reviewing) review.open = true;
+    review.querySelector('summary').textContent = reviewing
+      ? `Xem lại các câu đã làm · Đang xem câu ${index + 1}`
+      : 'Xem lại các câu đã làm';
     el('review-list').replaceChildren(...finished.map(item => {
       const button = document.createElement('button');
       button.type = 'button';
       button.className = 'estimate-secondary';
       const itemIndex = questions.indexOf(item);
       button.textContent = `Câu ${itemIndex + 1}`;
+      if (item === question) button.setAttribute('aria-current', 'true');
       button.addEventListener('click', () => {
         if (busy) return;
         showError();
