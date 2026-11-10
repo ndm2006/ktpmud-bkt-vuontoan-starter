@@ -109,5 +109,5 @@ Giữ tách biệt xác nhận của thành viên, kết quả kiểm thử và 
 | Công cụ và mục đích | ChatGPT/Codex đọc lại trao đổi Track B và đối chiếu đề để hoàn thiện hồ sơ cho giảng viên. |
 | Phạm vi | Kịch bản demo, bảng tiến độ, báo cáo test, bảo mật, đóng góp, README, hướng dẫn nộp và cấu hình CI. Mốc giao diện được đối chiếu là `0bc0176`. |
 | Kiểm chứng | Đối chiếu mã và lịch sử Git, chạy lại bộ test MVP, đối chiếu mục 6, 8, 11, 12 và mẫu nộp Track B. Bằng chứng và giới hạn nằm trong [TEST_REPORT.md](TEST_REPORT.md). |
-| Quyết định của nhóm | Dùng bản MVP đã duyệt làm căn cứ trình bày và cập nhật hồ sơ theo bản đó. Việc xác nhận hồ sơ cuối, đóng góp cá nhân và bản Freeze do nhóm thực hiện. |
-| Người chịu trách nhiệm | N57-A review phần AI hỗ trợ; xem [CONTRIBUTIONS.md](CONTRIBUTIONS.md). |
+| Quyết định của nhóm | N57-A xác nhận đã kiểm tra MVP và hồ sơ tại `5abd6d3`, giữ luồng học và dùng bản đó làm căn cứ bàn giao. Các cập nhật sau lần xác nhận này tập trung vào bằng chứng và tài liệu. |
+| Người chịu trách nhiệm | N57-A lên ý tưởng, kiểm chứng phần AI hỗ trợ và chịu trách nhiệm về bản bàn giao. Xem [CONTRIBUTIONS.md](CONTRIBUTIONS.md). |

@@ -1,11 +1,11 @@
 # Đóng góp và kiểm chứng — Nhóm N57 — Track B
 
-Nhóm dùng alias công khai. Bảng phân biệt phân công đã ghi nhận, commit của sản phẩm và review cá nhân. Lịch sử hiện có chưa đủ để quy từng commit triển khai cho từng thành viên.
+Nhóm dùng alias công khai theo B-11. Ngày 11/11/2026, N57-A xác nhận đã lên ý tưởng, kiểm tra toàn bộ MVP và hồ sơ tại `5abd6d3`, đồng thời chịu trách nhiệm về bản bàn giao.
 
 | Thành viên | Đầu việc đã phân công | Commit hoặc bằng chứng review |
 |---|---|---|
-| N57-A | Quy tắc chấm, API và SQLite; kiểm chứng phần AI hỗ trợ. | Xác nhận lựa chọn Track B và review hồ sơ M0 tại [kickoff](docs/M0-KICKOFF.md), commit `bbfa8eb`. Mã MVP liên quan có tại `72755f2`; chưa có bằng chứng để quy tác giả cá nhân cho commit này. |
-| N57-B | Giao diện và kiểm thử luồng học sinh. | Các mốc giao diện liên quan: `f5a688e`, `3f00778`, `0bc0176`. Chưa ghi nhận link review hoặc commit cá nhân của N57-B. |
-| Cả nhóm | Đối chiếu tiêu chí, diễn tập demo, review hồ sơ và chốt bản nộp. | Hồ sơ CP1 tại `4d22bb1`, kịch bản PC-1 tại `0408e96`; xem [tiến độ](progress/PROGRESS.md). Xác nhận phân công thực tế và bổ sung link review trước Freeze. |
+| N57-A | Lên ý tưởng bài ước lượng, chốt luồng chọn khoảng rồi tính, kiểm tra MVP và hồ sơ, chịu trách nhiệm về phần AI hỗ trợ và bản bàn giao. | Xác nhận của N57-A đối với [bản đã kiểm tra](https://github.com/ndm2006/ktpmud-bkt-vuontoan-starter/tree/5abd6d32bf5a864f7fa63b90ab9f125df6c3baba). Xem [kickoff](docs/M0-KICKOFF.md) và [báo cáo kiểm thử](TEST_REPORT.md). |
+| N57-B | Kiểm thử giao diện và đồng ý chốt phương án bố trí MVP hiện tại. | N57-A xác nhận kết quả kiểm thử và ý kiến của N57-B ngày 11/11/2026. Mốc giao diện được duyệt là `0bc0176`, có trong [bản MVP](https://github.com/ndm2006/ktpmud-bkt-vuontoan-starter/tree/5abd6d32bf5a864f7fa63b90ab9f125df6c3baba). |
+| Cả nhóm | Đối chiếu tiêu chí, diễn tập demo và chốt bản nộp. | Hồ sơ CP1 tại `4d22bb1`, kịch bản PC-1 tại `0408e96`. Xem [tiến độ](progress/PROGRESS.md). |
 
 Khi vấn đáp, N57-A chuẩn bị giải thích quy tắc khoảng và vì sao server lưu hai bước. N57-B chuẩn bị giải thích vị trí tính năng trong luồng học và cách kiểm tra lưu/khôi phục. Mỗi thành viên cần đối chiếu phần mình phụ trách với mã và bằng chứng test.

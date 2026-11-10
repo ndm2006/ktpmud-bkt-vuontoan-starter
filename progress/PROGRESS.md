@@ -19,7 +19,7 @@ Hồ sơ CP1 bổ sung theo [đính chính #25](https://github.com/fossbk-spec/k
 | B-04 | Xong | [API](../server/estimation-practice.js), [test](../test/estimation-practice.test.js) | Kiểm tra tải bài và bước ước lượng không trả đáp số hoặc lời giải. |
 | B-05 | Xong | [Schema](../server/db.js), [API](../server/estimation-practice.js), [test](../test/estimation-practice.test.js) | Kiểm tra nộp đúng thứ tự, khôi phục sau khởi động lại server và cách ly hai tài khoản. DOM kiểm tra tải lại cả hai bước. |
 | B-06 | Xong | [JS](../public/assets/js/pages/estimation-practice.js), [test](../test/estimation-practice.test.js) | Kiểm tra hai phản hồi riêng trên DOM với ca sai khoảng nhưng tính đúng. Có giải thích mốc sau khi nộp. |
-| B-07 | Đang | [test hồi quy phiếu cũ](../test/estimation-practice.test.js) | Phiếu Bài 9–10 nộp thành công. Diff MVP không sửa auth/session, tài khoản mẫu hoặc deployment. Hồi quy thêm các luồng cũ trước CP2. |
+| B-07 | Xong | [Checklist](../SECURITY_PRIVACY_CHECKLIST.md), [test hồi quy phiếu cũ](../test/estimation-practice.test.js) | Đối chiếu tag starter xác nhận các tệp auth, dữ liệu tài khoản mẫu và cấu hình deployment giữ nguyên. Ca hồi quy phiếu Bài 9–10 đạt. |
 | B-08 | Xong | [8 ca tự động](../test/estimation-practice.test.js) | Đủ ca thông thường, biên đầu vào, dữ liệu lỗi, chấm, nộp lặp và gửi đồng thời. |
 | B-09 | Xong | [Báo cáo kiểm thử](../TEST_REPORT.md) | Bản xuất Git sạch trên Windows x64 chạy được `npm ci` và `npm test`, đạt 8/8 với Node.js 22. |
 | B-10 | Xong | [T14](../TEST_PLAN.md), [CI trên PR #1](https://github.com/ndm2006/ktpmud-bkt-vuontoan-starter/actions/runs/42864978852) | Workflow chạy `npm ci` và `npm test` thành công với bản MVP tại `c0d3169`. |
@@ -62,8 +62,8 @@ Không có tại thời điểm lập bản chuẩn bị. Nhóm xác nhận chư
 
 | Alias / vai trò | Đầu việc chính theo kế hoạch đã chốt | Commit/PR tiêu biểu |
 |---|---|---|
-| N57-A | Quy tắc chấm, API, lưu kết quả, kiểm chứng phần AI hỗ trợ | Chưa có commit triển khai cá nhân được xác minh |
-| N57-B | Giao diện và kiểm thử luồng | Chưa có commit triển khai cá nhân được xác minh |
+| N57-A | Lên ý tưởng, chốt luồng học, kiểm tra MVP và hồ sơ, chịu trách nhiệm bản bàn giao | Xác nhận đã kiểm tra `5abd6d3`. Xem [đóng góp](../CONTRIBUTIONS.md). |
+| N57-B | Kiểm thử giao diện và đồng ý chốt bố trí MVP | N57-A xác nhận kết quả kiểm thử và ý kiến của N57-B. Xem [đóng góp](../CONTRIBUTIONS.md). |
 
 ## PC-2 — 18/11/2026
 
@@ -74,14 +74,14 @@ Bảng dưới là trạng thái chuẩn bị, chưa phải xác nhận đã tr�
 | Việc (theo bảng 1.3) | Kế hoạch | Thực tế | Lệch & lý do |
 |---|---|---|---|
 | Đối chiếu MVP và chuẩn bị trình bày | PC-1 / M2 | Luồng đã kiểm tra trên trình duyệt, có [kịch bản demo](../docs/PC1-DEMO.md). | Chờ phản hồi của GV/TA. |
-| Chốt bằng chứng CI và hồ sơ | M3 / PC-2 | Có workflow, run CI trên PR nội bộ, kiểm tra bàn phím và báo cáo kiểm thử. | Cần xác nhận đóng góp cá nhân và kiểm tra CI lại trên bản freeze. |
+| Chốt bằng chứng CI và hồ sơ | M3 / PC-2 | Có run CI, kiểm tra bàn phím, báo cáo kiểm thử và xác nhận đóng góp. | Kiểm tra CI lại trên bản freeze. |
 
 ### 2.2. Tiến độ theo acceptance criteria
 
 | Mã | Trạng thái | Bằng chứng | Ghi chú |
 |---|---|---|---|
 | B-01–B-06, B-08–B-09, B-11–B-12 | Có bằng chứng cục bộ | [Báo cáo kiểm thử](../TEST_REPORT.md) | Đối chiếu chi tiết và giới hạn tại bảng 1.1. |
-| B-07 | Đang | [Checklist](../SECURITY_PRIVACY_CHECKLIST.md) | Có review diff và hồi quy phiếu Bài 9–10. Cần hồi quy rộng hơn nếu GV/TA yêu cầu. |
+| B-07 | Xong | [Checklist](../SECURITY_PRIVACY_CHECKLIST.md) | Đã đối chiếu các tệp thuộc phạm vi bảo vệ của đề và chạy hồi quy phiếu Bài 9–10. |
 | B-10 | Xong ở PC-1 | [CI trên PR #1](https://github.com/ndm2006/ktpmud-bkt-vuontoan-starter/actions/runs/42864978852) | Kiểm tra lại trên SHA freeze. |
 
 ### 2.3. Sẵn sàng nộp bài
@@ -95,7 +95,7 @@ Bảng dưới là trạng thái chuẩn bị, chưa phải xác nhận đã tr�
 | TEST_REPORT.md | Có | [TEST_REPORT.md](../TEST_REPORT.md) |
 | SECURITY_PRIVACY_CHECKLIST.md | Có | [Checklist](../SECURITY_PRIVACY_CHECKLIST.md) |
 | AI_USE.md | Có | [AI_USE.md](../AI_USE.md) |
-| CONTRIBUTIONS.md | Có phân công; chờ xác nhận review cá nhân | [CONTRIBUTIONS.md](../CONTRIBUTIONS.md) |
+| CONTRIBUTIONS.md | Có xác nhận vai trò N57-A và kiểm thử giao diện của N57-B | [CONTRIBUTIONS.md](../CONTRIBUTIONS.md) |
 | Slide / demo script ≤ 7 phút | Có kịch bản | [Kịch bản demo](../docs/PC1-DEMO.md) |
 
 ### 2.4. Việc còn lại đến Freeze (23:59 19/11)
@@ -103,7 +103,7 @@ Bảng dưới là trạng thái chuẩn bị, chưa phải xác nhận đã tr�
 | Việc | Vai trò phụ trách | Hạn |
 |---|---|---|
 | Chạy CI trên PR nội bộ, ghi link và SHA | N57-A và N57-B | Trước Freeze |
-| Xác nhận đóng góp, kiểm tra tệp cuối và chốt SHA/tag | Cả nhóm | 23:59 ngày 19/11 |
+| Kiểm tra tệp cuối và chốt SHA/tag | Cả nhóm | 23:59 ngày 19/11 |
 
 ### 2.5. Rủi ro / câu hỏi cho GV
 
