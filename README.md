@@ -50,13 +50,15 @@ npm start
 
 ### Demo Track B — Ước lượng trước khi tính đúng
 
-Từ thư mục dự án, chạy `npm ci`, rồi `npm start`. Mở http://localhost:3000, đăng nhập bằng một tài khoản học sinh mẫu ở trên, chọn **Phòng Luyện Tập** → **Vào bài ước lượng**. Sau khi đăng nhập có thể mở trực tiếp http://localhost:3000/exercise.html#uoc-luong.
+Từ checkout sạch, chạy `npm ci`, `npm test` rồi `npm start`. Mở http://localhost:3000, đăng nhập bằng tài khoản học sinh mẫu ở trên và chọn **Phòng Luyện Tập** → **Ước lượng trước khi tính đúng**. Có thể mở trực tiếp http://localhost:3000/exercise.html#uoc-luong sau khi đăng nhập. Trên Windows x64, dùng Node.js 22 như trong [hướng dẫn phát triển](docs/DEVELOPMENT.md).
 
-1. Ở câu đầu `6 × 7`, mở **Em cần gợi ý** để xem cách chọn mốc. Cố ý chọn **60–88** và bấm **Lưu khoảng và tiếp tục**.
-2. Tải lại trang. Ô nhập đáp số và khoảng đã chọn xuất hiện lại. Nhập **42** rồi nộp để thấy hai phản hồi riêng và lời giải thích mốc.
-3. Tiếp tục qua ba chặng, thử **Nghỉ một chút** rồi mở lại. Sau 12 câu có tổng kết riêng cho ước lượng và tính chính xác.
+1. Ở câu đầu `6 × 7`, mở **Gợi ý của Ong Vàng**. Chọn **60–88** và bấm **Tiếp tục**.
+2. Tải lại trang, nhập **42** rồi chọn **Nộp đáp số**. Kết quả cho thấy khoảng chưa hợp lý và đáp số đúng. Mở **Xem cách nhẩm** để đọc lời giải.
+3. Bấm **Về phòng luyện tập** rồi mở lại thẻ ước lượng để tiếp tục. Sau 12 câu, tổng kết đếm riêng số ước lượng hợp lý và số tính đúng.
 
-Chạy `npm test` để kiểm tra tự động. Test tự tạo DB tạm. Để demo lại, có thể dùng tài khoản mẫu khác hoặc DB cục bộ mới. Kết quả ước lượng được lưu riêng, bảng điểm và sao của phiếu cũ tiếp tục dùng quy tắc hiện có.
+Test tự tạo DB tạm. Để demo từ câu 1, dùng tài khoản mẫu chưa làm bài hoặc chạy dev với một DB riêng. Kết quả ước lượng được lưu riêng với điểm và sao của phiếu cũ.
+
+**Dành cho giảng viên:** [Hồ sơ nộp Track B](docs/SUBMISSION.md) dẫn đến yêu cầu, ADR, báo cáo test, checklist, nhật ký AI và đóng góp. Có thể kiểm chứng MVP theo [kịch bản demo](docs/PC1-DEMO.md) và [báo cáo tiến độ](progress/PROGRESS.md).
 
 ## 2. Cấu trúc thư mục
 

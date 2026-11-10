@@ -21,10 +21,10 @@ Hồ sơ CP1 bổ sung theo [đính chính #25](https://github.com/fossbk-spec/k
 | B-06 | Xong | [JS](../public/assets/js/pages/estimation-practice.js), [test](../test/estimation-practice.test.js) | Kiểm tra hai phản hồi riêng trên DOM với ca sai khoảng nhưng tính đúng. Có giải thích mốc sau khi nộp. |
 | B-07 | Đang | [test hồi quy phiếu cũ](../test/estimation-practice.test.js) | Phiếu Bài 9–10 nộp thành công. Diff MVP không sửa auth/session, tài khoản mẫu hoặc deployment. Hồi quy thêm các luồng cũ trước CP2. |
 | B-08 | Xong | [8 ca tự động](../test/estimation-practice.test.js) | Đủ ca thông thường, biên đầu vào, dữ liệu lỗi, chấm, nộp lặp và gửi đồng thời. |
-| B-09 | Xong | [npm test](../package.json), [test](../test/estimation-practice.test.js) | Worktree mới cài bằng npm ci. npm test dùng DB tạm và đạt 8/8 trên Node.js 24. |
-| B-10 | Chưa | [T14](../TEST_PLAN.md) | Chưa có workflow chạy trên PR của fork. |
+| B-09 | Xong | [Báo cáo kiểm thử](../TEST_REPORT.md) | Bản xuất Git sạch trên Windows x64 chạy được `npm ci` và `npm test`, đạt 8/8 với Node.js 22. |
+| B-10 | Đang | [T14](../TEST_PLAN.md), [workflow](../.github/workflows/track-b.yml) | Đã cấu hình `npm ci` và `npm test` trên PR. Chờ run trên fork. |
 | B-11 | Xong | [Fixture synthetic](../server/estimation-questions.js), [nhật ký AI](../AI_USE.md) | Diff MVP dùng dữ liệu bài synthetic và alias. DB thử được tạo cục bộ, ngoài repo. |
-| B-12 | Đang | [Form và nhãn](../public/exercise.html), [xử lý focus](../public/assets/js/pages/estimation-practice.js) | Đã kiểm tra focus và thông báo lỗi trên DOM. Cần kiểm tra Tab, phím mũi tên, Enter và bố cục trên trình duyệt. |
+| B-12 | Xong | [Ca bàn phím T10](../TEST_REPORT.md) | Đã thử Tab, phím mũi tên và Enter cho luồng chọn khoảng, nhập đáp số, sửa lỗi định dạng và nhận phản hồi. |
 
 Kiểm tra MVP ban đầu đã đi hết **12 câu** bằng DOM nối với server thật. Với giao diện `0bc0176`, đã kiểm tra trên trình duyệt tích hợp hai liên kết đầu trang, chuyển hoạt động, lưu khoảng, nộp đáp số, mở gợi ý và xem cách nhẩm. Bộ kiểm thử tại `test/estimation-practice.test.js` đạt **8/8** trên máy dev Windows với Node.js 24 và thư viện SQLite đã cài. Kết quả này là bằng chứng cục bộ, chưa có run CI trên PR. [Các bước demo và chạy lại](../docs/PC1-DEMO.md).
 
@@ -50,7 +50,7 @@ Không có tại thời điểm lập bản chuẩn bị. Nhóm xác nhận chư
 
 - CP1 bổ sung sau hạn gốc. Cần xác nhận phạm vi với GV/TA tại PC-1 và dành thời gian xử lý góp ý.
 - Kiểm tra các phản hồi ở giữa hai bước để tránh lộ đáp số. Khi refresh hoặc nhấn nộp hai lần, server phải khôi phục đúng trạng thái và không ghi đè kết quả.
-- MVP chạy trên máy cục bộ. Đã thử đường đi từ menu và bố cục trên trình duyệt tích hợp. Cần kiểm tra toàn bộ luồng bằng bàn phím trước CP2. Độ khó ba chặng chưa được thử với học sinh.
+- MVP đã chạy trên máy cục bộ, kiểm tra từ menu và qua bàn phím. Độ khó ba chặng chưa được thử với học sinh. [Checklist](../SECURITY_PRIVACY_CHECKLIST.md) ghi hai cảnh báo dependency để nhóm xem xét trước Freeze.
 
 ### 1.5. Câu hỏi cho GV
 
@@ -67,34 +67,43 @@ Không có tại thời điểm lập bản chuẩn bị. Nhóm xác nhận chư
 
 ## PC-2 — 18/11/2026
 
+Bảng dưới là trạng thái chuẩn bị, chưa phải xác nhận đã trình bày PC-2. Xem [hồ sơ nộp](../docs/SUBMISSION.md) để theo dõi phần còn thiếu.
+
 ### 2.1. Đối chiếu timeline PC-1
 
 | Việc (theo bảng 1.3) | Kế hoạch | Thực tế | Lệch & lý do |
 |---|---|---|---|
+| Đối chiếu MVP và chuẩn bị trình bày | PC-1 / M2 | Luồng đã kiểm tra trên trình duyệt, có [kịch bản demo](../docs/PC1-DEMO.md). | Chờ phản hồi của GV/TA. |
+| Chốt bằng chứng CI và hồ sơ | M3 / PC-2 | Có workflow, kiểm tra bàn phím và báo cáo theo kết quả cục bộ. | Cần run CI và xác nhận đóng góp cá nhân. |
 
 ### 2.2. Tiến độ theo acceptance criteria
 
 | Mã | Trạng thái | Bằng chứng | Ghi chú |
 |---|---|---|---|
+| B-01–B-06, B-08–B-09, B-11–B-12 | Có bằng chứng cục bộ | [Báo cáo kiểm thử](../TEST_REPORT.md) | Đối chiếu chi tiết và giới hạn tại bảng 1.1. |
+| B-07 | Đang | [Checklist](../SECURITY_PRIVACY_CHECKLIST.md) | Có review diff và hồi quy phiếu Bài 9–10. Cần hồi quy rộng hơn nếu GV/TA yêu cầu. |
+| B-10 | Đang | [Workflow](../.github/workflows/track-b.yml) | Chờ run trên PR và URL gắn với SHA. |
 
 ### 2.3. Sẵn sàng nộp bài
 
 | Deliverable | Có / Chưa | Đường dẫn |
 |---|---|---|
-| README.md (cài đặt / chạy / test) | | |
-| REQUIREMENTS.md | | |
-| DECISIONS.md / ADR | | |
-| Test tự động + CI xanh | | |
-| TEST_REPORT.md | | |
-| SECURITY_PRIVACY_CHECKLIST.md | | |
-| AI_USE.md | | |
-| CONTRIBUTIONS.md | | |
-| Slide / demo script ≤ 7 phút | | |
+| README.md (cài đặt / chạy / test) | Có | [README.md](../README.md) |
+| REQUIREMENTS.md | Có | [REQUIREMENTS.md](../REQUIREMENTS.md) |
+| DECISIONS.md / ADR | Có | [DECISIONS.md](../DECISIONS.md) |
+| Test tự động + CI xanh | Có test; chờ CI | [TEST_REPORT.md](../TEST_REPORT.md) |
+| TEST_REPORT.md | Có | [TEST_REPORT.md](../TEST_REPORT.md) |
+| SECURITY_PRIVACY_CHECKLIST.md | Có | [Checklist](../SECURITY_PRIVACY_CHECKLIST.md) |
+| AI_USE.md | Có | [AI_USE.md](../AI_USE.md) |
+| CONTRIBUTIONS.md | Có phân công; chờ xác nhận review cá nhân | [CONTRIBUTIONS.md](../CONTRIBUTIONS.md) |
+| Slide / demo script ≤ 7 phút | Có kịch bản | [Kịch bản demo](../docs/PC1-DEMO.md) |
 
 ### 2.4. Việc còn lại đến Freeze (23:59 19/11)
 
 | Việc | Vai trò phụ trách | Hạn |
 |---|---|---|
+| Chạy CI trên PR nội bộ, ghi link và SHA | N57-A và N57-B | Trước Freeze |
+| Xác nhận đóng góp, kiểm tra tệp cuối và chốt SHA/tag | Cả nhóm | 23:59 ngày 19/11 |
 
 ### 2.5. Rủi ro / câu hỏi cho GV
 

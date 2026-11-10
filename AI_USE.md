@@ -101,3 +101,13 @@ Giữ tách biệt xác nhận của thành viên, kết quả kiểm thử và 
 
 - GPT 6.1 Sol hỗ trợ đánh dấu câu đang xem trong danh sách và hiển thị khoảng đã chọn, khoảng đúng, số đã nhập và đáp số đúng trong hai thẻ kết quả. Giữ phần giải thích và dùng dữ liệu chấm sẵn có từ API.
 - Kiểm tra JavaScript với dữ liệu API giả lập, gồm mở lại câu đã nộp từ đường dẫn, chuyển giữa các câu đã làm và trở lại câu chưa hoàn thành. N57-A phụ trách xác nhận hiển thị trên Windows.
+
+## Hồ sơ trình bày và nộp Track B — 11/11/2026
+
+| Trường | Nội dung |
+|---|---|
+| Công cụ và mục đích | ChatGPT/Codex đọc lại trao đổi Track B và đối chiếu đề để hoàn thiện hồ sơ cho giảng viên. |
+| Phạm vi | Kịch bản demo, bảng tiến độ, báo cáo test, bảo mật, đóng góp, README, hướng dẫn nộp và cấu hình CI. Mốc giao diện được đối chiếu là `0bc0176`. |
+| Kiểm chứng | Đối chiếu mã và lịch sử Git, chạy lại bộ test MVP, đối chiếu mục 6, 8, 11, 12 và mẫu nộp Track B. Bằng chứng và giới hạn nằm trong [TEST_REPORT.md](TEST_REPORT.md). |
+| Quyết định của nhóm | Dùng bản MVP đã duyệt làm căn cứ trình bày và cập nhật hồ sơ theo bản đó. Việc xác nhận hồ sơ cuối, đóng góp cá nhân và bản Freeze do nhóm thực hiện. |
+| Người chịu trách nhiệm | N57-A review phần AI hỗ trợ; xem [CONTRIBUTIONS.md](CONTRIBUTIONS.md). |
