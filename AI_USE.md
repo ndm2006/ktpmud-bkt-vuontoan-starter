@@ -61,3 +61,16 @@ Tại M0, AI hỗ trợ tài liệu, thao tác kho mã và kiểm tra starter; c
 Mỗi tác vụ AI tiếp theo phải bổ sung mục đích, tệp/module/commit liên quan, bằng chứng kiểm chứng, quyết định giữ/sửa/loại cùng lý do và mã thành viên chịu trách nhiệm. Không ghi secret hoặc dữ liệu cá nhân vào log; chỉ dùng dữ liệu synthetic trong ứng dụng.
 
 Sự chấp thuận hồ sơ M0 không phải xác nhận sản phẩm đã đạt toàn bộ yêu cầu. Nhóm chịu trách nhiệm review và giải thích các quyết định. Không dùng AI khi viva. Agent không tự merge hoặc phát hành.
+
+## 6. Bổ sung CP1 và chuẩn bị PC-1 — 10/11/2026
+
+| Trường | Nội dung |
+|---|---|
+| Công cụ | ChatGPT/Codex (GPT-6) |
+| Mục đích | Đối chiếu đề, đính chính và starter, soạn yêu cầu, tiêu chí nghiệm thu, ADR, kế hoạch test và báo cáo tiến độ dựa trên trạng thái fork. |
+| Phạm vi | REQUIREMENTS.md, DECISIONS.md, TEST_PLAN.md, progress/PROGRESS.md và mục nhật ký này trên track-b-work. Commit xác định từ lịch sử nhánh. |
+| Bằng chứng kiểm chứng | Đề chính thức mục 4 và 8, Issues #19/#25, mẫu PC-1 và mã nguồn tại b66ff71. Kiểm tra liên kết nội bộ, đối chiếu đủ B-01–B-12 và tính lại 12 câu trong ADR. Đây là kiểm tra hồ sơ. Các ca trong TEST_PLAN.md là kế hoạch cho tính năng. |
+| Quyết định của nhóm | N57-A xác nhận CP1 chưa làm, đồng ý luồng chọn khoảng rồi nhập kết quả chính xác, tích hợp Phòng Luyện Tập, chấm và lưu hai bước trên server. N57-A chốt phân công dự kiến N57-A quy tắc/API/lưu, N57-B UI/kiểm thử luồng. Chi tiết về khoảng, API, lưu và toàn bộ bản soạn cần N57-A đọc lại để quyết định giữ, sửa hoặc loại kèm lý do. |
+| Người chịu trách nhiệm | N57-A. Xác nhận thiết kế cấp luồng và phân công đã có, còn xác nhận nội dung hồ sơ cuối chờ đọc lại. |
+
+Giữ tách biệt xác nhận của thành viên, kết quả kiểm thử và duyệt phạm vi của GV/TA.
