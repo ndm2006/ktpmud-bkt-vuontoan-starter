@@ -3,8 +3,10 @@
 (() => {
   const panel = document.getElementById('uoc-luong');
   const el = name => document.getElementById(`estimate-${name}`);
+  const worksheet = document.getElementById('worksheet');
+  const worksheetButton = document.getElementById('worksheet-open');
+  const worksheetTitle = document.getElementById('worksheet-title');
   const url = '/api/estimation-practice';
-  const stageNames = ['Vào bài', 'Tự tìm mốc', 'Áp dụng'];
   let questions = [];
   let currentIndex = -1;
   let busy = false;
@@ -27,6 +29,13 @@
     const next = new URL(location.href);
     next.hash = id ? `uoc-luong/${id}` : '';
     history.replaceState(null, '', next);
+  }
+
+  function showMode(estimate) {
+    panel.hidden = !estimate;
+    worksheet.hidden = estimate;
+    el('open').setAttribute('aria-pressed', String(estimate));
+    worksheetButton.setAttribute('aria-pressed', String(!estimate));
   }
 
   function renderStage(question) {
@@ -56,9 +65,7 @@
     const state = question?.state;
     const finished = questions.filter(item => item.state.phase === 'completed');
     const summary = !question;
-    el('open').hidden = true;
-    el('activity').hidden = false;
-    panel.classList.add('estimate-active');
+    showMode(true);
     renderStage(question);
     el('steps').hidden = summary;
     el('step-range').setAttribute('aria-current', state?.phase === 'estimate' ? 'step' : 'false');
@@ -67,21 +74,13 @@
     el('meter').value = finished.length;
     el('progress').textContent = summary
       ? `Đã hoàn thành ${finished.length}/${questions.length} câu`
-      : `Chặng ${question.stage}/3 · ${stageNames[question.stage - 1]} · Câu ${index % 4 + 1}/4 · Đã làm ${finished.length}/${questions.length}`;
-    el('phase').textContent = summary ? 'TỔNG KẾT' : ({
-      estimate: 'BƯỚC 1 · ƯỚC LƯỢNG',
-      exact: 'BƯỚC 2 · TÍNH CHÍNH XÁC',
-      completed: `KẾT QUẢ CÂU ${index + 1}`,
-    })[state.phase];
+      : `Chặng ${question.stage}/3 · Câu ${index + 1}/${questions.length}`;
     el('prompt').textContent = summary ? 'Em đã hoàn thành cả ba chặng!'
       : (state.phase === 'estimate' && question.prompt) || (
-        state.phase === 'estimate' ? 'Kết quả nằm trong khoảng nào?' : 'Kết quả của phép tính'
+        state.phase === 'estimate' ? 'Kết quả nằm trong khoảng nào?'
+          : state.phase === 'exact' ? 'Tính kết quả' : `Kết quả câu ${index + 1}`
       );
     el('expression').textContent = question?.expression || '';
-    el('guide').hidden = state?.phase !== 'estimate' || index > 1;
-    el('guide').textContent = index === 0
-      ? 'Với phép nhân, hãy tìm hai mốc dễ nhân nằm hai bên số cần ước lượng.'
-      : 'Với phép chia, hãy tìm hai mốc nằm hai bên số bị chia và dễ chia nhẩm.';
     el('range-form').hidden = state?.phase !== 'estimate';
     el('exact-form').hidden = state?.phase !== 'exact';
     el('feedback').hidden = state?.phase !== 'completed';
@@ -110,21 +109,22 @@
       const correctRange = question.choices.find(range => range.min <= state.correctAnswer && state.correctAnswer <= range.max);
       el('range-result').textContent = [
         state.estimateCorrect ? 'Ước lượng: hợp lý.' : 'Ước lượng: chưa hợp lý.',
-        `Em đã chọn: ${rangeLabel(chosenRange)}`,
-        `Khoảng đúng: ${rangeLabel(correctRange)}`,
-      ].join('\n');
+        `Em chọn: ${rangeLabel(chosenRange)}`,
+        state.estimateCorrect ? '' : `Khoảng đúng: ${rangeLabel(correctRange)}`,
+      ].filter(Boolean).join('\n');
       el('exact-result').textContent = [
         state.exactCorrect ? 'Tính chính xác: đúng.' : 'Tính chính xác: chưa đúng.',
-        `Em đã nhập: ${state.submittedAnswer}`,
-        `Đáp số đúng: ${state.correctAnswer}`,
-      ].join('\n');
+        `Em nhập: ${state.submittedAnswer}`,
+        state.exactCorrect ? '' : `Đáp số đúng: ${state.correctAnswer}`,
+      ].filter(Boolean).join('\n');
       el('range-result').dataset.correct = String(state.estimateCorrect);
       el('exact-result').dataset.correct = String(state.exactCorrect);
       el('explanation-text').textContent = state.explanation;
-      el('explanation').open = !state.estimateCorrect;
+      el('explanation').open = false;
       const next = firstUnfinished();
       el('next').textContent = next === questions.length ? 'Xem tổng kết'
-        : index % 4 === 3 && next === index + 1 ? 'Sang chặng tiếp theo' : 'Tiếp tục luyện tập';
+        : index % 4 === 3 && next === index + 1 ? 'Sang chặng tiếp theo'
+          : next === index + 1 ? 'Câu tiếp theo' : 'Tiếp tục luyện tập';
     } else {
       const estimateCount = finished.filter(item => item.state.estimateCorrect).length;
       const exactCount = finished.filter(item => item.state.exactCorrect).length;
@@ -134,7 +134,6 @@
     const review = el('review');
     const reviewing = state?.phase === 'completed';
     review.hidden = !finished.length;
-    if (reviewing) review.open = true;
     review.querySelector('summary').textContent = reviewing
       ? `Xem lại các câu đã làm · Đang xem câu ${index + 1}`
       : 'Xem lại các câu đã làm';
@@ -174,6 +173,10 @@
   }
 
   function open() {
+    if (!panel.hidden) {
+      panel.scrollIntoView({ block: 'start' });
+      return;
+    }
     perform(el('open'), async () => {
       ({ questions } = await window.MathAPI.get(url));
       const requested = location.hash.split('/')[1];
@@ -184,12 +187,16 @@
   }
 
   el('open').addEventListener('click', open);
+  worksheetButton.addEventListener('click', () => {
+    if (busy) return;
+    showMode(false);
+    setLocation('');
+    showError();
+    worksheetTitle.focus();
+  });
   el('pause').addEventListener('click', () => {
     if (busy) return;
-    el('activity').hidden = true;
-    panel.classList.remove('estimate-active');
-    el('open').hidden = false;
-    el('open').textContent = 'Tiếp tục bài ước lượng';
+    showMode(false);
     setLocation('');
     showError();
     el('open').focus();

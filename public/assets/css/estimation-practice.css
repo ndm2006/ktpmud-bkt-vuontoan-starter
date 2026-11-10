@@ -1,26 +1,78 @@
+.practice-modes {
+  display: grid;
+  gap: .75rem;
+}
+
+.practice-mode {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: .75rem;
+  min-height: 5rem;
+  padding: .8rem 1rem;
+  border: 1px solid #d5e4d8;
+  border-radius: 1rem;
+  background: #fff;
+  color: #183b24;
+  text-align: left;
+  box-shadow: 0 2px 8px #183b2412;
+}
+
+.practice-mode:hover,
+.practice-mode[aria-pressed="true"] {
+  background: #eef7ef;
+  border-color: #80ad8a;
+}
+
+.practice-mode strong, .practice-mode small { display: block; }
+.practice-mode strong { font-size: 1.05rem; line-height: 1.3; }
+.practice-mode small { color: #395644; margin-top: .2rem; }
+.practice-mode-icon {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: .75rem;
+  background: #ffe28a;
+  color: #483000;
+}
+
+#worksheet-title { scroll-margin-top: 6rem; }
+.estimate-practice[hidden], .practice-worksheet[hidden] { display: none; }
+
 .estimate-practice {
   scroll-margin-top: 6rem;
-  background: #f5fbf6;
-  border: 1px solid #b5d3bd;
+  background: #eef7ef;
+  border: 1px solid #d5e4d8;
   border-radius: 1.25rem;
   color: #183b24;
   padding: clamp(1rem, 3vw, 1.75rem);
 }
 
 .estimate-practice [hidden] { display: none !important; }
-.estimate-practice :focus-visible { outline: 3px solid #1764a3; outline-offset: 3px; }
+.estimate-practice :focus-visible, .practice-mode:focus-visible { outline: 3px solid #1764a3; outline-offset: 3px; }
 .estimate-practice p { margin: .35rem 0; }
-.estimate-header, .estimate-status {
+.estimate-status {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   gap: .75rem;
 }
-.estimate-header h2 { margin: 0; font-size: clamp(1.35rem, 3vw, 2rem); font-weight: 800; }
-.estimate-kicker { color: #25603b; font-size: .85rem; font-weight: 800; letter-spacing: .035em; }
-.estimate-status { margin-top: 1rem; font-weight: 700; }
-.estimate-practice progress { width: 100%; accent-color: #257145; }
+#estimate-title { margin: 0; font-size: clamp(1.2rem, 3vw, 1.5rem); font-weight: 800; }
+.estimate-status { margin-top: .5rem; font-weight: 700; }
+.estimate-practice progress {
+  display: block;
+  width: 100%;
+  height: .5rem;
+  border: 0;
+  border-radius: 999px;
+  overflow: hidden;
+  background: #dce9df;
+  accent-color: #257145;
+}
+.estimate-practice progress::-webkit-progress-bar { background: #dce9df; }
+.estimate-practice progress::-webkit-progress-value { background: #257145; }
 .estimate-question {
   background: #fff;
   border: 1px solid #d5e4d8;
@@ -30,7 +82,7 @@
 }
 .estimate-question h3 { font-size: 1.25rem; font-weight: 800; }
 #estimate-expression { font-size: 1.65rem; font-weight: 800; }
-.estimate-note, .estimate-hint {
+.estimate-hint {
   background: #eff6fb;
   border-radius: .65rem;
   color: #183c59;
@@ -62,18 +114,11 @@
 }
 .estimate-primary { background: #196139; color: #fff; }
 .estimate-secondary { background: #fff; color: #195833; }
-.estimate-practice button:disabled { opacity: .6; cursor: wait; }
+.estimate-practice button:disabled, .practice-mode:disabled { opacity: .6; cursor: wait; }
 #estimate-exact-form label { display: block; margin-top: .5rem; }
 #estimate-answer { border: 1px solid #6a8971; border-radius: .5rem; padding: .5rem; width: 6rem; margin: .35rem .55rem .35rem 0; }
 .estimate-result { font-weight: 700; }
 .estimate-error { color: #8d241e; font-weight: 700; }
-
-/* While the activity is open, keep the worksheet below it out of view. */
-#uoc-luong.estimate-active ~ * { display: none !important; }
-
-.estimate-active {
-  background: linear-gradient(145deg, #e6f6e7, #f5fbf6 55%);
-}
 
 .estimate-stage-questions, .estimate-steps {
   display: flex;
@@ -135,7 +180,6 @@
   box-shadow: inset 0 -2px 0 #90c99e;
 }
 
-.estimate-question > .estimate-kicker,
 .estimate-question h3,
 #estimate-expression { text-align: center; }
 
@@ -205,6 +249,7 @@
 }
 
 @media (min-width: 40rem) {
+  .practice-modes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .estimate-options { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .estimate-results { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
