@@ -10,7 +10,7 @@ Học sinh lớp 3 luyện nhận biết độ lớn của kết quả trước 
 
 - Học sinh chọn một trong ba khoảng. Server kiểm tra khoảng thuộc đúng câu và lưu lựa chọn. Nếu khoảng hợp lệ nhưng ước lượng sai, học sinh vẫn được chuyển bước.
 - Học sinh nhập kết quả nguyên. Server chỉ chấp nhận sau khi bước ước lượng đã lưu. Sau lần nộp này, server trả hai kết quả đúng/sai, đáp số chính xác và giải thích cách dùng mốc.
-- Trong bước ước lượng, học sinh có thể mở một gợi ý nhẹ. Sau khi nộp cả hai bước, lời giải thích được mở sẵn nếu ước lượng sai. Học sinh có thể nghỉ và tiếp tục bằng tiến độ đã lưu.
+- Trong bước ước lượng, học sinh có thể mở gợi ý của Ong Vàng. Sau khi nộp cả hai bước, học sinh có thể mở **Xem cách nhẩm**. Học sinh có thể quay về Phòng Luyện Tập và tiếp tục bằng tiến độ đã lưu.
 - Khi tải lại hoặc mở lại bài bằng cùng tài khoản, ứng dụng khôi phục bước đang làm và kết quả đã nộp từ SQLite. Một lượt gồm 12 câu, mỗi câu có một lần ghi cho từng bước. Không tính sao, không thay điểm hoặc mở khóa bài cũ.
 - Giữ hành vi các dạng bài cũ, đăng nhập, session, tài khoản mẫu, route auth/teacher/admin và deployment. Chỉ dùng dữ liệu synthetic. Không dùng AI khi ứng dụng chấm và không kết nối hệ thống thật.
 
@@ -35,4 +35,4 @@ Các dòng dưới đây mô tả **kết quả cần kiểm chứng sau triển
 
 ## Quyết định và bằng chứng bàn giao
 
-[DECISIONS.md](DECISIONS.md) mô tả quy tắc khoảng, hợp đồng hai bước, lưu trạng thái và cách giữ luồng cũ. Để nghiệm thu ở Checkpoint 2, nhóm cần luồng chạy xuyên suốt, kết quả test công khai và demo nội bộ 5 phút. [Theo dõi tiến độ](progress/PROGRESS.md).
+[DECISIONS.md](DECISIONS.md) mô tả quy tắc khoảng, hợp đồng hai bước, lưu trạng thái và cách giữ luồng cũ. Xem [kịch bản demo PC-1](docs/PC1-DEMO.md) để kiểm chứng MVP hiện tại. Để nghiệm thu ở Checkpoint 2, nhóm cần luồng chạy xuyên suốt, kết quả test công khai và demo nội bộ 5 phút. [Theo dõi tiến độ](progress/PROGRESS.md).

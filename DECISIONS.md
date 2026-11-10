@@ -23,7 +23,7 @@ Phương án tích hợp là một mục trong `public/exercise.html`, điều k
 - Mỗi câu có ba khoảng riêng, bao gồm cả hai đầu mút. Chọn mốc thấp và cao dễ tính sao cho mọi kết quả nguyên nằm giữa hai mốc sau phép toán đều thuộc duy nhất một khoảng. Phép nhân ưu tiên mốc tròn chục, phép chia dùng số chia hết dễ nhẩm.
 - Ước lượng đúng khi khoảng đã chọn chứa đáp số. Tính chính xác đúng khi số đã nhập bằng đáp số. Hai kết quả độc lập. Tổng kết đếm riêng số ước lượng hợp lý và số tính đúng trên 12.
 - Bước tính chấp nhận số nguyên JSON trong 1–999 với phép nhân hoặc 1–99 với phép chia. Miền nhập rộng hơn miền đáp án để các sai sót thường gặp vẫn được chấm và giải thích. ID khoảng lạ, số lẻ và số ngoài miền trả lỗi để sửa.
-- Chia ba chặng, mỗi chặng bốn câu. Hai câu đầu có hướng dẫn chung, mọi câu có gợi ý tùy chọn ở bước ước lượng. Giải thích cụ thể cách tính hai mốc chỉ trả sau khi nộp đáp số và tự mở khi ước lượng sai. Không trừ lượt hay giới hạn thời gian.
+- Chia ba chặng, mỗi chặng bốn câu. Hai câu đầu dùng bảng 6 để làm quen, mọi câu có gợi ý tùy chọn ở bước ước lượng. Server chỉ trả giải thích cách tính hai mốc sau khi nộp đáp số. Học sinh mở **Xem cách nhẩm** khi cần. Không trừ lượt hay giới hạn thời gian.
 
 | ID | Chặng | Phép tính | Mốc trước khi tính | Đáp số | Khoảng đúng |
 |---|---:|---|---|---:|---|

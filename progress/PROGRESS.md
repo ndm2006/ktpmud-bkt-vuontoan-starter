@@ -7,13 +7,13 @@
 
 ## PC-1 — 11/11/2026
 
-Hồ sơ CP1 bổ sung theo [đính chính #25](https://github.com/fossbk-spec/ktpmud-project/issues/25): [REQUIREMENTS và tiêu chí nghiệm thu](../REQUIREMENTS.md), [kế hoạch kiểm thử](../TEST_PLAN.md), [ADR-001](../DECISIONS.md). M0 đã ghi trong [hồ sơ kickoff](../docs/M0-KICKOFF.md). Phạm vi CP1 chờ GV/TA duyệt.
+Hồ sơ CP1 bổ sung theo [đính chính #25](https://github.com/fossbk-spec/ktpmud-project/issues/25): [REQUIREMENTS và tiêu chí nghiệm thu](../REQUIREMENTS.md), [kế hoạch kiểm thử](../TEST_PLAN.md), [ADR-001](../DECISIONS.md). M0 đã ghi trong [hồ sơ kickoff](../docs/M0-KICKOFF.md). Phạm vi CP1 chờ GV/TA duyệt. Xem [kịch bản demo PC-1](../docs/PC1-DEMO.md) để chạy MVP, trình bày luồng và đối chiếu bằng chứng.
 
 ### 1.1. Tiến độ theo acceptance criteria
 
 | Mã | Trạng thái | Bằng chứng | Ghi chú |
 |---|---|---|---|
-| B-01 | Đang | [Phòng Luyện Tập](../public/exercise.html), [JS](../public/assets/js/pages/estimation-practice.js) | Đã tích hợp ngay trên trang luyện tập. Luồng DOM nối API thật đã qua. Cần thử lại từ menu và kiểm tra hiển thị trên laptop. |
+| B-01 | Xong | [Phòng Luyện Tập](../public/exercise.html), [T01/T12](../TEST_PLAN.md) | Đã mở bài từ menu trên trình duyệt tích hợp. Hai thẻ luyện tập nằm dưới thanh lộ trình. Đã kiểm tra chuyển qua lại, giữ lựa chọn của phiếu và chạy ca nộp phiếu cũ qua API. |
 | B-02 | Xong | [12 câu synthetic](../server/estimation-questions.js), [test](../test/estimation-practice.test.js) | 6 phép nhân và 6 phép chia, ba chặng cố định. |
 | B-03 | Xong | [Quy tắc chấm](../server/estimation-practice.js), [test](../test/estimation-practice.test.js) | Mọi kết quả nguyên giữa hai mốc dễ nhẩm nằm trong duy nhất một khoảng. Server chấm bằng hai cờ độc lập. |
 | B-04 | Xong | [API](../server/estimation-practice.js), [test](../test/estimation-practice.test.js) | Kiểm tra tải bài và bước ước lượng không trả đáp số hoặc lời giải. |
@@ -26,7 +26,7 @@ Hồ sơ CP1 bổ sung theo [đính chính #25](https://github.com/fossbk-spec/k
 | B-11 | Xong | [Fixture synthetic](../server/estimation-questions.js), [nhật ký AI](../AI_USE.md) | Diff MVP dùng dữ liệu bài synthetic và alias. DB thử được tạo cục bộ, ngoài repo. |
 | B-12 | Đang | [Form và nhãn](../public/exercise.html), [xử lý focus](../public/assets/js/pages/estimation-practice.js) | Đã kiểm tra focus và thông báo lỗi trên DOM. Cần kiểm tra Tab, phím mũi tên, Enter và bố cục trên trình duyệt. |
 
-Kiểm tra MVP: `npm test` đạt **8/8**. Kiểm tra DOM nối với server thật đã đi hết **12 câu**, gồm mở gợi ý, chọn sai khoảng/tính đúng, nhập sai định dạng, tải lại, nghỉ/tiếp tục và tổng kết. Chromium headless chưa chạy được trong môi trường kiểm thử này. [Các bước demo và chạy lại](../README.md#demo-track-b--ước-lượng-trước-khi-tính-đúng).
+Kiểm tra MVP ban đầu đã đi hết **12 câu** bằng DOM nối với server thật. Với giao diện `0bc0176`, đã kiểm tra trên trình duyệt tích hợp hai liên kết đầu trang, chuyển hoạt động, lưu khoảng, nộp đáp số, mở gợi ý và xem cách nhẩm. Bộ kiểm thử tại `test/estimation-practice.test.js` đạt **8/8** trên máy dev Windows với Node.js 24 và thư viện SQLite đã cài. Kết quả này là bằng chứng cục bộ, chưa có run CI trên PR. [Các bước demo và chạy lại](../docs/PC1-DEMO.md).
 
 ### 1.2. Sửa đổi bắt buộc từ Checkpoint 1
 
@@ -50,7 +50,7 @@ Không có tại thời điểm lập bản chuẩn bị. Nhóm xác nhận chư
 
 - CP1 bổ sung sau hạn gốc. Cần xác nhận phạm vi với GV/TA tại PC-1 và dành thời gian xử lý góp ý.
 - Kiểm tra các phản hồi ở giữa hai bước để tránh lộ đáp số. Khi refresh hoặc nhấn nộp hai lần, server phải khôi phục đúng trạng thái và không ghi đè kết quả.
-- MVP chạy trên máy cục bộ. Nhóm cần thử đường đi từ menu, bố cục và bàn phím trên laptop trước demo. Độ khó ba chặng chưa được thử với học sinh.
+- MVP chạy trên máy cục bộ. Đã thử đường đi từ menu và bố cục trên trình duyệt tích hợp. Cần kiểm tra toàn bộ luồng bằng bàn phím trước CP2. Độ khó ba chặng chưa được thử với học sinh.
 
 ### 1.5. Câu hỏi cho GV
 
