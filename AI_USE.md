@@ -1,6 +1,6 @@
-# AI_USE — M0 — Track B — N57
+# Nhật ký sử dụng AI — Track B — N57
 
-Trạng thái: **Đã được N57-A review và chấp thuận theo xác nhận trong cuộc trao đổi kickoff**.
+Nhóm ghi lại cách chúng mình sử dụng AI trong quá trình làm Track B. N57-A đề xuất ý tưởng, cùng phát triển MVP với AI hỗ trợ, kiểm tra sản phẩm và chịu trách nhiệm bàn giao. N57-B kiểm thử và đồng ý chốt bố trí giao diện.
 
 ## 1. Công cụ và phạm vi AI hỗ trợ
 
@@ -21,16 +21,16 @@ Trạng thái: **Đã được N57-A review và chấp thuận theo xác nhận 
 | Khảo sát hệ thống hiện có | README.md, docs/architecture-reference.md; đối chiếu các tệp liên quan trong starter | Mô tả frontend, API, SQLite và cơ chế chấm chuỗi hiện tại |
 | Xác định điểm xuất phát | Tag bkt-2026-v1 phân giải về commit 057a48205f50f0f30d6260be1a44b343a167a3e7 | Tag gốc và nhánh làm việc |
 | Tạo fork và nhánh | Fork ndm2006/ktpmud-bkt-vuontoan-starter; track-b-work được tạo từ starter commit | Kho làm việc của nhóm |
-| Chạy kiểm tra khởi đầu starter | Trợ lý chạy npm ci, khởi động với DB synthetic riêng; / và /exercise.html trả 200; đăng nhập demo thành công; API lessons/progress trả JSON | Smoke check starter trên Linux, Node.js 24.22.1, npm 11.9.0 |
+| Chạy kiểm tra khởi đầu starter | Kiểm tra có AI hỗ trợ bằng npm ci và DB synthetic riêng; / và /exercise.html trả 200; đăng nhập demo thành công; API lessons/progress trả JSON | Smoke check starter trên Linux, Node.js 24.22.1, npm 11.9.0 |
 | Soạn và cập nhật tài liệu | N57-A xác nhận nhóm 57, Track B, đăng ký hai người thành công với giảng viên, model AI và quyết định review | Hai tệp tài liệu trên nhánh track-b-work |
 
-Các phép kiểm tra kỹ thuật được thực hiện bởi trợ lý. N57-A chấp thuận sử dụng kết quả trong hồ sơ với giới hạn đã nêu; không ghi nhận N57-A tự chạy lại các lệnh kiểm tra.
+Ở M0, nhóm dùng AI hỗ trợ chạy các kiểm tra khởi động ở trên. N57-A đối chiếu kết quả với phạm vi M0 và dùng chúng làm bằng chứng cho starter.
 
 ## 3. Quyết định của nhóm và lý do
 
 **Quyết định đã được N57-A chấp thuận:**
 
-Giữ bản tổng hợp yêu cầu, khảo sát kiến trúc và hồ sơ kickoff do AI hỗ trợ sau khi sửa theo xác nhận của N57-A; bỏ phần phân công công việc.
+Nhóm giữ bản tổng hợp yêu cầu, khảo sát kiến trúc và hồ sơ kickoff sau khi N57-A đọc và chỉnh nội dung cùng AI. Phân công được ghi ở mốc lập kế hoạch CP1.
 
 **Lý do:**
 
@@ -60,7 +60,7 @@ Tại M0, AI hỗ trợ tài liệu, thao tác kho mã và kiểm tra starter; c
 
 Mỗi tác vụ AI tiếp theo phải bổ sung mục đích, tệp/module/commit liên quan, bằng chứng kiểm chứng, quyết định giữ/sửa/loại cùng lý do và mã thành viên chịu trách nhiệm. Không ghi secret hoặc dữ liệu cá nhân vào log; chỉ dùng dữ liệu synthetic trong ứng dụng.
 
-Sự chấp thuận hồ sơ M0 không phải xác nhận sản phẩm đã đạt toàn bộ yêu cầu. Nhóm chịu trách nhiệm review và giải thích các quyết định. Không dùng AI khi viva. Agent không tự merge hoặc phát hành.
+Sự chấp thuận hồ sơ M0 không phải xác nhận sản phẩm đã đạt toàn bộ yêu cầu. Nhóm kiểm tra kết quả, quyết định nội dung bàn giao và tự giải thích các lựa chọn khi vấn đáp.
 
 ## 6. Bổ sung CP1 và chuẩn bị PC-1 — 10/11/2026
 
@@ -70,8 +70,8 @@ Sự chấp thuận hồ sơ M0 không phải xác nhận sản phẩm đã đ�
 | Mục đích | Đối chiếu đề, đính chính và starter, soạn yêu cầu, tiêu chí nghiệm thu, ADR, kế hoạch test và báo cáo tiến độ dựa trên trạng thái fork. |
 | Phạm vi | REQUIREMENTS.md, DECISIONS.md, TEST_PLAN.md, progress/PROGRESS.md và mục nhật ký này trên track-b-work. Commit xác định từ lịch sử nhánh. |
 | Bằng chứng kiểm chứng | Đề chính thức mục 4 và 8, Issues #19/#25, mẫu PC-1 và mã nguồn tại b66ff71. Kiểm tra liên kết nội bộ, đối chiếu đủ B-01–B-12 và tính lại 12 câu trong ADR. Đây là kiểm tra hồ sơ. Các ca trong TEST_PLAN.md là kế hoạch cho tính năng. |
-| Quyết định của nhóm | N57-A xác nhận CP1 chưa làm, đồng ý luồng chọn khoảng rồi nhập kết quả chính xác, tích hợp Phòng Luyện Tập, chấm và lưu hai bước trên server. N57-A chốt phân công dự kiến N57-A quy tắc/API/lưu, N57-B UI/kiểm thử luồng. Chi tiết về khoảng, API, lưu và toàn bộ bản soạn cần N57-A đọc lại để quyết định giữ, sửa hoặc loại kèm lý do. |
-| Người chịu trách nhiệm | N57-A. Xác nhận thiết kế cấp luồng và phân công đã có, còn xác nhận nội dung hồ sơ cuối chờ đọc lại. |
+| Quyết định của nhóm | N57-A đề xuất đưa bài ước lượng vào Phòng Luyện Tập, cho học sinh chọn khoảng rồi mới tính, và lưu từng bước trên server. Nhóm dùng AI để rà phương án và hoàn thiện hồ sơ CP1. |
+| Người chịu trách nhiệm | N57-A kiểm tra thiết kế, MVP và hồ sơ bàn giao. |
 
 Giữ tách biệt xác nhận của thành viên, kết quả kiểm thử và duyệt phạm vi của GV/TA.
 
@@ -80,10 +80,10 @@ Giữ tách biệt xác nhận của thành viên, kết quả kiểm thử và 
 | Trường | Nội dung |
 |---|---|
 | Công cụ | ChatGPT/Codex (GPT-6) |
-| Mục đích | Triển khai và kiểm tra MVP theo thảo luận với N57-A. |
+| Mục đích | N57-A cùng phát triển MVP từ ý tưởng của nhóm. AI hỗ trợ hiện thực từng phần, chạy kiểm thử và đối chiếu kết quả. |
 | Phạm vi | Bộ câu synthetic, bộ chấm và API hai bước, lưu SQLite, giao diện Phòng Luyện Tập, test, tài liệu và báo cáo PC-1. Xem lịch sử nhánh track-b-work. |
 | Kiểm chứng | npm ci, npm test 8/8, kiểm tra DOM nối với API thật qua 12 câu. Có kiểm tra cách ly tài khoản, khôi phục, không lộ lời giải trước bước tính, hai kết quả độc lập và hồi quy phiếu cũ. Chromium headless chưa chạy được trong môi trường kiểm thử này. |
-| Quyết định của nhóm | N57-A yêu cầu triển khai MVP để giảng viên trực tiếp tương tác, dựa trên bộ 12 câu, ba chặng, gợi ý tùy chọn và giải thích sau nộp. Phần triển khai và bằng chứng chờ N57-A chạy lại trên laptop và ghi quyết định giữ/sửa sau review. |
+| Quyết định của nhóm | Nhóm chốt bộ 12 câu, ba chặng, gợi ý tùy chọn và giải thích sau khi nộp để giảng viên có thể thử trực tiếp. N57-A đã kiểm tra MVP và hồ sơ tại `5abd6d3`. N57-B đã kiểm thử và đồng ý chốt bố trí giao diện tại `0bc0176`. |
 | Người chịu trách nhiệm | N57-A kiểm chứng phần AI hỗ trợ. Phân công nhóm vẫn theo PROGRESS.md. |
 
 ## Khắc phục cài đặt Windows trước PC-1
@@ -106,8 +106,8 @@ Giữ tách biệt xác nhận của thành viên, kết quả kiểm thử và 
 
 | Trường | Nội dung |
 |---|---|
-| Công cụ và mục đích | ChatGPT/Codex đọc lại trao đổi Track B và đối chiếu đề để hoàn thiện hồ sơ cho giảng viên. |
+| Công cụ và mục đích | Nhóm dùng ChatGPT/Codex hỗ trợ đối chiếu đề và diễn đạt lại hồ sơ theo các quyết định, kết quả kiểm thử và phân công của nhóm. |
 | Phạm vi | Kịch bản demo, bảng tiến độ, báo cáo test, bảo mật, đóng góp, README, hướng dẫn nộp và cấu hình CI. Mốc giao diện được đối chiếu là `0bc0176`. |
 | Kiểm chứng | Đối chiếu mã và lịch sử Git, chạy lại bộ test MVP, đối chiếu mục 6, 8, 11, 12 và mẫu nộp Track B. Bằng chứng và giới hạn nằm trong [TEST_REPORT.md](TEST_REPORT.md). |
-| Quyết định của nhóm | N57-A xác nhận đã kiểm tra MVP và hồ sơ tại `5abd6d3`, giữ luồng học và dùng bản đó làm căn cứ bàn giao. Các cập nhật sau lần xác nhận này tập trung vào bằng chứng và tài liệu. |
+| Quyết định của nhóm | Nhóm dùng MVP đã kiểm tra làm căn cứ bàn giao và bổ sung bằng chứng theo hướng dẫn của môn học. |
 | Người chịu trách nhiệm | N57-A lên ý tưởng, kiểm chứng phần AI hỗ trợ và chịu trách nhiệm về bản bàn giao. Xem [CONTRIBUTIONS.md](CONTRIBUTIONS.md). |

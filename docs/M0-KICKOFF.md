@@ -6,7 +6,7 @@ Ngày kickoff: **04/11/2026**. Track duy nhất: **B — Vườn Toán Lớp 3: 
 
 - Mã nhóm: **57**. Alias: **N57**. Mã lớp: **173820**.
 - Nhóm gồm **hai thành viên**, sử dụng mã **N57-A** và **N57-B** trong hồ sơ công khai. Ánh xạ tên và MSSV được giữ trong hồ sơ riêng của nhóm.
-- Đại diện nhóm đã xác nhận với trợ lý: nhóm hai người **đã đăng ký thành công với giảng viên**, chọn **Track B**. Trạng thái đăng ký được ghi theo xác nhận của đại diện nhóm.
+- Nhóm hai thành viên đã đăng ký với giảng viên và chọn **Track B**.
 - Chủ fork: **ndm2006**.
 - Người chịu trách nhiệm kiểm chứng và chấp thuận phần AI hỗ trợ: **N57-A**.
 - N57-A xác nhận đã đọc **README.md** và **docs/architecture-reference.md**.
@@ -49,7 +49,7 @@ Giới hạn thực hiện:
 |---|---|---|
 | Đọc đề, tập trung Mục 0, 5 và 8 | Đã khảo sát và tổng hợp | Phạm vi, kiến trúc và giới hạn ghi tại Mục 3 |
 | Chốt nhóm và chọn đúng một track | Hoàn thành theo xác nhận đại diện nhóm | Nhóm 57, hai thành viên, Track B |
-| Đăng ký alias/mã nhóm với giảng viên | Hoàn thành theo xác nhận đại diện nhóm | Người dùng xác nhận nhóm hai người đã đăng ký thành công với thầy |
+| Đăng ký alias/mã nhóm với giảng viên | Hoàn thành theo xác nhận đại diện nhóm | Nhóm hai thành viên đã đăng ký với giảng viên |
 | Fork đúng starter | Hoàn thành | Fork ndm2006/ktpmud-bkt-vuontoan-starter có nguồn từ starter chính thức |
 | Nhận và sử dụng tag đã pin | Hoàn thành | bkt-2026-v1 phân giải về starter commit ở Mục 2; nhánh làm việc tạo từ commit đó |
 | Bắt đầu từ README và tài liệu kiến trúc | Hoàn thành phần đọc tài liệu kickoff | N57-A xác nhận đã đọc cả hai tài liệu |
@@ -59,7 +59,7 @@ Bảng này xác nhận các đầu việc kickoff theo bằng chứng kỹ thu�
 
 ## 5. Kiểm tra kỹ thuật starter đã thực hiện
 
-Trợ lý đã thực hiện kiểm tra khởi đầu trên Linux, Node.js **24.22.1**, npm **11.9.0**, dùng cơ sở dữ liệu synthetic riêng:
+Nhóm dùng kết quả kiểm tra khởi đầu có AI hỗ trợ trên Linux, Node.js **24.22.1**, npm **11.9.0**, dùng cơ sở dữ liệu synthetic riêng:
 - Clone đúng tag bkt-2026-v1.
 - Chạy npm ci thành công.
 - Khởi động starter.

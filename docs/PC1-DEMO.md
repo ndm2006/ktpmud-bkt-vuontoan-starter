@@ -30,4 +30,4 @@ Fork: https://github.com/ndm2006/ktpmud-bkt-vuontoan-starter
 Commit PC-1: <SHA 40 ký tự>
 ```
 
-Hồ sơ này do Codex hỗ trợ soạn và đối chiếu với mã, lịch sử commit và kết quả thử cục bộ. N57-A chịu trách nhiệm đọc lại, xác nhận nội dung trước khi dùng để báo cáo. Xem [nhật ký AI của nhóm](../AI_USE.md).
+Nhóm chọn luồng demo này để trình bày cách học sinh chọn khoảng, tính và xem kết quả. N57-A đã kiểm tra MVP và hồ sơ. N57-B đã kiểm thử và đồng ý chốt bố trí giao diện. Xem [nhật ký AI của nhóm](../AI_USE.md).

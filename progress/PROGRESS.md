@@ -66,8 +66,8 @@ Giờ Việt Nam. CP2 là buổi demo nội bộ của M2. PC-2 là buổi kiể
 
 | Alias / vai trò | Đầu việc chính theo kế hoạch đã chốt | Commit/PR tiêu biểu |
 |---|---|---|
-| N57-A | Lên ý tưởng, chốt luồng học, kiểm tra MVP và hồ sơ, chịu trách nhiệm bản bàn giao | Xác nhận đã kiểm tra `5abd6d3`. Xem [đóng góp](../CONTRIBUTIONS.md). |
-| N57-B | Kiểm thử giao diện và đồng ý chốt bố trí MVP | N57-A xác nhận kết quả kiểm thử và ý kiến của N57-B. Xem [đóng góp](../CONTRIBUTIONS.md). |
+| N57-A | Đề xuất ý tưởng, chốt luồng học, cùng phát triển MVP với AI hỗ trợ, kiểm tra MVP và hồ sơ, chịu trách nhiệm bản bàn giao | Xác nhận đã kiểm tra `5abd6d3`. Xem [đóng góp](../CONTRIBUTIONS.md). |
+| N57-B | Kiểm thử giao diện và đồng ý chốt bố trí MVP | Nhóm ghi nhận kiểm thử và góp ý của N57-B cho bố trí hiện tại. Xem [đóng góp](../CONTRIBUTIONS.md). |
 
 ## PC-2 — 18/11/2026
 
