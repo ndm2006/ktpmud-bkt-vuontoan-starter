@@ -16,10 +16,10 @@
 
 ## Từ fork đến bài nộp cuối
 
-1. Mở PR trong fork và lấy URL run **Track B tests** thành công, xác nhận run khớp với bản chốt. Ghi link vào báo cáo kiểm thử. Nếu bổ sung tài liệu sau run, kiểm tra CI lại trên bản định chốt.
-2. Chốt SHA 40 ký tự của bản đã kiểm chứng trên fork và gắn tag `bkt-2026-N57-rc1` trước Freeze. Xác nhận mã nhóm nộp và tag theo đăng ký của nhóm trước khi tạo.
-3. Dùng [mẫu Track B](https://github.com/fossbk-spec/ktpmud-project/tree/main/submissions/_TEMPLATE_BKT_VUONTOAN) trong kho môn học để tạo đúng thư mục `submissions/hoang_mai_toan_<ma_nhom>/`. Đặt sáu tệp yêu cầu, ADR, báo cáo test, checklist, nhật ký AI và đóng góp vào `artifacts/`. Đặt kịch bản demo trong `slides/`. Điền `submission.json` theo đăng ký chính thức và quy định công khai của môn học.
-4. Điền `source-ref.json` theo mẫu với `starter_repo`, `starter_commit`, `fork_url`, `final_commit`, `release_tag` và `ci_run_url`. Ba giá trị cuối lấy từ SHA, tag và run thực tế. Chưa có đủ bằng chứng để chốt tệp này.
-5. Gửi một PR vào `fossbk-spec/ktpmud-project`, chỉ đổi thư mục bài nộp của nhóm. Kiểm tra CI `validate`. PC-1 và PC-2 dùng báo cáo tiến độ và issue xác nhận tương ứng, theo [đính chính #25](https://github.com/fossbk-spec/ktpmud-project/issues/25).
+1. Lấy URL run **Track B tests** gần nhất trên PR nội bộ của fork MVP. Ghi URL và SHA vào báo cáo kiểm thử.
+2. Dùng [mẫu Track B](https://github.com/fossbk-spec/ktpmud-project/tree/main/submissions/_TEMPLATE_BKT_VUONTOAN) để tạo `submissions/hoang_mai_toan_<ma_nhom>/`. Đặt sáu tệp hồ sơ vào `artifacts/`, đặt kịch bản demo trong `slides/` và điền `submission.json` theo đăng ký môn học.
+3. Ở PC-2, điền đủ `source-ref.json`. Dùng giá trị thật cho `starter_repo`, `starter_commit`, `fork_url`, SHA PC-2 cho `final_commit`, tên tag dự kiến cho `release_tag` và URL CI gần nhất cho `ci_run_url`. Điền nội dung thực tế vào các tài liệu đang làm.
+4. Từ fork của kho môn học, dùng nhánh `submit/hoang_mai_toan-<ma_nhom>` mở Draft PR vào `fossbk-spec/ktpmud-project`, chỉ thêm thư mục của nhóm. Trước **11:30 ngày 18/11**, xác minh `validate` đạt. Ghi URL Draft PR vào mục 2.3 của báo cáo tiến độ và thêm dòng `Draft PR: <URL>` vào bình luận xác nhận PC-2. [Issue #18](https://github.com/fossbk-spec/ktpmud-project/issues/18) · [Đính chính #28](https://github.com/fossbk-spec/ktpmud-project/issues/28)
+5. Trước **23:59 ngày 19/11**, chốt SHA 40 ký tự, gắn tag `bkt-2026-N57-rc1` và lấy URL CI của SHA freeze. Ngày **20/11**, cập nhật `source-ref.json` và tài liệu trong cùng Draft PR, chuyển sang Ready for review và xác minh `validate` đạt. [Đính chính #25](https://github.com/fossbk-spec/ktpmud-project/issues/25) · [Đính chính #28](https://github.com/fossbk-spec/ktpmud-project/issues/28)
 
 Căn cứ: [đề chính thức, mục 6, 8, 11 và 12](https://fossbk-spec.github.io/ktpmud-book/exams/KTPMUD_Hack_Marathon_2026_De_Thi_Chinh_Thuc_v1.0.0_20261103.html).

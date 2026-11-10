@@ -34,17 +34,21 @@ Không có tại thời điểm lập bản chuẩn bị. Nhóm xác nhận chư
 
 ### 1.3. Timeline dự kiến đến khi hoàn thành
 
-| Việc | Vai trò phụ trách | Mốc | Ngày dự kiến |
+Giờ Việt Nam. CP2 là buổi demo nội bộ của M2. PC-2 là buổi kiểm tra tiến độ tại lớp. [Hướng dẫn Progress Check](https://fossbk-spec.github.io/ktpmud-book/exams/KTPMUD_Hack_Marathon_2026_Progress_Check.html) · [Đính chính #28](https://github.com/fossbk-spec/ktpmud-project/issues/28)
+
+| Việc | Vai trò phụ trách | Mốc (CP2 15/11 · M3 · Freeze 19/11 · M4 20/11) | Ngày dự kiến |
 |---|---|---|---|
 | Bổ sung yêu cầu, tiêu chí nghiệm thu, ADR và kế hoạch test lên fork | N57-A, N57-B cùng đọc và kiểm tra | CP1 bổ sung | 10/11, trước 9:30 ngày 11/11 |
 | Cập nhật báo cáo, trình bày tại lớp và xác nhận SHA trên Issue #17 | Cả nhóm | PC-1 | 11/11, 9:30–11:30 |
 | Đã có fixture, bộ chấm, API và SQLite trong MVP. Đối chiếu kết quả và nhận góp ý | N57-A | PC-1 / M2 | 11–12/11 |
 | Đã tích hợp UI hai bước và khôi phục. Kiểm tra bàn phím, bố cục và chỉnh theo góp ý | N57-B | M2 | 12–14/11 |
-| Test API/chấm/lưu, hồi quy UI, chạy test công khai và chuẩn bị demo nội bộ | N57-A, N57-B | CP2 | 14–15/11 |
-| Hoàn thiện test, CI trên PR nội bộ, kiểm tra dữ liệu và tài liệu | N57-A, N57-B | M3 / PC-2 | 16–18/11 |
-| Đối chiếu tiêu chí, chốt tag và SHA | Cả nhóm | Freeze | 19/11 trước 23:59 |
-| Nộp một PR vào kho môn học, kiểm tra CI validate | Cả nhóm | M4 | 20/11 |
-| Demo và vấn đáp | Cả nhóm | Demo/Viva | 21/11 |
+| Kiểm tra API, chấm và lưu tiến độ, hồi quy giao diện, chạy bộ test công khai. Demo nội bộ 5 phút và ghi phản hồi | N57-A kiểm tra nghiệp vụ và test, N57-B kiểm tra giao diện, cả nhóm demo | CP2 | 14–15/11, hoàn thành cuối ngày 15/11 |
+| Rà soát CI, bảo mật, dữ liệu và tài liệu. Chuẩn bị gói theo mẫu Track B, điền SHA dự kiến PC-2, tên tag dự kiến và URL CI vào `source-ref.json` | N57-A chuẩn bị hồ sơ và CI, N57-B kiểm tra tài liệu và bằng chứng giao diện | M3 | 16–17/11 |
+| Mở Draft PR từ fork kho môn học vào `fossbk-spec/ktpmud-project`, chỉ thêm thư mục bài nộp của nhóm. Sửa trên cùng nhánh đến khi `validate` đạt | N57-A mở PR và theo dõi `validate`, N57-B soát gói nộp | M3 / PC-2 | Dự kiến 17/11, hạn 11:30 ngày 18/11 |
+| Đối chiếu kế hoạch với thực tế, cập nhật mục PC-2, push báo cáo và xác nhận trên Issue #18 bằng SHA đầy đủ và URL Draft PR | Cả nhóm | PC-2 | 18/11, 09:30–11:30 |
+| Rà soát tiêu chí và tệp cuối, xác nhận CI trên fork, chốt SHA và gắn tag `bkt-2026-N57-rc1` | N57-A chốt SHA, CI và tag, N57-B kiểm tra hồ sơ và demo | Freeze | Hạn 23:59 ngày 19/11 |
+| Cập nhật `source-ref.json` và tài liệu bằng SHA, tag và URL CI của bản freeze. Chuyển cùng Draft PR sang Ready for review và kiểm tra `validate` đạt | N57-A cập nhật và chuyển trạng thái PR, N57-B kiểm tra gói cuối | M4 | 20/11 |
+| Demo tối đa 7 phút và vấn đáp tối đa 8 phút | Cả nhóm | Demo/Viva | 21/11 |
 
 ### 1.4. Rủi ro / đang vướng
 
@@ -97,11 +101,13 @@ Bảng dưới là trạng thái chuẩn bị, chưa phải xác nhận đã tr�
 | AI_USE.md | Có | [AI_USE.md](../AI_USE.md) |
 | CONTRIBUTIONS.md | Có xác nhận vai trò N57-A và kiểm thử giao diện của N57-B | [CONTRIBUTIONS.md](../CONTRIBUTIONS.md) |
 | Slide / demo script ≤ 7 phút | Có kịch bản | [Kịch bản demo](../docs/PC1-DEMO.md) |
+| Draft PR vào `ktpmud-project`, check `validate` xanh | Chưa tại thời điểm lập PC-1 | [Đính chính #28](https://github.com/fossbk-spec/ktpmud-project/issues/28). Điền URL Draft PR và run `validate` tại PC-2. |
 
 ### 2.4. Việc còn lại đến Freeze (23:59 19/11)
 
 | Việc | Vai trò phụ trách | Hạn |
 |---|---|---|
+| Chuẩn bị gói nộp, mở Draft PR kho môn học và xác minh `validate` đạt | N57-A và N57-B | 11:30 ngày 18/11 |
 | Chạy CI trên PR nội bộ, ghi link và SHA | N57-A và N57-B | Trước Freeze |
 | Kiểm tra tệp cuối và chốt SHA/tag | Cả nhóm | 23:59 ngày 19/11 |
 
