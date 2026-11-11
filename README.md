@@ -8,6 +8,16 @@
 
 ---
 
+# Phần mở rộng của nhóm N57 — Track B
+
+Nhóm bổ sung bài **Ước lượng trước khi tính đúng** ngay trong Phòng Luyện Tập. Học sinh làm 12 câu nhân và chia qua ba chặng, chọn khoảng rồi nhập đáp số. Server lưu từng bước theo tài khoản để học sinh có thể tiếp tục sau khi quay lại. Bài có gợi ý, phản hồi riêng cho hai bước và chức năng xem lại câu đã làm.
+
+Để demo, đăng nhập bằng tài khoản học sinh mẫu, vào **Phòng Luyện Tập** và chọn **Ước lượng trước khi tính đúng**. [Kịch bản PC-1](docs/PC1-DEMO.md)
+
+Bộ test logic và API đạt **8/8** trên bản checkout sạch. Báo cáo ghi riêng các luồng đã thử trên trình duyệt và các ca dự kiến bổ sung trước CP2. [Báo cáo kiểm thử](TEST_REPORT.md) · [Tiến độ](progress/PROGRESS.md) · [Đóng góp](CONTRIBUTIONS.md)
+
+---
+
 # 🌱 Vườn Toán Lớp 3 — Trường Tiểu học Hoàng Mai
 
 Web học Toán lớp 3 gồm giao diện học sinh (bài học, luyện tập, kiểm tra, trò chơi, bảng xếp hạng)

@@ -11,6 +11,8 @@ Hồ sơ CP1 bổ sung theo [đính chính #25](https://github.com/fossbk-spec/k
 
 ### 1.1. Tiến độ theo acceptance criteria
 
+Nhóm dùng **Xong** cho tiêu chí đã có bằng chứng trong phạm vi ghi ở cột ghi chú. **Đang** là mục đã có một phần bằng chứng và còn ca cần kiểm tra. [Phạm vi kiểm thử và các ca trình duyệt](../TEST_REPORT.md)
+
 | Mã | Trạng thái | Bằng chứng | Ghi chú |
 |---|---|---|---|
 | B-01 | Xong | [Phòng Luyện Tập](../public/exercise.html), [T01/T12](../TEST_PLAN.md) | Đã mở bài từ menu trên trình duyệt tích hợp. Hai thẻ luyện tập nằm dưới thanh lộ trình. Đã kiểm tra chuyển qua lại, giữ lựa chọn của phiếu và chạy ca nộp phiếu cũ qua API. |
@@ -22,9 +24,9 @@ Hồ sơ CP1 bổ sung theo [đính chính #25](https://github.com/fossbk-spec/k
 | B-07 | Xong | [Checklist](../SECURITY_PRIVACY_CHECKLIST.md), [test hồi quy phiếu cũ](../test/estimation-practice.test.js) | Đối chiếu tag starter xác nhận các tệp auth, dữ liệu tài khoản mẫu và cấu hình deployment giữ nguyên. Ca hồi quy phiếu Bài 9–10 đạt. |
 | B-08 | Xong | [8 ca tự động](../test/estimation-practice.test.js) | Đủ ca thông thường, biên đầu vào, dữ liệu lỗi, chấm, nộp lặp và gửi đồng thời. |
 | B-09 | Xong | [Báo cáo kiểm thử](../TEST_REPORT.md) | Bản xuất Git sạch trên Windows x64 chạy được `npm ci` và `npm test`, đạt 8/8 với Node.js 22. |
-| B-10 | Xong | [T14](../TEST_PLAN.md), [CI trên PR #1](https://github.com/ndm2006/ktpmud-bkt-vuontoan-starter/actions/runs/42864978852) | Workflow chạy `npm ci` và `npm test` thành công với bản MVP tại `c0d3169`. |
+| B-10 | Xong | [T14](../TEST_PLAN.md), [CI trên PR #1](https://github.com/ndm2006/ktpmud-bkt-vuontoan-starter/actions/runs/42870604600) | `npm ci` và `npm test` đạt tại `88f7f12`. Nhóm đối chiếu run theo SHA ở mỗi mốc nộp. |
 | B-11 | Xong | [Fixture synthetic](../server/estimation-questions.js), [nhật ký AI](../AI_USE.md) | Diff MVP dùng dữ liệu bài synthetic và alias. DB thử được tạo cục bộ, ngoài repo. |
-| B-12 | Xong | [Ca bàn phím T10](../TEST_REPORT.md) | Đã thử Tab, phím mũi tên và Enter cho luồng chọn khoảng, nhập đáp số, sửa lỗi định dạng và nhận phản hồi. |
+| B-12 | Đang | [Ca bàn phím T10](../TEST_REPORT.md) | Đã kiểm tra luồng chính bằng Tab, phím mũi tên và Enter cho một câu, gồm sửa lỗi định dạng. Cần thử thêm các chặng, kích thước màn hình và trình đọc màn hình. |
 
 Kiểm tra MVP ban đầu đã đi hết **12 câu** bằng DOM nối với server thật. Với giao diện `0bc0176`, đã kiểm tra trên trình duyệt tích hợp hai liên kết đầu trang, chuyển hoạt động, lưu khoảng, nộp đáp số, mở gợi ý và xem cách nhẩm. Bộ kiểm thử đạt **8/8** từ checkout sạch trên Windows với Node.js 22. PR nội bộ cũng đã chạy CI thành công. [Báo cáo kiểm thử](../TEST_REPORT.md) · [Các bước demo](../docs/PC1-DEMO.md).
 
@@ -41,7 +43,7 @@ Giờ Việt Nam. CP2 là buổi demo nội bộ của M2. PC-2 là buổi kiể
 | Bổ sung yêu cầu, tiêu chí nghiệm thu, ADR và kế hoạch test lên fork | N57-A, N57-B cùng đọc và kiểm tra | CP1 bổ sung | 10/11, trước 9:30 ngày 11/11 |
 | Cập nhật báo cáo, trình bày tại lớp và xác nhận SHA trên Issue #17 | Cả nhóm | PC-1 | 11/11, 9:30–11:30 |
 | Đã có fixture, bộ chấm, API và SQLite trong MVP. Đối chiếu kết quả và nhận góp ý | N57-A | PC-1 / M2 | 11–12/11 |
-| Đã tích hợp UI hai bước và khôi phục. Kiểm tra bàn phím, bố cục và chỉnh theo góp ý | N57-B | M2 | 12–14/11 |
+| Hiện đủ đáp án sau khi nộp, rà dấu chọn khi xem lại giữa các chặng, kiểm tra bàn phím và kích thước màn hình. Bổ sung ca trình duyệt cho luồng chính | N57-A hỗ trợ sửa và tự động hóa, N57-B kiểm thử giao diện và ghi kết quả | M2 | 12–14/11 |
 | Kiểm tra API, chấm và lưu tiến độ, hồi quy giao diện, chạy bộ test công khai. Demo nội bộ 5 phút và ghi phản hồi | N57-A kiểm tra nghiệp vụ và test, N57-B kiểm tra giao diện, cả nhóm demo | CP2 | 14–15/11, hoàn thành cuối ngày 15/11 |
 | Rà soát CI, bảo mật, dữ liệu và tài liệu. Chuẩn bị gói theo mẫu Track B, điền SHA dự kiến PC-2, tên tag dự kiến và URL CI vào `source-ref.json` | N57-A chuẩn bị hồ sơ và CI, N57-B kiểm tra tài liệu và bằng chứng giao diện | M3 | 16–17/11 |
 | Mở Draft PR từ fork kho môn học vào `fossbk-spec/ktpmud-project`, chỉ thêm thư mục bài nộp của nhóm. Sửa trên cùng nhánh đến khi `validate` đạt | N57-A mở PR và theo dõi `validate`, N57-B soát gói nộp | M3 / PC-2 | Dự kiến 17/11, hạn 11:30 ngày 18/11 |
@@ -84,7 +86,8 @@ Bảng dưới là trạng thái chuẩn bị, chưa phải xác nhận đã tr�
 
 | Mã | Trạng thái | Bằng chứng | Ghi chú |
 |---|---|---|---|
-| B-01–B-06, B-08–B-09, B-11–B-12 | Có bằng chứng cục bộ | [Báo cáo kiểm thử](../TEST_REPORT.md) | Đối chiếu chi tiết và giới hạn tại bảng 1.1. |
+| B-01–B-06, B-08–B-09, B-11 | Có bằng chứng cục bộ | [Báo cáo kiểm thử](../TEST_REPORT.md) | Đối chiếu chi tiết và giới hạn tại bảng 1.1. |
+| B-12 | Đang | [Ca bàn phím T10](../TEST_REPORT.md) | Bổ sung kết quả trên các chặng, kích thước màn hình và trình đọc màn hình. |
 | B-07 | Xong | [Checklist](../SECURITY_PRIVACY_CHECKLIST.md) | Đã đối chiếu các tệp thuộc phạm vi bảo vệ của đề và chạy hồi quy phiếu Bài 9–10. |
 | B-10 | Xong ở PC-1 | [CI trên PR #1](https://github.com/ndm2006/ktpmud-bkt-vuontoan-starter/actions/runs/42864978852) | Kiểm tra lại trên SHA freeze. |
 

@@ -8,4 +8,4 @@ Nhóm mình chọn Track B và phát triển bài ước lượng trong Phòng L
 | N57-B | Kiểm thử giao diện và đồng ý chốt phương án bố trí MVP hiện tại. | Nhóm ghi nhận phần kiểm thử và góp ý của N57-B ngày 11/11/2026. Mốc giao diện được duyệt là `0bc0176`, có trong [bản MVP](https://github.com/ndm2006/ktpmud-bkt-vuontoan-starter/tree/5abd6d32bf5a864f7fa63b90ab9f125df6c3baba). |
 | Cả nhóm | Đối chiếu tiêu chí, diễn tập demo và chốt bản nộp. | Hồ sơ CP1 tại `4d22bb1`, kịch bản PC-1 tại `0408e96`. Xem [tiến độ](progress/PROGRESS.md). |
 
-Khi vấn đáp, N57-A chuẩn bị giải thích quy tắc khoảng và vì sao server lưu hai bước. N57-B chuẩn bị giải thích vị trí tính năng trong luồng học và cách kiểm tra lưu/khôi phục. Mỗi thành viên cần đối chiếu phần mình phụ trách với mã và bằng chứng test.
+Từ PC-1 đến CP2, N57-A dự kiến phụ trách quy tắc chấm, API, SQLite và CI. N57-B dự kiến phụ trách kiểm thử giao diện, kích thước màn hình, xem lại câu đã làm và kịch bản demo. Cả nhóm đối chiếu yêu cầu, chạy thử và chuẩn bị vấn đáp. Nhóm sẽ ghi bằng chứng theo từng đầu việc khi có kết quả. [Timeline](progress/PROGRESS.md#13-timeline-dự-kiến-đến-khi-hoàn-thành)

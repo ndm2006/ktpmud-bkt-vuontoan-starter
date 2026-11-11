@@ -10,7 +10,19 @@
 | Checkout sạch | Windows x64 build 19045, Node.js 22.23.4, npm 10.9.9, bản xuất Git tại `0408e96`. Chạy `npm ci` rồi `npm test`. | Cài thành công từ lockfile, **8/8 đạt**. `npm audit` ghi nhận hai cảnh báo, xem [checklist](SECURITY_PRIVACY_CHECKLIST.md). |
 | Luồng học sinh | Trình duyệt tích hợp, localhost, tài khoản học sinh mẫu. Xem [kịch bản](docs/PC1-DEMO.md). | Từ Phòng Luyện Tập mở được hai hoạt động; lưu khoảng, mở gợi ý, tính đúng và đọc giải thích. Đổi qua lại giữ được khoảng đã lưu và lựa chọn trên phiếu trong cùng trang. |
 | Bàn phím, T10 | Trình duyệt tích hợp, câu `48 × 6`. Dùng Tab, phím mũi tên và Enter, nhập `a` rồi sửa thành `288`. | Chọn được khoảng 240–299. Focus chuyển đến ô đáp số. Giao diện báo lỗi dễ hiểu, sau đó chấm đúng cả hai bước và chuyển focus đến tiêu đề kết quả. |
-| CI trên PR | [Workflow Track B](.github/workflows/track-b.yml) dùng Ubuntu và Node.js 22, chạy `npm ci` rồi `npm test` tại commit `c0d3169215cc95c0de8e2c06f9491864e685e034`. | **Đạt** trên [PR nội bộ #1](https://github.com/ndm2006/ktpmud-bkt-vuontoan-starter/actions/runs/42864978852). |
+| CI trên PR | [Workflow Track B](.github/workflows/track-b.yml) dùng Ubuntu và Node.js 22, chạy `npm ci` rồi `npm test` tại commit `88f7f127bf6775b140f07d40f720d934f29a53c5`. | **Đạt** trên [PR nội bộ #1](https://github.com/ndm2006/ktpmud-bkt-vuontoan-starter/actions/runs/42870604600). |
+
+## Bằng chứng trình duyệt cho PC-1
+
+| Luồng | Quan sát đã ghi nhận trên bố trí `0bc0176` | Việc kiểm tra trước CP2 |
+|---|---|---|
+| Vào bài | Từ phiên học sinh mẫu, mở Phòng Luyện Tập, chuyển giữa phiếu và bài ước lượng. Hai liên kết đầu trang mở đúng đích. | Tự động hóa luồng đăng nhập và mở bài. |
+| Lưu và khôi phục | Lưu khoảng 80–119, chuyển về phiếu rồi mở lại bài ước lượng. Trang hiện lại khoảng đã chọn và bước nhập đáp số. | Thêm ca tải lại trình duyệt ngay sau khi lưu trên bố trí hiện tại. |
+| Nộp và đọc kết quả | Câu `42 ÷ 6` với khoảng 6–9 và đáp số 7 hiện hai kết quả riêng. Mở được lời giải. Câu `48 × 6` kiểm tra bằng bàn phím và sửa lỗi định dạng trước khi nộp. | Kiểm tra đủ giá trị đã chọn, đã nhập và giá trị đúng cho cả ca đúng lẫn ca sai. |
+| Xem lại | Giao diện có danh sách câu đã làm. | Kiểm tra dấu chọn và nội dung câu khi chuyển giữa các chặng. |
+| Quay lại phiếu | Chọn dấu `=` trên phiếu, chuyển sang ước lượng rồi quay lại. Phiếu vẫn hiện lựa chọn đã nhập trong cùng trang. | Tự động hóa luồng quay lại phiếu và đối chiếu với ca nộp qua API. |
+
+Nhóm dự kiến tự động hóa các luồng trên bằng Playwright trước CP2. Bộ test hiện tại kiểm tra logic và API, còn các quan sát trong bảng đến từ thao tác trên trình duyệt.
 
 ## Đối chiếu các ca tự động
 
