@@ -12,7 +12,10 @@ window.EstimationPlayer = {
     const errorBox = el('lesson-error');
     const api = '/api/estimation-practice';
     const escape = value => String(value ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-    let questions = [], estimates = {}, answers = {}, run = null, requestId = crypto.randomUUID();
+    // getRandomValues also works on HTTP LAN origins where randomUUID is absent.
+    const newRequestId = () => typeof crypto.randomUUID === 'function' ? crypto.randomUUID()
+      : Array.from(crypto.getRandomValues(new Uint8Array(16)), byte => byte.toString(16).padStart(2, '0')).join('');
+    let questions = [], estimates = {}, answers = {}, run = null, requestId = newRequestId();
     let busy = false, ready = false;
 
     function error(message = '', field) {
@@ -105,7 +108,7 @@ window.EstimationPlayer = {
       try {
         const data = await window.MathAPI.get(`/api/question-sets/${encodeURIComponent(setId)}/questions`);
         questions = data.questions;
-        estimates = {}; answers = {}; run = null; requestId = crypto.randomUUID();
+        estimates = {}; answers = {}; run = null; requestId = newRequestId();
         error(); render();
         container.querySelector('input')?.focus();
       } catch (err) { error(err.message); restart.disabled = false; }

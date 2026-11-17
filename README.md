@@ -26,6 +26,8 @@ npm start
 
 Dùng **Node 22** cho bộ công cụ phát triển/E2E. Mỗi bộ test tự tạo SQLite tạm riêng, không reset DB demo. API và ứng dụng giữ stack starter.
 
+Chuẩn bị freeze: [review cuối](docs/FINAL_REVIEW.md), [hướng dẫn chốt và đóng gói](docs/FREEZE_HANDOFF.md). Công cụ `npm run prepare:submission` sinh gói từ đúng commit có CI xanh; không tự tạo tag hoặc gửi bài. Nhóm N57 gồm hai alias N57-A/N57-B, ngoại lệ đã được GV chấp thuận theo xác nhận của đại diện nhóm.
+
 ---
 
 # 🌱 Vườn Toán Lớp 3 — Trường Tiểu học Hoàng Mai

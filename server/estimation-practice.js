@@ -18,7 +18,9 @@ function content(setId) {
   if (setId !== SET_ID) problem(400, 'Bộ bài ước lượng không hợp lệ.');
   const meta = db.prepare('SELECT id,kind,lesson_id,star_reward FROM question_sets WHERE id=?').get(setId);
   const questions = db.prepare('SELECT * FROM questions WHERE set_id=? ORDER BY sort_order,id').all(setId);
-  if (!meta || questions.length !== 12 || questions.some(q => q.type !== 'estimate' || q.points !== 1)) {
+  if (!meta || meta.kind !== 'exercise' || !Number.isSafeInteger(meta.star_reward) || meta.star_reward < 0 ||
+      typeof meta.lesson_id !== 'string' || !db.prepare('SELECT 1 FROM lessons WHERE id=?').get(meta.lesson_id) ||
+      questions.length !== 12 || questions.some(q => q.type !== 'estimate' || q.points !== 1)) {
     problem(409, 'Bộ bài đã thay đổi hoặc chưa đủ 12 câu. Em hãy báo thầy cô.');
   }
   try { questions.forEach(rangesFor); } catch { problem(409, 'Dữ liệu bộ bài đã thay đổi. Em hãy báo thầy cô.'); }

@@ -90,11 +90,11 @@ Thiết kế PC-1 lưu từng câu riêng chưa nối attempts/progress/sao. Sau
 | B-05 | Đạt cục bộ | I03–I07; E01–E02: lưu, refresh/restart/retry |
 | B-06 | Đạt cục bộ | U03/E03: feedback đủ bốn tổ hợp |
 | B-07 | Đã soát diff | Các file bảo vệ và route auth/teacher/admin khớp starter; PC-1 giữ nguyên |
-| B-08 | Đạt cục bộ | 12 test unit/API; boundary/invalid/scoring/rollback |
+| B-08 | Đạt cục bộ | 14 test unit/API; boundary/invalid/scoring/rollback |
 | B-09 | Đạt CI checkout sạch | npm ci + npm test + E2E đạt tại 43e3302; TEST_REPORT |
 | B-10 | Đạt CI code hiện hành | [Run 43e3302](https://github.com/ndm2006/ktpmud-bkt-vuontoan-starter/actions/runs/44123673362), PR #1, npm ci + npm test + E2E |
 | B-11 | Đã soát staged diff | Không phát hiện mẫu secret trong phần thêm; không stage DB/env/artifact |
-| B-12 | Đạt luồng chính cục bộ | E01 keyboard đủ 12; E03 mobile. Chưa screen reader thực tế |
+| B-12 | Đạt luồng chính cục bộ | E01 keyboard đủ 12; E03 mobile; E04 thiếu randomUUID; Codex IAB thật. Chưa screen reader thực tế |
 
 ### 2.3. Hồ sơ sẵn sàng
 
@@ -111,6 +111,10 @@ Draft PR vào ktpmud-project/check validate: chưa thực hiện trong đợt s�
 ### 2.5. Giới hạn / câu hỏi còn lại
 
 Teacher analytics chỉ chẩn đoán lỗi bước chính xác; điểm trung bình lấy điểm cả hai bước. Các số đang gõ chưa nộp không tự lưu. Nếu nội dung bị sửa giữa lượt, server từ chối chấm và cần thầy cô hỗ trợ; MVP chưa có UI hủy lượt lỗi thời.
+
+### Bổ sung review cuối trước freeze
+
+Nhóm xác nhận ngoại lệ hai người đã được GV chấp thuận. Code có chỉnh cuối tương thích trình duyệt, chặn metadata sai và đồng bộ câu 6 thành 48 × 6. 14/14 unit/API, 4/4 E2E và kiểm thử trực tiếp Codex đạt cục bộ; xem docs/FINAL_REVIEW.md và ảnh artifacts/review. CI của bản chỉnh cuối và gói nộp phải khớp SHA mới, không dùng run cũ ghi ở bảng trên.
 
 ## Kết quả cuối — Freeze 19/11/2026
 

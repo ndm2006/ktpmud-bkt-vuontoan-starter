@@ -53,6 +53,7 @@ after(async()=>{await stop();database?.close();if(directory)await rm(directory,{
 test('12 fixtures match independently written answers/ranges and contain 6 of each operation',()=>{
   assert.equal(fixtures.length,12);assert.equal(new Set(fixtures.map(q=>q.id)).size,12);
   assert.equal(fixtures.filter(q=>q.op==='×').length,6);assert.equal(fixtures.filter(q=>q.op==='÷').length,6);
+  assert.ok(questions.every(q => /^\d+ [×÷] \d+$/.test(q.prompt)));
   fixtures.forEach((q,i)=>{
     assert.equal(q.op==='×'?q.a*q.b:q.a/q.b,expected[i]);
     if(q.op==='÷')assert.equal(q.a%q.b,0);
@@ -164,4 +165,36 @@ test('all four old types preserve original exact-string scoring, points and prog
     const r=await call('/api/submissions',second,{setId,answers});assert.equal(r.status,200);assert.equal(r.data.scorePercent,100);assert.equal(r.data.correctCount,old.length);
     assert.equal((await call('/api/submissions',second,{setId,answers})).data.starsEarned,0);
   }
+});
+
+test('invalid scoring metadata fails before locking a run or writing scores', async () => {
+  const before = counts();
+  const original = database.prepare('SELECT kind,lesson_id,star_reward FROM question_sets WHERE id=?').get(SET_ID);
+  try {
+    for (const patch of [{ star_reward: -1 }, { star_reward: 1.5 }, { kind: 'exam' }, { lesson_id: null }]) {
+      const changed = { ...original, ...patch };
+      database.prepare('UPDATE question_sets SET kind=?,lesson_id=?,star_reward=? WHERE id=?')
+        .run(changed.kind, changed.lesson_id, changed.star_reward, SET_ID);
+      assert.equal((await lock()).status, 409);
+      assert.deepEqual(counts(), before);
+    }
+  } finally {
+    database.prepare('UPDATE question_sets SET kind=?,lesson_id=?,star_reward=? WHERE id=?')
+      .run(original.kind, original.lesson_id, original.star_reward, SET_ID);
+  }
+});
+
+test('sixth-question wording migration preserves locked estimates and old completed results', async () => {
+  const legacy = '48 × 6 — Có 6 hộp bút, mỗi hộp có 48 chiếc. Tổng số bút nằm trong khoảng nào?';
+  database.prepare('UPDATE questions SET prompt=? WHERE id=?').run(legacy, id(5));
+  const run = (await lock()).data.run;
+  assert.equal(run.questions[5].prompt, legacy);
+  const before = database.prepare('SELECT result_json FROM estimation_runs WHERE result_json IS NOT NULL').all();
+  const storedEstimates = database.prepare('SELECT estimates_json FROM estimation_runs WHERE id=?').get(run.id).estimates_json;
+  seedEstimation(database); seedEstimation(database);
+  assert.equal(database.prepare('SELECT prompt FROM questions WHERE id=?').get(id(5)).prompt, '48 × 6');
+  assert.equal((await call(`${endpoint}/runs/${run.id}`, first)).data.run.questions[5].prompt, '48 × 6');
+  assert.equal(database.prepare('SELECT estimates_json FROM estimation_runs WHERE id=?').get(run.id).estimates_json, storedEstimates);
+  assert.deepEqual(database.prepare('SELECT result_json FROM estimation_runs WHERE result_json IS NOT NULL').all(), before);
+  assert.equal((await finish(run)).status, 200);
 });

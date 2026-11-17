@@ -16,9 +16,12 @@ Test: test/estimation-practice.test.js và e2e/estimation.spec.js. Bằng chứn
 | I07 | Nội dung thay đổi từ lúc khóa: 409, không ghi kết quả sai phiên bản |
 | I08 | Seed hai lần trên DB cũ không thêm câu trùng hoặc đổi users/attempts/progress; bảng PC-1 còn |
 | I10 | compare/input/paint/multiple-choice cũ giữ trim/lowercase, điểm và sao |
+| I11 | Sao âm/thập phân, sai kind hoặc lesson null bị từ chối trước tạo run/ghi điểm |
+| I12 | Migration nhãn câu 6 trên DB cũ giữ ước lượng đã khóa và kết quả hoàn tất; nộp tiếp được |
 | E01 | Menu thật → 12 câu bằng Space/Arrow/Tab → khóa → refresh → đáp số bằng bàn phím → nộp → focus kết quả → refresh → lượt mới |
 | E02 | Lỗi mạng khi khóa giữ lựa chọn; nhập sai có lỗi/focus; mất response sau commit → refresh thấy kết quả; retry không tăng attempt |
 | E03 | Mobile 390×844 dùng menu mobile, feedback bốn tổ hợp, không tràn ngang |
+| E04 | randomUUID không khả dụng: renderer vẫn hoạt động và khóa được đủ 12 ước lượng |
 
 Lệnh: npm ci; npm test; npx playwright install chromium; npm run test:e2e. Dùng Node 22 cho bộ công cụ phát triển/E2E. API/E2E tự tạo DB riêng ngoài repo. E2E chặn tài nguyên Internet để kiểm tra CSS tĩnh và logic không phụ thuộc CDN.
 

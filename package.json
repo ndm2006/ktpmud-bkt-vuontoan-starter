@@ -10,7 +10,8 @@
     "reset-db": "node -e \"require('fs').rmSync('data/vuon-toan.db',{force:true}); console.log('Da xoa DB, chay npm start de tao lai')\"",
     "build:css": "node tools/build-css.js",
     "test": "node --test",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "prepare:submission": "node tools/prepare-submission.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

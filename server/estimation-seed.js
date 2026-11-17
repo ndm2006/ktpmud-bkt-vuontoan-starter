@@ -4,6 +4,7 @@ const fixtures = require('./estimation-questions');
 const { rangesFor } = require('./estimation-scoring');
 const SET_ID = 'uoc-luong-nhan-chia';
 const LESSON_ID = 'bai-41'; // Existing multiplication/division review, no new curriculum.
+const OLD_SIXTH_PROMPT = '48 × 6 — Có 6 hộp bút, mỗi hộp có 48 chiếc. Tổng số bút nằm trong khoảng nào?';
 
 function seedEstimation(db) {
   const insertSet = db.prepare(`INSERT OR IGNORE INTO question_sets
@@ -27,6 +28,19 @@ function seedEstimation(db) {
       rangesFor(row);
       insert.run(row);
     });
+    // Cosmetic-only migration requested by N57: never overwrite a teacher edit.
+    db.prepare('UPDATE questions SET prompt=? WHERE id=? AND set_id=? AND prompt=?')
+      .run('48 × 6', 'est-set-06', SET_ID, OLD_SIXTH_PROMPT);
+    // Preserve open estimates while applying this exact, non-scoring wording change.
+    // Completed result snapshots remain historical evidence and are not rewritten.
+    for (const run of db.prepare('SELECT id,snapshot_json FROM estimation_runs WHERE set_id=? AND attempt_id IS NULL').all(SET_ID)) {
+      const snapshot = JSON.parse(run.snapshot_json);
+      const sixth = snapshot.questions.find(q => q.id === 'est-set-06');
+      if (sixth?.prompt === OLD_SIXTH_PROMPT) {
+        sixth.prompt = '48 × 6';
+        db.prepare('UPDATE estimation_runs SET snapshot_json=? WHERE id=?').run(JSON.stringify(snapshot), run.id);
+      }
+    }
   })();
 }
 

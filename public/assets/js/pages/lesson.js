@@ -13,6 +13,7 @@
   const container = document.getElementById('questions-container');
   const progressBar = document.getElementById('lesson-progress');
   const progressText = document.getElementById('lesson-progress-text');
+  if (setId === window.EstimationPlayer.SET_ID) document.getElementById('btn-submit-lesson').disabled = true;
 
   function updateProgress() {
     const done = questions.filter(q => answers[q.id] != null && String(answers[q.id]).trim() !== '').length;

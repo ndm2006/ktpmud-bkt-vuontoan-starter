@@ -106,3 +106,9 @@ attempts.answers_json giữ đáp số chính xác dạng chuỗi. correct_count
 Frontend không giữ đáp án trước nộp hoặc thêm token. Refresh phục hồi ước lượng đã khóa/kết quả, không tự lưu số đang gõ chưa nộp. UI nói rõ. Keyboard dùng radio/label/fieldset native, focus và lỗi dễ hiểu; không thay chứng nhận screen reader/sư phạm.
 
 totalStars trong result snapshot là tại thời điểm nộp, không phải tổng hiện tại sau các hoạt động khác. Hai endpoint từng câu PC-1 được thay bằng contract mới; dữ liệu PC-1 vẫn trong DB/Git, giao diện hiện hành không đọc bảng cũ.
+
+### Chỉnh cuối trước freeze
+
+- requestId dùng randomUUID nếu có, fallback getRandomValues cho HTTP LAN; đây là key chống ghi trùng, không thay token đăng nhập hoặc quyền sở hữu.
+- Chặn metadata sao âm/thập phân, kind khác exercise hoặc lesson không tồn tại trước khi khóa ước lượng; không sửa route giáo viên.
+- Theo yêu cầu đại diện nhóm, câu 6 chỉ còn `48 × 6`. Seed migration chỉ thay đúng nhãn cũ đã biết trong câu hỏi và snapshot CHƯA nộp; không đổi phép tính, đáp án, khoảng, ước lượng hoặc điểm. Đây là ngoại lệ thuần nhãn cho phép tiếp tục lượt đang làm; các thay đổi nội dung khác vẫn bị từ chối 409. Không ghi lại snapshot kết quả đã nộp.

@@ -103,3 +103,11 @@ test('mobile layout and four distinct feedback outcomes', async ({ page }, info)
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);
   await page.screenshot({ path:info.outputPath('mobile-result.png'), fullPage:true });
 });
+
+test('practice works when randomUUID is unavailable outside a secure browser context', async ({ page }) => {
+  await page.addInitScript(() => Object.defineProperty(Crypto.prototype, 'randomUUID', { value: undefined }));
+  await openFromMenu(page, 'hocsinh24');
+  await selectRanges(page);
+  await page.locator('#btn-submit-lesson').click();
+  await expect(page.locator('[data-exact]')).toHaveCount(12);
+});

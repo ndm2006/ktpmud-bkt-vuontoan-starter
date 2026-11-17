@@ -32,3 +32,5 @@ Type estimate trong luồng hiện có: Phòng Luyện Tập → lesson.html →
 - Refresh chỉ phục hồi phần đã lưu. Đáp số đang gõ chưa nộp không tự lưu; UI thông báo.
 - Chỉ chủ lượt được đọc/nộp. Nội dung thay đổi giữa lượt trả 409, không ghi điểm; kết quả hoàn tất xem từ snapshot.
 - Dữ liệu PC-1 giữ lại, không tự quy đổi thành điểm hai giai đoạn mới.
+- Câu 6 chỉ có biểu thức `48 × 6`, đồng bộ với 11 câu khác theo yêu cầu đại diện nhóm. Migration thuần nhãn giữ ước lượng chưa nộp; kết quả cũ giữ lịch sử.
+- N57 có hai thành viên theo ngoại lệ được GV chấp thuận, căn cứ xác nhận đại diện nhóm trong chat; không tự tạo thành viên để đủ quy mô khuyến nghị.

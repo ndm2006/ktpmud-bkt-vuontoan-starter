@@ -1,5 +1,17 @@
 # Báo cáo kiểm thử — Track B — N57
 
+## Review cuối trực tiếp tại Codex — chuẩn bị freeze 19/11
+
+- Source nền: 8bdb75a. Baseline chạy lại tại đây đạt 12/12 unit/API và 3/3 E2E.
+- Sau chỉnh cuối theo yêu cầu nhóm: **14/14 unit/API và 4/4 E2E đạt**, Windows x64/Node 22.23.5. Bộ test thêm kiểm tra metadata và migration câu 6; E2E thêm trình duyệt thiếu randomUUID.
+- Lỗi randomUUID đã được tái hiện: E2E trước sửa không render được 36 lựa chọn; sau fallback getRandomValues, cả bộ bốn ca đạt.
+- Trình duyệt tích hợp Codex, DB review synthetic riêng, hocsinh90: đi từ menu, thiếu câu/error/focus, khóa đủ 12, refresh, lỗi ký tự, bốn tổ hợp feedback. 9/12 câu đúng cả hai → 75%, lần đầu +30 sao; làm lại cùng mức điểm không cộng thêm sao; refresh giữ kết quả.
+- Câu 6 được xác nhận trực tiếp chỉ còn `48 × 6`. Migration đúng nhãn cũ giữ ước lượng của lượt chưa nộp; không viết lại kết quả cũ.
+- [Ảnh tổng kết](artifacts/review/codex-live-result.jpg), [toàn trang](artifacts/review/codex-live-result-full.jpg), [phản biện cuối bảy tiêu chí](docs/FINAL_REVIEW.md).
+- Kết quả máy chạy không thay review/nghiệm thu của nhóm/GV. Run CI dưới đây thuộc phiên bản trước chỉnh cuối; ứng viên mới cần run đúng SHA mới. Gói hồ sơ kiểm tra bằng validator chính thức riêng.
+
+## Bằng chứng trước lần chỉnh cuối
+
 ## Thiết kế hiện hành ADR-002 — đợt sửa bắt đầu 17/11/2026
 
 Nền trước sửa `3236af604e372bb000ab7d483ae8d051d2435ed3`; Node 22.23.5/npm 10.9.9 trên Windows x64. Bảng PC-1 bên dưới là lịch sử, không phải bằng chứng cho contract mới.

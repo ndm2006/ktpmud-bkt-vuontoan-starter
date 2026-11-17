@@ -128,3 +128,10 @@ Giữ tách biệt xác nhận của thành viên, kết quả kiểm thử và 
 Agent commit/push theo yêu cầu đại diện nhóm; không tự merge, phát hành hoặc xác nhận đã đúng thay nhóm. Các bằng chứng CI mới phải gắn SHA thật, không dùng lại run PC-1.
 
 Bằng chứng CI của đợt sửa: [43e3302](https://github.com/ndm2006/ktpmud-bkt-vuontoan-starter/actions/runs/44123673362) — clean checkout Ubuntu/Node 22, cài dependency, unit/API và E2E thành công. Kết quả máy chạy không thay cho review/ nghiệm thu của nhóm.
+
+
+## Review cuối trước freeze 19/11
+
+Đại diện nhóm yêu cầu kiểm thử trực tiếp tại Codex, đối chiếu kế hoạch/phản biện và sửa lần cuối; đồng thời xác nhận ngoại lệ hai thành viên đã được GV chấp thuận. Yêu cầu riêng: bỏ lời văn hộp bút ở câu 6.
+
+Codex kiểm tra bằng IAB trên DB synthetic riêng: lỗi/focus, khóa/refresh, bốn tổ hợp feedback, 75% và sao lần đầu/lặp lại. Ảnh trong artifacts/review. AI tái hiện lỗi randomUUID bằng E2E trước sửa, bổ sung fallback, kiểm tra metadata, migration nhãn câu 6, báo cáo review và công cụ đóng gói. Bộ sau sửa đạt 14 unit/API và 4 E2E cục bộ. Không dùng AI chấm runtime, không ghi rằng nhóm đã review code cuối hoặc GV đã nghiệm thu. Việc tạo tag/nộp Draft PR cần đại diện duyệt ứng viên cụ thể trước khi thực hiện.
