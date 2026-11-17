@@ -1,16 +1,17 @@
-# Checklist bảo mật và quyền riêng tư — Track B — N57
+# Checklist bảo mật và dữ liệu — N57 / ADR-002
 
-Phạm vi rà soát là phần mở rộng ước lượng và gói bàn giao MVP. Các mục dưới đây dựa trên mã nguồn và [báo cáo kiểm thử](TEST_REPORT.md).
+| Mục | Hiện trạng và bằng chứng |
+|---|---|
+| Synthetic | Giữ tài khoản seed và 12 phép toán giả lập; hồ sơ dùng alias N57-A/N57-B |
+| Ownership | Middleware auth giữ nguyên, SQL lọc user_id từ phiên, lượt tài khoản khác trả 404; test API |
+| Không lộ đáp án | publicQuestion allowlist cho đề và run trước nộp; không phục vụ fixture/data seed qua static; test I01 |
+| Input | Khoảng phải thuộc câu; đủ 12; số nguyên 0–999 hoặc bỏ trống; reject ép kiểu mất nghĩa; prepared SQL |
+| State/retry | Unique request key và unique active run; transaction immediate bao attempt/progress/sao/closure; test concurrency/rollback |
+| Cache | API phục hồi lượt có Cache-Control: no-store; không lưu thêm token phía client |
+| Nội dung thay đổi | Từ chối lượt đang làm bằng 409; kết quả hoàn tất đọc snapshot, không chấm lại |
+| Phạm vi | auth.js, core auth, data/seed.json, Dockerfile, DEPLOY và route auth/teacher/admin phải giữ nguyên so với nền; đối chiếu diff trước push |
+| Tệp cục bộ | .gitignore loại DB/journal/env, test-results và playwright-report; không thêm credential vào code/log |
+| AI runtime | Không có; đáp án tính khi seed và chấm bằng code/DB |
+| Dependency | npm audit fix chỉ vá lockfile tương thích; body-parser 1.20.9, postcss-selector-parser 6.1.5; npm audit báo 0 cảnh báo tại lần kiểm tra |
 
-| Mục | Kết quả rà soát | Bằng chứng |
-|---|---|---|
-| Dữ liệu demo | Bộ câu tổng hợp và tài khoản mẫu của starter. Báo cáo công khai dùng alias N57-A và N57-B. | [Fixture](server/estimation-questions.js), [phân công](CONTRIBUTIONS.md) |
-| Xác thực và phân quyền | API ước lượng dùng middleware hiện có. Truy vấn tiến độ lấy chủ sở hữu từ phiên đã xác thực. | [Route và truy vấn theo người dùng](server/estimation-practice.js), [ca kiểm thử](test/estimation-practice.test.js) |
-| Chống lộ đáp án | Server chỉ trả đáp số và giải thích của câu đã nộp bước tính. Bộ câu nằm phía server. | [Hợp đồng API](DECISIONS.md), [test tải bài và lưu khoảng](test/estimation-practice.test.js) |
-| Kiểm tra đầu vào và dữ liệu lưu | Server kiểm tra ID và miền số nguyên. SQL dùng tham số. Transaction và khóa theo tài khoản/câu giữ kết quả nhất quán khi gửi lại. | [Server](server/estimation-practice.js), [schema](server/db.js) |
-| Giới hạn phạm vi | Diff với tag starter giữ tệp xác thực, tài khoản mẫu và tệp cấu hình deployment. Bài ước lượng lưu riêng với điểm và sao. | [Kiến trúc starter](docs/architecture-reference.md), [ADR](DECISIONS.md) |
-| Secret và tệp cục bộ | `.gitignore` loại DB, journal SQLite, `.env` và các mẫu tệp client secret. Kiểm tra lại danh sách tệp và diff của SHA freeze trước khi đưa lên kho môn học. | [.gitignore](.gitignore), [quy trình nộp](docs/SUBMISSION.md) |
-| AI runtime | Phép tính và kiểm tra khoảng thực hiện bằng JavaScript tất định. | [Bộ chấm](server/estimation-practice.js), [nhật ký AI](AI_USE.md) |
-| Dependency | `npm audit` trên bản cài sạch ghi nhận một cảnh báo cao ở `body-parser` và một cảnh báo vừa ở `postcss-selector-parser`. Phiên bản dependency của MVP được giữ để đối chiếu hồ sơ. | [Cảnh báo body-parser](https://github.com/advisories/GHSA-27r3-jxmh-p828), [cảnh báo selector parser](https://github.com/advisories/GHSA-rj75-hqrm-r3gf) |
-
-Rà soát này áp dụng cho demo cục bộ và dữ liệu mẫu. Việc quét tự động toàn bộ SHA freeze và kiểm tra tệp cuối thuộc bước chốt nộp.
+Giới hạn: không coi audit dependency là chứng nhận toàn bộ bảo mật. Các vấn đề nền ngoài scope auth/deployment không được sửa trong đợt này. Không kết nối production hoặc dữ liệu thật. Kết quả PC-1 trước sửa giữ trong Git; không dùng bằng chứng cũ chứng nhận bản hiện hành.

@@ -32,76 +32,17 @@
 </div>
 </div>
 <div class="practice-modes" role="group" aria-label="Chọn cách luyện tập">
-  <button id="worksheet-open" class="practice-mode" type="button" aria-controls="worksheet" aria-pressed="true">
+  <a class="practice-mode" href="#worksheet" aria-label="Phiếu bài tập bảng nhân 6 và bảng chia 6">
     <span class="practice-mode-icon material-symbols-outlined" aria-hidden="true">assignment</span>
     <span><strong>Phiếu bài tập</strong><small>Bảng nhân 6 và bảng chia 6</small></span>
     <span class="material-symbols-outlined" aria-hidden="true">chevron_right</span>
-  </button>
-  <button id="estimate-open" class="practice-mode" type="button" aria-controls="uoc-luong" aria-pressed="false">
+  </a>
+  <a id="estimate-open" class="practice-mode" href="lesson.html?lesson=bai-41&amp;set=uoc-luong-nhan-chia">
     <span class="practice-mode-icon material-symbols-outlined" aria-hidden="true">calculate</span>
-    <span><strong>Ước lượng trước khi tính đúng</strong><small>Chọn khoảng, rồi tìm đáp số</small></span>
+    <span><strong>Ước lượng trước khi tính đúng</strong><small>12 câu • Chọn khoảng trước, tính chính xác sau</small></span>
     <span class="material-symbols-outlined" aria-hidden="true">chevron_right</span>
-  </button>
+  </a>
 </div>
-<p id="estimate-error" class="estimate-error" role="alert" hidden></p>
-<section id="uoc-luong" class="estimate-practice" aria-labelledby="estimate-title" hidden>
-  <h2 id="estimate-title">Ước lượng trước khi tính đúng</h2>
-  <div id="estimate-activity">
-    <div class="estimate-status">
-      <p id="estimate-progress"></p>
-      <button id="estimate-pause" class="estimate-secondary" type="button">← Về phòng luyện tập</button>
-    </div>
-    <ol id="estimate-stage-questions" class="estimate-stage-questions" aria-label="Tiến độ các câu trong chặng"></ol>
-    <progress id="estimate-meter" aria-label="Số câu đã hoàn thành" max="12" value="0"></progress>
-    <article class="estimate-question">
-      <ol id="estimate-steps" class="estimate-steps" aria-label="Các bước làm bài">
-        <li id="estimate-step-range">1. Chọn khoảng</li>
-        <li id="estimate-step-exact">2. Nhập đáp số</li>
-      </ol>
-      <h3 id="estimate-prompt" tabindex="-1"></h3>
-      <p id="estimate-expression"></p>
-      <form id="estimate-range-form" hidden>
-        <fieldset>
-          <legend class="estimate-visually-hidden">Chọn một khoảng</legend>
-          <div id="estimate-options" class="estimate-options"></div>
-        </fieldset>
-        <details class="estimate-hint">
-          <summary>Gợi ý của Ong Vàng</summary>
-          <div class="estimate-coach">
-            <img src="assets/img/ong-vang-hoang-mai.png" alt="" width="64" height="64">
-            <p id="estimate-hint-text"></p>
-          </div>
-        </details>
-        <button class="estimate-primary" type="submit">Tiếp tục</button>
-      </form>
-      <form id="estimate-exact-form" hidden>
-        <p id="estimate-chosen"></p>
-        <label for="estimate-answer">Đáp số chính xác</label>
-        <input id="estimate-answer" inputmode="numeric" maxlength="3" autocomplete="off" required>
-        <button class="estimate-primary" type="submit">Nộp đáp số</button>
-      </form>
-      <div id="estimate-feedback" hidden>
-        <div class="estimate-results">
-          <p id="estimate-range-result" class="estimate-result"></p>
-          <p id="estimate-exact-result" class="estimate-result"></p>
-        </div>
-        <details id="estimate-explanation" class="estimate-hint">
-          <summary>Xem cách nhẩm</summary>
-          <div class="estimate-coach">
-            <img src="assets/img/ong-vang-hoang-mai.png" alt="" width="64" height="64">
-            <p id="estimate-explanation-text"></p>
-          </div>
-        </details>
-        <button id="estimate-next" class="estimate-primary" type="button">Câu tiếp theo</button>
-      </div>
-      <div id="estimate-summary" hidden><p id="estimate-summary-text"></p></div>
-    </article>
-    <details id="estimate-review" class="estimate-hint" hidden>
-      <summary>Xem lại các câu đã làm</summary>
-      <div id="estimate-review-list" class="estimate-review-list"></div>
-    </details>
-  </div>
-</section>
 <section id="worksheet" class="practice-worksheet space-y-space-md" aria-labelledby="worksheet-title">
 <!-- Lesson Stage Tracker & Heading Banner -->
 <div class="relative overflow-hidden rounded-lg bg-surface-container-lowest p-space-md lg:p-space-lg shadow-sm">
@@ -463,6 +404,5 @@
 <script src="assets/js/components/footer.js"></script>
 <script src="assets/js/core/app.js"></script>
 <script src="assets/js/pages/exercise.js"></script>
-<script src="assets/js/pages/estimation-practice.js"></script>
 </body>
 </html>

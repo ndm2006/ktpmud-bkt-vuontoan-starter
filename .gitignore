@@ -5,3 +5,5 @@ data/*.db-wal
 .env
 *client_secret*.json
 *.secret.json
+test-results/
+playwright-report/

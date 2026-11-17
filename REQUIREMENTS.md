@@ -1,38 +1,34 @@
-# Yêu cầu Track B — Nhóm N57
+# Yêu cầu hiện hành — N57 / Track B
 
-Hồ sơ Checkpoint 1 bổ sung ngày **10/11/2026** theo [đính chính #25](https://github.com/fossbk-spec/ktpmud-project/issues/25). Đại diện nhóm xác nhận thiết kế nghiệp vụ và phân công dự kiến ngày 10/11. Trạng thái phạm vi: **chờ GV/TA duyệt**.
+Theo ADR-002; hồ sơ PC-1 giữ trong Git và phần PC-1 của progress/PROGRESS.md. Nguồn: đề chính thức mục 8.3 và docs/architecture-reference.md.
 
-Căn cứ: [đề chính thức, mục 4 và 8](https://fossbk-spec.github.io/ktpmud-book/exams/KTPMUD_Hack_Marathon_2026_De_Thi_Chinh_Thuc_v1.0.0_20261103.html), [kiến trúc starter](docs/architecture-reference.md), tag `bkt-2026-v1`, commit `057a48205f50f0f30d6260be1a44b343a167a3e7`.
+## Scope
 
-## Mục tiêu và phạm vi
+Type estimate trong luồng hiện có: Phòng Luyện Tập → lesson.html → API question-sets → lưu cả 12 ước lượng → submissions → attempts/progress/sao. Giữ 12 câu trên fork, gắn bài ôn nhân/chia 41, mở luyện tập tự do. Chọn khoảng cố định bao gồm hai đầu mút; cả hai bước đúng mới đạt 1 điểm/câu. Giữ hoàn thành 50%, sao theo tiến bộ cấp bài học. Không AI runtime, không sửa auth/session/tài khoản mẫu/deployment hoặc route giáo viên/admin.
 
-Học sinh lớp 3 luyện nhận biết độ lớn của kết quả trước khi tính chính xác. Từ **Phòng Luyện Tập**, học sinh mở mục **Ước lượng trước khi tính đúng**, làm lần lượt 12 câu synthetic cố định qua ba chặng và nhận phản hồi cho hai kỹ năng riêng biệt. Hai câu đầu dùng bảng 6 để làm quen, các câu sau luyện lấy mốc cho phép nhân và chia số có hai chữ số. Sử dụng phiên đăng nhập hiện có.
+## Traceability
 
-- Học sinh chọn một trong ba khoảng. Server kiểm tra khoảng thuộc đúng câu và lưu lựa chọn. Nếu khoảng hợp lệ nhưng ước lượng sai, học sinh vẫn được chuyển bước.
-- Học sinh nhập kết quả nguyên. Server chỉ chấp nhận sau khi bước ước lượng đã lưu. Sau lần nộp này, server trả hai kết quả đúng/sai, đáp số chính xác và giải thích cách dùng mốc.
-- Trong bước ước lượng, học sinh có thể mở gợi ý của Ong Vàng. Sau khi nộp cả hai bước, học sinh có thể mở **Xem cách nhẩm**. Học sinh có thể quay về Phòng Luyện Tập và tiếp tục bằng tiến độ đã lưu.
-- Khi tải lại hoặc mở lại bài bằng cùng tài khoản, ứng dụng khôi phục bước đang làm và kết quả đã nộp từ SQLite. Một lượt gồm 12 câu, mỗi câu có một lần ghi cho từng bước. Không tính sao, không thay điểm hoặc mở khóa bài cũ.
-- Giữ hành vi các dạng bài cũ, đăng nhập, session, tài khoản mẫu, route auth/teacher/admin và deployment. Chỉ dùng dữ liệu synthetic. Không dùng AI khi ứng dụng chấm và không kết nối hệ thống thật.
-
-## Tiêu chí nghiệm thu
-
-Các dòng dưới đây mô tả **kết quả cần kiểm chứng sau triển khai**. Mã ca kiểm thử tham chiếu [TEST_PLAN.md](TEST_PLAN.md).
-
-| Mã | Điều kiện để đạt | Ca kiểm thử |
+| AC | Điều kiện nghiệm thu bản hiện hành | Bằng chứng |
 |---|---|---|
-| B-01 | Học sinh đã đăng nhập đi từ menu Phòng Luyện Tập đến mục ước lượng ngay trong trang hiện có. Phiếu cũ vẫn dùng được. | T01, T12 |
-| B-02 | Có 12 ID câu duy nhất, 6 phép nhân và 6 phép chia hết, chia thành ba chặng với hai câu làm quen. Cùng nguồn dữ liệu cho cùng nội dung, thứ tự và khoảng trên hai lần chạy sạch. | T02 |
-| B-03 | Server xác định khoảng chứa đáp số với hai đầu mút bao gồm. Cùng câu và lựa chọn luôn cho cùng kết quả. Từ chối khoảng không thuộc câu và kết quả nhập ngoài miền. | T02, T03, T04, T05 |
-| B-04 | Trước khi server chấp nhận bước tính chính xác, dữ liệu tải bài, dữ liệu khôi phục và phản hồi bước ước lượng không chứa đáp án, mã khoảng đúng hoặc cờ chấm. Fixture có đáp án không nằm trong tài nguyên frontend. | T06 |
-| B-05 | Server từ chối nộp chính xác trước khi đã lưu ước lượng. SQLite lưu hai bước và kết quả theo tài khoản/câu. Refresh khôi phục cả câu đang làm lẫn câu đã chấm. | T05, T07, T08, T09 |
-| B-06 | Sau khi nộp bước tính, giao diện hiện hai thông báo riêng. Hai kết quả độc lập, kể cả trường hợp ước lượng sai nhưng tính đúng hoặc ngược lại. | T04, T10 |
-| B-07 | Diff xác nhận không đổi auth/session, tài khoản mẫu, deployment và route auth/teacher/admin. Phiếu cũ vẫn nộp được với hợp đồng hiện tại. | T11, T12 |
-| B-08 | Test tự động có ca thông thường, ca biên, đầu vào không hợp lệ và chấm điểm, gồm nộp sai thứ tự và ghi lặp. | T03–T09 |
-| B-09 | Checkout sạch, chạy `npm ci` rồi `npm test` thành công với DB test riêng và không cần hệ thống bên ngoài. | T13 |
-| B-10 | Workflow trong fork chạy `npm ci` và `npm test` trên sự kiện Pull Request. Có link run gắn đúng commit. | T14 |
-| B-11 | Dữ liệu bài, tài khoản kiểm thử và báo cáo công khai dùng synthetic hoặc alias. Diff không có dữ liệu cá nhân, token, DB cục bộ hay tệp môi trường. | T11 |
-| B-12 | Chọn khoảng, nộp, nhập số và đọc phản hồi bằng bàn phím. Có nhãn, focus nhìn thấy và thông báo lỗi rõ. | T10 |
+| B-01 | Menu Phòng Luyện Tập dẫn đến lesson.html, API câu hỏi và submissions hiện hữu | E01 |
+| B-02 | 12 câu/ID cố định, 6 nhân/6 chia hết; oracle độc lập | U01 |
+| B-03 | Khoảng chứa đáp án, tất định, cả hai bước đúng mới đạt điểm | U01–U03; ADR-002 |
+| B-04 | Trước nộp không trả đáp án, khoảng đúng hoặc cờ chấm trong đề/lưu/khôi phục | I01; publicQuestion allowlist |
+| B-05 | Khóa ước lượng trước bước chính xác; lưu điểm/tiến độ/sao; refresh/restart phục hồi phần đã lưu | I03–I07; E01–E02 |
+| B-06 | Phản hồi riêng ước lượng và tính đúng ở bốn tổ hợp | U03; E03 |
+| B-07 | Không đổi auth, tài khoản mẫu, deployment, route auth/teacher/admin; bài cũ giữ hành vi | Diff phạm vi; I10 |
+| B-08 | Test normal/boundary/invalid/scoring, thứ tự, ownership, concurrency, rollback | npm test |
+| B-09 | npm ci + npm test từ source sạch, DB test tự tạo riêng | TEST_REPORT |
+| B-10 | Workflow PR chạy npm ci, npm test, E2E; run đúng SHA | track-b.yml |
+| B-11 | Synthetic/alias, không commit DB hoặc secret | Checklist; AI_USE |
+| B-12 | Radio/input/button native, focus, label và lỗi; hoàn thành bằng bàn phím | E01–E03 |
 
-## Quyết định và bằng chứng bàn giao
+## Contract nghiệp vụ
 
-[DECISIONS.md](DECISIONS.md) mô tả quy tắc khoảng, hợp đồng hai bước, lưu trạng thái và cách giữ luồng cũ. Xem [kịch bản demo PC-1](docs/PC1-DEMO.md) để kiểm chứng MVP hiện tại. Để nghiệm thu ở Checkpoint 2, nhóm cần luồng chạy xuyên suốt, kết quả test công khai và demo nội bộ 5 phút. [Theo dõi tiến độ](progress/PROGRESS.md).
+- Chọn đủ 12 khoảng mới lưu. Khoảng sai vẫn mở bước tính; chưa trả feedback ở bước khóa.
+- Phần chính xác cho phép bỏ trống (tính sai); từ chối null/boolean/array/object/thập phân/âm/ngoài 0–999. Chuỗi số nguyên được trim và bỏ số 0 đầu. UI xác nhận trước khi nộp còn câu trống.
+- Retry cùng requestId/cùng khoảng trả cùng lượt; thay khoảng với cùng key hoặc tạo thêm khi còn lượt đang làm trả 409.
+- Nộp lại lượt đã chấm trả kết quả cũ, không cập nhật đáp số hoặc tăng attempt/sao.
+- Refresh chỉ phục hồi phần đã lưu. Đáp số đang gõ chưa nộp không tự lưu; UI thông báo.
+- Chỉ chủ lượt được đọc/nộp. Nội dung thay đổi giữa lượt trả 409, không ghi điểm; kết quả hoàn tất xem từ snapshot.
+- Dữ liệu PC-1 giữ lại, không tự quy đổi thành điểm hai giai đoạn mới.

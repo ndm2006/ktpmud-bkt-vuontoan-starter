@@ -2,7 +2,7 @@
 
 - Starter: `fossbk-spec/ktpmud-bkt-vuontoan-starter`, tag `bkt-2026-v1`, SHA `057a48205f50f0f30d6260be1a44b343a167a3e7`.
 - Fork: [ndm2006/ktpmud-bkt-vuontoan-starter](https://github.com/ndm2006/ktpmud-bkt-vuontoan-starter), nhánh làm việc `track-b-work`.
-- Bản sản phẩm: [Ước lượng trước khi tính đúng](PC1-DEMO.md), tích hợp trong Phòng Luyện Tập.
+- Bản hiện hành: [demo ADR-002](DEMO.md), đi từ Phòng Luyện Tập vào lesson.html. PC1-DEMO.md và các xác nhận bên dưới thuộc phiên bản lịch sử, không xác nhận code mới.
 - N57-A đã kiểm tra MVP và hồ sơ tại `5abd6d3`. N57-B đã kiểm thử và đồng ý chốt bố trí giao diện. Xác nhận của hai thành viên được ghi ở `d34b035`. [Đóng góp](../CONTRIBUTIONS.md) · [CI đạt trên bản MVP](https://github.com/ndm2006/ktpmud-bkt-vuontoan-starter/actions/runs/42865197833).
 
 | Giảng viên cần xem | Tệp trong fork |

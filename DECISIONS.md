@@ -1,5 +1,7 @@
 # Quyết định thiết kế — Track B — Nhóm N57
 
+**Hiện hành: ADR-002 ở cuối tệp. ADR-001 mô tả PC-1, đã được thay thế ở các nội dung xung đột.**
+
 ## ADR-001 — Khoảng chọn trước, kết quả chính xác sau
 
 - Ngày: **10/11/2026**.
@@ -62,3 +64,45 @@ Trong giao diện, các câu được trình bày theo thứ tự fixture. Học
 - Cấu hình fixture giữ ổn định ID, thứ tự và nghĩa trong thời gian của bài. Nếu thay câu về sau, dùng ID mới để tránh đọc sai kết quả cũ.
 - Lưu tách bảng bảo toàn `attempts`, `progress` và sao của phiếu cũ. Phải kiểm tra chạy với DB mới và DB starter đã tồn tại.
 - Không dùng LLM lúc sinh/chấm đáp án runtime. Test theo [kế hoạch kiểm thử](TEST_PLAN.md).
+
+## ADR-002 — Khóa cả phần ước lượng, tích hợp chấm và tiến độ hiện hữu
+
+Trạng thái: triển khai theo yêu cầu đại diện nhóm trong chat từ 17/11/2026, chưa thay cho nghiệm thu nhóm/GV. Nền trước sửa: `3236af604e372bb000ab7d483ae8d051d2435ed3`.
+
+### Lựa chọn
+
+Giữ 12 fixture và phương pháp dùng mốc dễ nhẩm của PC-1. Chọn khoảng cố định thay vì dung sai 20% hoặc tự nhập hai đầu khoảng. Khoảng đóng chứa đáp số chính xác là hợp lý. Các khoảng không chồng lấn, một đáp số thuộc đúng một khoảng; oracle trong test viết độc lập. Độ phù hợp sư phạm vẫn cần nhóm/GV review, chưa có thử nghiệm với học sinh thật.
+
+Chọn hai giai đoạn cả bộ thay vì từng câu: ít request và trạng thái hơn, đổi lại phải chọn hết 12 khoảng trước khi mở phần chính xác. Server buộc thứ tự, không chỉ disable UI.
+
+Mỗi câu 1 điểm khi cả hai bước đúng. Partial credit 50/50 là phương án khả thi nhưng cho phép hoàn thành ở 50% dù sai toàn bộ một kỹ năng. Vì vậy giữ điểm toàn phần và phản hồi riêng hai kỹ năng. 6/12 câu đạt → 50%, 9/12 → 75%, 12/12 → 100%.
+
+Gắn bài 41 vì bộ hiện có nhân/chia hai chữ số. Mở tự do từ Phòng Luyện Tập là chủ ý cho ôn tập, không thay chuỗi khóa/mở cũ. Sao và best_score vẫn ở cấp bài học, không ở cấp bộ đề.
+
+### Contract API
+
+| Route | Hành vi |
+|---|---|
+| GET /api/question-sets/uoc-luong-nhan-chia/questions | Câu hỏi/ranges/hint công khai qua allowlist; không đáp án hoặc cờ chấm |
+| POST /api/estimation-practice/estimates | setId, requestId, estimates đủ 12; khóa toàn bộ và trả run trạng thái exact |
+| GET /api/estimation-practice?setId=... | Lượt mới nhất của tài khoản hiện tại hoặc null |
+| GET /api/estimation-practice/runs/:id | Chủ lượt phục hồi theo ID; tài khoản khác nhận 404 |
+| POST /api/submissions | setId, runId, answers; chỉ nhận sau khóa, không nhận thay đổi estimates |
+
+Retry lưu cùng key/cùng khoảng trả cùng lượt; cùng key khác dữ liệu trả 409. Mỗi tài khoản tối đa một lượt chưa nộp của bộ này. Nộp lại lượt đã chấm trả kết quả cũ kể cả payload đáp số thay đổi; không ghi đè hay cộng thêm attempt/sao. Muốn làm lại phải tạo lượt mới sau khi đã hoàn tất.
+
+### Dữ liệu và transaction
+
+Bảng estimation_runs giữ user/set/key, estimates, snapshot câu hỏi/metadata, attempt_id và result_json. Unique partial index ngăn hai lượt đang làm; transaction immediate bao toàn bộ đọc/chấm/attempt/progress/sao/đóng lượt. Ghi lỗi ở bất kỳ bước nào rollback toàn bộ. duration_sec do server tính từ lúc khóa đến nộp.
+
+Fixture chỉ dùng seed, sau đó DB là nguồn chấm. Snapshot cố định nội dung của lượt; nếu câu hỏi hoặc metadata thay đổi giữa lượt, trả 409 thay vì chấm bằng nội dung khác. Bản hoàn tất vẫn xem được bằng snapshot. Không đặt FK set_id để giữ hành vi route giáo viên xóa bộ đề. MVP chưa có UI hủy lượt lỗi thời; cần thầy cô hỗ trợ hoặc phục hồi nội dung khi có thay đổi giữa lượt.
+
+Seed bổ sung INSERT OR IGNORE chạy cả DB sạch/cũ; không xóa users/progress/attempts. Giữ bảng PC-1 estimation_answers và không quy đổi kết quả từng câu cũ thành điểm lượt mới.
+
+### Tương thích và giới hạn
+
+attempts.answers_json giữ đáp số chính xác dạng chuỗi. correct_count/score_percent phản ánh câu đúng cả hai bước. Teacher analytics cũ chỉ chẩn đoán lỗi bước chính xác, không phản ánh đầy đủ lỗi ước lượng; không tuyên bố báo cáo đầy đủ cho dạng mới và không sửa route giáo viên.
+
+Frontend không giữ đáp án trước nộp hoặc thêm token. Refresh phục hồi ước lượng đã khóa/kết quả, không tự lưu số đang gõ chưa nộp. UI nói rõ. Keyboard dùng radio/label/fieldset native, focus và lỗi dễ hiểu; không thay chứng nhận screen reader/sư phạm.
+
+totalStars trong result snapshot là tại thời điểm nộp, không phải tổng hiện tại sau các hoạt động khác. Hai endpoint từng câu PC-1 được thay bằng contract mới; dữ liệu PC-1 vẫn trong DB/Git, giao diện hiện hành không đọc bảng cũ.

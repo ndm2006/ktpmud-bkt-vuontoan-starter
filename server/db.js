@@ -172,6 +172,26 @@ function seedIfEmpty() {
 seedIfEmpty();
 seedQuestionSets();
 
+// Additive migration: retain the PC-1 table and all existing results.
+// No set_id FK, so the protected teacher delete routes keep their behavior.
+db.exec(`
+CREATE TABLE IF NOT EXISTS estimation_runs (
+  id TEXT PRIMARY KEY,
+  user_id INTEGER NOT NULL REFERENCES users(id),
+  set_id TEXT NOT NULL,
+  request_id TEXT NOT NULL,
+  estimates_json TEXT NOT NULL,
+  snapshot_json TEXT NOT NULL,
+  attempt_id INTEGER REFERENCES attempts(id),
+  result_json TEXT,
+  created_at TEXT NOT NULL DEFAULT (datetime('now')),
+  UNIQUE(user_id,request_id),
+  CHECK ((attempt_id IS NULL AND result_json IS NULL) OR (attempt_id IS NOT NULL AND result_json IS NOT NULL))
+);
+CREATE UNIQUE INDEX IF NOT EXISTS estimation_one_active ON estimation_runs(user_id,set_id) WHERE attempt_id IS NULL;
+`);
+require('./estimation-seed').seedEstimation(db);
+
 // Đảm bảo thông tin Cô Lan Anh (GV Chủ nhiệm minh họa) và học sinh luôn được cập nhật chính xác
 try {
   db.prepare("UPDATE users SET full_name = 'Cô Lan Anh (GV Chủ nhiệm minh họa)', class_name = '3A2' WHERE username = 'giaovien01'").run();

@@ -1,5 +1,25 @@
 # Báo cáo kiểm thử — Track B — N57
 
+## Thiết kế hiện hành ADR-002 — đợt sửa bắt đầu 17/11/2026
+
+Nền trước sửa `3236af604e372bb000ab7d483ae8d051d2435ed3`; Node 22.23.5/npm 10.9.9 trên Windows x64. Bảng PC-1 bên dưới là lịch sử, không phải bằng chứng cho contract mới.
+
+| Kiểm tra | Kết quả |
+|---|---|
+| Baseline trước sửa | npm ci và bộ cũ 8/8 đạt bằng Node 22 |
+| Unit/API/SQLite hiện hành | 12/12 đạt: oracle, input, bốn tổ hợp, không lộ đáp án, thứ tự/ownership, restart, retry/concurrency, progress/sao, rollback, thay nội dung, seed, bốn type cũ |
+| E2E desktop | Luồng 12 câu bằng bàn phím, refresh, làm lại; lỗi mạng khi khóa và mất phản hồi sau server commit: đạt |
+| E2E mobile | 390×844, menu mobile, bốn tổ hợp feedback và không tràn ngang: đạt |
+| CSS | npm run build:css thành công |
+| Dependency | Lockfile vá body-parser 1.20.9 và postcss-selector-parser 6.1.5; npm audit không còn cảnh báo tại lần kiểm tra |
+| Source sạch | Bản xuất Git ngoài workspace: npm ci, 12/12 unit/API và CSS build đạt. Sau sửa đồng bộ selector E2E, chép test mới vào bản xuất và chạy đủ 3/3 E2E đạt; dependency và code ứng dụng không thay đổi. CI sẽ kiểm chứng checkout của commit cuối. |
+
+Ca mobile ban đầu chọn nhầm menu desktop bị ẩn trong bộ test; đã sửa selector chọn menu hiển thị, chờ user-ready trước thao tác bàn phím và chạy đủ 3/3 đạt. E2E chặn tài nguyên Internet. Chưa kiểm tra screen reader thực tế hoặc thử nghiệm với học sinh. Font/icon CDN của starter vẫn có thể fallback khi offline.
+
+CI hiện hành ở PR nội bộ #1, workflow track-b.yml; chỉ dùng run khớp SHA thay đổi. Không dùng các run PC-1 bên dưới để chứng nhận code mới. Check validate hồ sơ nộp là quy trình khác, chưa thực hiện trong đợt sửa code này.
+
+## Hồ sơ PC-1 lịch sử
+
 **MVP đối chiếu:** giao diện tại `0bc0176` trên nhánh `track-b-work`. **Phạm vi:** ước lượng, tính chính xác, khôi phục tiến độ và hồi quy phiếu Bài 9–10. Xem [kế hoạch T01–T14](TEST_PLAN.md) và [tiêu chí B-01–B-12](REQUIREMENTS.md).
 
 ## Kết quả có bằng chứng

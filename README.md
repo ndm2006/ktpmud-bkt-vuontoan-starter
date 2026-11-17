@@ -10,11 +10,21 @@
 
 # Phần mở rộng của nhóm N57 — Track B
 
-Nhóm bổ sung bài **Ước lượng trước khi tính đúng** ngay trong Phòng Luyện Tập. Học sinh làm 12 câu nhân và chia qua ba chặng, chọn khoảng rồi nhập đáp số. Server lưu từng bước theo tài khoản để học sinh có thể tiếp tục sau khi quay lại. Bài có gợi ý, phản hồi riêng cho hai bước và chức năng xem lại câu đã làm.
+Nhóm bổ sung type **Ước lượng trước khi tính đúng** trong luồng hiện có: Phòng Luyện Tập → lesson.html → chọn đủ 12 khoảng → lưu/khóa → nhập đáp số → nộp. Mỗi câu 1 điểm khi cả hai bước đúng, phản hồi riêng hai kỹ năng. Kết quả vào attempts, tiến độ bài ôn nhân/chia 41 và sao theo tiến bộ. Đây là luyện tập tự do, không thay chuỗi khóa/mở khác.
 
-Để demo, đăng nhập bằng tài khoản học sinh mẫu, vào **Phòng Luyện Tập** và chọn **Ước lượng trước khi tính đúng**. [Kịch bản PC-1](docs/PC1-DEMO.md)
+Để demo, đăng nhập bằng tài khoản học sinh mẫu, vào **Phòng Luyện Tập** và chọn **Ước lượng trước khi tính đúng**. [Kịch bản hiện hành](docs/DEMO.md). Refresh phục hồi ước lượng đã lưu/kết quả đã nộp; đáp số đang gõ chưa nộp chưa được lưu.
 
-Bộ test logic và API đạt **8/8** trên bản checkout sạch. Báo cáo ghi riêng các luồng đã thử trên trình duyệt và các ca dự kiến bổ sung trước CP2. [Báo cáo kiểm thử](TEST_REPORT.md) · [Tiến độ](progress/PROGRESS.md) · [Đóng góp](CONTRIBUTIONS.md)
+Bộ test hiện hành kiểm tra chính sách, API/SQLite, keyboard, refresh, lỗi mạng và mobile. [Báo cáo](TEST_REPORT.md) · [ADR-002](DECISIONS.md) · [Tiến độ](progress/PROGRESS.md) · [Đóng góp](CONTRIBUTIONS.md). Hồ sơ PC-1 được giữ để truy vết thiết kế cũ.
+
+```bash
+npm ci
+npm test
+npx playwright install chromium
+npm run test:e2e
+npm start
+```
+
+Dùng **Node 22** cho bộ công cụ phát triển/E2E. Mỗi bộ test tự tạo SQLite tạm riêng, không reset DB demo. API và ứng dụng giữ stack starter.
 
 ---
 

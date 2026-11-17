@@ -111,3 +111,18 @@ Giữ tách biệt xác nhận của thành viên, kết quả kiểm thử và 
 | Kiểm chứng | Đối chiếu mã và lịch sử Git, chạy lại bộ test MVP, đối chiếu mục 6, 8, 11, 12 và mẫu nộp Track B. Bằng chứng và giới hạn nằm trong [TEST_REPORT.md](TEST_REPORT.md). |
 | Quyết định của nhóm | Nhóm dùng MVP đã kiểm tra làm căn cứ bàn giao và bổ sung bằng chứng theo hướng dẫn của môn học. |
 | Người chịu trách nhiệm | N57-A lên ý tưởng, kiểm chứng phần AI hỗ trợ và chịu trách nhiệm về bản bàn giao. Xem [CONTRIBUTIONS.md](CONTRIBUTIONS.md). |
+
+
+## Đợt sửa theo phương án tối ưu — bắt đầu 17/11/2026
+
+| Trường | Nội dung |
+|---|---|
+| Công cụ/model | Codex, GPT-6 (theo định danh phiên); không dùng LLM runtime |
+| Mục đích | Phản biện kế hoạch, chuyển MVP từng câu sang hai giai đoạn, tích hợp điểm/tiến độ/sao; test và tài liệu |
+| Phạm vi | estimation-practice/scoring/seed, vùng học sinh api.js, db.js, lesson/exercise, test/E2E/CI, tài liệu hiện hành |
+| Quyết định người dùng | Đại diện N57 yêu cầu triển khai kế hoạch tối ưu và sửa code cần thiết trên fork, nhánh track-b-work; không coi yêu cầu này là nghiệm thu code cuối |
+| Kiểm chứng AI đã chạy | Baseline 8 test, bộ mới 12 unit/API, E2E keyboard/network/mobile, CSS build, audit; chi tiết trong TEST_REPORT |
+| Giữ/sửa/loại | Giữ 12 fixture và lịch sử PC-1; thay từng-câu bằng khóa cả phần; bỏ dung sai 20% và partial credit 50/50; giữ auth/deployment |
+| Người chịu trách nhiệm | N57-A/N57-B theo phân công đã có; chưa ghi nhận review hoặc chấp thuận code cuối của thành viên trong đợt này |
+
+Agent commit/push theo yêu cầu đại diện nhóm; không tự merge, phát hành hoặc xác nhận đã đúng thay nhóm. Các bằng chứng CI mới phải gắn SHA thật, không dùng lại run PC-1.

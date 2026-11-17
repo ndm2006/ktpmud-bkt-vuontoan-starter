@@ -9,3 +9,8 @@ Nhóm mình chọn Track B và phát triển bài ước lượng trong Phòng L
 | Cả nhóm | Đối chiếu tiêu chí, diễn tập demo và chốt bản nộp. | Hồ sơ CP1 tại `4d22bb1`, kịch bản PC-1 tại `0408e96`. Xem [tiến độ](progress/PROGRESS.md). |
 
 Từ PC-1 đến CP2, N57-A dự kiến phụ trách quy tắc chấm, API, SQLite và CI. N57-B dự kiến phụ trách kiểm thử giao diện, kích thước màn hình, xem lại câu đã làm và kịch bản demo. Cả nhóm đối chiếu yêu cầu, chạy thử và chuẩn bị vấn đáp. Nhóm sẽ ghi bằng chứng theo từng đầu việc khi có kết quả. [Timeline](progress/PROGRESS.md#13-timeline-dự-kiến-đến-khi-hoàn-thành)
+
+
+## Đợt sửa theo kế hoạch tối ưu (từ 17/11/2026)
+
+Đại diện nhóm cung cấp fork/nhánh và yêu cầu Codex sửa các phần cần thiết theo kế hoạch mới. Codex hỗ trợ code, test, tài liệu và push; chưa có xác nhận review code cuối từ N57-A/N57-B. Phân công và bằng chứng PC-1 ở trên được giữ nguyên. Trách nhiệm review, chạy lại, nghiệm thu và vấn đáp thuộc nhóm; không ghi đầu ra AI thành đóng góp đã kiểm chứng của cá nhân.
