@@ -91,8 +91,8 @@ Thiết kế PC-1 lưu từng câu riêng chưa nối attempts/progress/sao. Sau
 | B-06 | Đạt cục bộ | U03/E03: feedback đủ bốn tổ hợp |
 | B-07 | Đã soát diff | Các file bảo vệ và route auth/teacher/admin khớp starter; PC-1 giữ nguyên |
 | B-08 | Đạt cục bộ | 12 test unit/API; boundary/invalid/scoring/rollback |
-| B-09 | Có bằng chứng bản xuất source | npm ci + 12/12 test đạt ngoài workspace; xem TEST_REPORT về lần sửa selector E2E |
-| B-10 | Workflow đã bổ sung | npm ci + npm test + E2E trên PR #1; chờ run khớp SHA mới |
+| B-09 | Đạt CI checkout sạch | npm ci + npm test + E2E đạt tại 43e3302; TEST_REPORT |
+| B-10 | Đạt CI code hiện hành | [Run 43e3302](https://github.com/ndm2006/ktpmud-bkt-vuontoan-starter/actions/runs/44123673362), PR #1, npm ci + npm test + E2E |
 | B-11 | Đã soát staged diff | Không phát hiện mẫu secret trong phần thêm; không stage DB/env/artifact |
 | B-12 | Đạt luồng chính cục bộ | E01 keyboard đủ 12; E03 mobile. Chưa screen reader thực tế |
 
@@ -105,7 +105,7 @@ Draft PR vào ktpmud-project/check validate: chưa thực hiện trong đợt s�
 ### 2.4. Việc còn lại trước freeze
 
 - Review code, quy tắc khoảng và độ phù hợp sư phạm; xác nhận bằng chứng kiểm thử.
-- Hoàn tất source sạch, soát phạm vi và CI đúng SHA; cập nhật hồ sơ nộp.
+- Code đã có CI checkout sạch và soát phạm vi; nhóm review và cập nhật hồ sơ nộp bằng SHA cuối.
 - Đại diện nhóm xử lý Draft PR hồ sơ, comment PC-2 đúng khung giờ và chốt tag/release theo đề.
 
 ### 2.5. Giới hạn / câu hỏi còn lại

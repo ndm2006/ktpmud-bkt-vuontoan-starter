@@ -126,3 +126,5 @@ Giữ tách biệt xác nhận của thành viên, kết quả kiểm thử và 
 | Người chịu trách nhiệm | N57-A/N57-B theo phân công đã có; chưa ghi nhận review hoặc chấp thuận code cuối của thành viên trong đợt này |
 
 Agent commit/push theo yêu cầu đại diện nhóm; không tự merge, phát hành hoặc xác nhận đã đúng thay nhóm. Các bằng chứng CI mới phải gắn SHA thật, không dùng lại run PC-1.
+
+Bằng chứng CI của đợt sửa: [43e3302](https://github.com/ndm2006/ktpmud-bkt-vuontoan-starter/actions/runs/44123673362) — clean checkout Ubuntu/Node 22, cài dependency, unit/API và E2E thành công. Kết quả máy chạy không thay cho review/ nghiệm thu của nhóm.

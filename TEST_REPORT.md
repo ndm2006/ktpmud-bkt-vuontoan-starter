@@ -12,11 +12,11 @@ Nền trước sửa `3236af604e372bb000ab7d483ae8d051d2435ed3`; Node 22.23.5/np
 | E2E mobile | 390×844, menu mobile, bốn tổ hợp feedback và không tràn ngang: đạt |
 | CSS | npm run build:css thành công |
 | Dependency | Lockfile vá body-parser 1.20.9 và postcss-selector-parser 6.1.5; npm audit không còn cảnh báo tại lần kiểm tra |
-| Source sạch | Bản xuất Git ngoài workspace: npm ci, 12/12 unit/API và CSS build đạt. Sau sửa đồng bộ selector E2E, chép test mới vào bản xuất và chạy đủ 3/3 E2E đạt; dependency và code ứng dụng không thay đổi. CI sẽ kiểm chứng checkout của commit cuối. |
+| Source sạch | Bản xuất Git ngoài workspace: npm ci, 12/12 unit/API và CSS build đạt. Sau sửa đồng bộ selector E2E, chép test mới vào bản xuất và chạy đủ 3/3 E2E đạt; dependency và code ứng dụng không thay đổi. CI đã kiểm chứng checkout commit code bên dưới. |
 
 Ca mobile ban đầu chọn nhầm menu desktop bị ẩn trong bộ test; đã sửa selector chọn menu hiển thị, chờ user-ready trước thao tác bàn phím và chạy đủ 3/3 đạt. E2E chặn tài nguyên Internet. Chưa kiểm tra screen reader thực tế hoặc thử nghiệm với học sinh. Font/icon CDN của starter vẫn có thể fallback khi offline.
 
-CI hiện hành ở PR nội bộ #1, workflow track-b.yml; chỉ dùng run khớp SHA thay đổi. Không dùng các run PC-1 bên dưới để chứng nhận code mới. Check validate hồ sơ nộp là quy trình khác, chưa thực hiện trong đợt sửa code này.
+CI code hiện hành: [43e3302](https://github.com/ndm2006/ktpmud-bkt-vuontoan-starter/commit/43e33024cc4cb48d1cbcbb15c6d76310afa572fc), [run thành công](https://github.com/ndm2006/ktpmud-bkt-vuontoan-starter/actions/runs/44123673362) trên PR nội bộ #1: Ubuntu/Node 22, npm ci, npm test và E2E đều đạt. Đây là clean checkout của code ADR-002; không dùng các run PC-1 bên dưới để chứng nhận code mới. Check validate hồ sơ nộp là quy trình khác, chưa thực hiện trong đợt sửa code này.
 
 ## Hồ sơ PC-1 lịch sử
 
