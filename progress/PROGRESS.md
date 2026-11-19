@@ -122,14 +122,14 @@ Bằng chứng code đã kiểm tra: [d98c33f](https://github.com/ndm2006/ktpmud
 | Draft PR vào ktpmud-project | Có, bổ sung muộn | [PR #52](https://github.com/fossbk-spec/ktpmud-project/pull/52) |
 | Check validate của PR | Có | [Run đạt cho bản hồ sơ đầu](https://github.com/fossbk-spec/ktpmud-project/actions/runs/44567458530); mỗi lần push tiếp tục đối chiếu run mới trên PR |
 | source-ref.json, sáu artifacts, alias nhóm | Có | submissions/hoang_mai_toan_n57 trong PR #52; N57-A/N57-B, ngoại lệ hai người theo xác nhận đại diện nhóm |
-| Tag freeze thật | Chưa tại lúc ghi bảng | bkt-2026-N57-rc1 cần chốt đúng SHA và CI; không nhận tag dự kiến là đã phát hành |
+| Tag freeze | Chốt sau CI của bản tài liệu cuối | bkt-2026-N57-rc1; kiểm tra tag thật và source-ref.json trong PR #52, không di chuyển tag |
 
 ### 2.4. Việc còn lại đến freeze / nộp cuối
 
 | Việc | Vai trò phụ trách | Hạn |
 |---|---|---|
 | Push báo cáo bổ sung, CI đúng SHA, đồng bộ source-ref và validate | Codex hỗ trợ theo yêu cầu đại diện; N57-A kiểm tra bàn giao | Trước 23:59 19/11 |
-| Xác nhận bản freeze, tạo tag thật và không di chuyển tag | Đại diện nhóm N57-A theo lựa chọn tự tạo tag trước đó | Trước 23:59 19/11 |
+| Tạo tag thật sau CI đạt và không di chuyển tag | Đại diện nhóm đã ủy quyền Codex hoàn thiện freeze trong yêu cầu mới ngày 19/11 | Trước 23:59 19/11 |
 | Trao đổi xử lý PC-2 bổ sung muộn tại #32 | Đại diện nhóm, Codex hỗ trợ gửi theo yêu cầu mới | 19/11; quyết định ghi nhận thuộc GV |
 | Review hồ sơ cuối và chuyển cùng PR #52 sang Ready for review | N57-A; N57-B đối chiếu demo/bằng chứng | 20/11 |
 | Diễn tập và trình bày demo/viva | N57-A, N57-B | 21/11; demo ≤7 phút, viva ≤8 phút |
@@ -143,7 +143,8 @@ Bằng chứng code đã kiểm tra: [d98c33f](https://github.com/ndm2006/ktpmud
 
 ## Kết quả cuối — Freeze 19/11/2026
 
-- Candidate code đã duyệt giữ nguyên: d98c33feb787395d3701d2235a354da428cfd20b. Bản bổ sung chỉ đổi hồ sơ tiến độ/AI, cần lấy SHA mới và CI tương ứng để chốt.
-- Tag: bkt-2026-N57-rc1 dự kiến; đại diện nhóm đã chọn tự tạo tag. Chưa ghi nhận tag thật tại thời điểm cập nhật.
+- Code giữ nguyên candidate d98c33feb787395d3701d2235a354da428cfd20b theo lựa chọn đại diện nhóm. Bản cuối chỉ bổ sung hồ sơ tiến độ/AI; không thay code hoặc fixture.
+- Đại diện nhóm yêu cầu Codex hoàn thiện các bước trước 23:59 ngày 19/11, bao gồm tạo tag thay lựa chọn tự tạo trước đó. Mốc freeze là tag bkt-2026-N57-rc1 trỏ vào chính bản tài liệu cuối này sau khi CI đạt; SHA, URL CI và trạng thái tag thực tế được ghi trong source-ref.json/README của PR #52. Không thay đổi tag đã công bố.
+- Bản tài liệu này được commit trước thao tác tạo tag; bằng chứng công bố được đối chiếu tại GitHub và gói nộp để tránh tự tham chiếu SHA.
 - Trạng thái AC: như bảng 2.2; các giới hạn vẫn giữ rõ ở 2.5.
 - Việc lệch timeline: Draft PR và báo cáo PC-2 bổ sung ngày 19/11, quá hạn 18/11; chưa có xác nhận tham gia PC-2 đúng giờ. Ready for review và demo do nhóm thực hiện theo lịch.

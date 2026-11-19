@@ -139,3 +139,7 @@ Codex kiểm tra bằng IAB trên DB synthetic riêng: lỗi/focus, khóa/refres
 ## Bổ sung hồ sơ theo follow-up PC-2 — 19/11/2026
 
 Đại diện nhóm yêu cầu đọc nhận xét các nhóm trong issue #18 và thực hiện phần cần thiết trên GitHub. Codex dùng tài khoản ndm2006 đã đăng nhập để fork kho môn học, đưa gói vào đúng một thư mục, mở Draft PR #52, kiểm tra validate, bổ sung bảng tiến độ và gửi câu hỏi thủ tục ở #32. Không sửa code của candidate d98c33f, không xác nhận nộp đúng hạn PC-2, không nhận là GV đã duyệt nội dung. Nhóm đã chọn tự tạo tag và nộp cuối; PR giữ Draft để đại diện review/chuyển Ready for review.
+
+## Ủy quyền chốt freeze — 19/11/2026
+
+Sau khi xem báo cáo PR #52 và CI, đại diện yêu cầu Codex hoàn thiện nốt công việc trước 23:59. Codex được ủy quyền tạo tag bkt-2026-N57-rc1 vào bản cuối có CI đạt, kiểm tra tag remote, đóng gói với --require-tag, đồng bộ hồ sơ và theo dõi validate. Việc này thay lựa chọn tự tạo tag trước đó. Code giữ nguyên candidate; không tự xác nhận GV nghiệm thu, không merge PR và không thay thế demo/viva của thành viên.
