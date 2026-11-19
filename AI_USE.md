@@ -135,3 +135,7 @@ Bằng chứng CI của đợt sửa: [43e3302](https://github.com/ndm2006/ktpmu
 Đại diện nhóm yêu cầu kiểm thử trực tiếp tại Codex, đối chiếu kế hoạch/phản biện và sửa lần cuối; đồng thời xác nhận ngoại lệ hai thành viên đã được GV chấp thuận. Yêu cầu riêng: bỏ lời văn hộp bút ở câu 6.
 
 Codex kiểm tra bằng IAB trên DB synthetic riêng: lỗi/focus, khóa/refresh, bốn tổ hợp feedback, 75% và sao lần đầu/lặp lại. Ảnh trong artifacts/review. AI tái hiện lỗi randomUUID bằng E2E trước sửa, bổ sung fallback, kiểm tra metadata, migration nhãn câu 6, báo cáo review và công cụ đóng gói. Bộ sau sửa đạt 14 unit/API và 4 E2E cục bộ. Không dùng AI chấm runtime, không ghi rằng nhóm đã review code cuối hoặc GV đã nghiệm thu. Việc tạo tag/nộp Draft PR cần đại diện duyệt ứng viên cụ thể trước khi thực hiện.
+
+## Bổ sung hồ sơ theo follow-up PC-2 — 19/11/2026
+
+Đại diện nhóm yêu cầu đọc nhận xét các nhóm trong issue #18 và thực hiện phần cần thiết trên GitHub. Codex dùng tài khoản ndm2006 đã đăng nhập để fork kho môn học, đưa gói vào đúng một thư mục, mở Draft PR #52, kiểm tra validate, bổ sung bảng tiến độ và gửi câu hỏi thủ tục ở #32. Không sửa code của candidate d98c33f, không xác nhận nộp đúng hạn PC-2, không nhận là GV đã duyệt nội dung. Nhóm đã chọn tự tạo tag và nộp cuối; PR giữ Draft để đại diện review/chuyển Ready for review.

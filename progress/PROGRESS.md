@@ -73,51 +73,77 @@ Giờ Việt Nam. CP2 là buổi demo nội bộ của M2. PC-2 là buổi kiể
 
 ## PC-2 — 18/11/2026
 
-Cập nhật chuẩn bị theo ADR-002, chưa xác nhận đã trình bày PC-2 hoặc đăng comment issue #18. Phần PC-1 giữ nguyên như lịch sử.
+Bổ sung thực tế ngày 19/11/2026 theo nhận xét follow-up trong issue #18. Nhóm chưa có comment xác nhận PC-2 trong khung 09:30–11:30 ngày 18/11; không tự xác nhận đã tham dự/nộp đúng hạn. Phần PC-1 phía trên giữ nguyên làm lịch sử. Nhóm hỏi thủ tục xử lý bổ sung tại issue #32 theo hướng dẫn của GV.
 
-### 2.1. Đối chiếu kế hoạch và thực tế
+### 2.1. Đối chiếu timeline PC-1
 
-Thiết kế PC-1 lưu từng câu riêng chưa nối attempts/progress/sao. Sau phản biện, đại diện nhóm yêu cầu sửa sang kế hoạch tối ưu: khóa 12 ước lượng một lần, nộp qua submissions, chấm cả hai bước và cập nhật luồng hiện hữu. Bộ fixture được giữ; giao diện chuyển sang lesson.html. Không quy đổi điểm từng câu cũ thành lượt mới.
+| Việc theo 1.3 | Kế hoạch | Thực tế / bằng chứng | Lệch và lý do |
+|---|---|---|---|
+| Hoàn thiện luồng và demo nội bộ | 12–15/11 | MVP cũ có lịch sử PC-1; luồng ADR-002 và kiểm thử cuối hoàn thành tại d98c33f | Thay thiết kế sau phản biện: khóa toàn bộ 12 ước lượng, tích hợp submissions/progress/sao; không giả lập demo nhóm ngày 15/11 |
+| Rà CI, bảo mật và hồ sơ | 16–17/11 | 14 unit/API, 4 E2E và CI tại d98c33f; TEST_REPORT và FINAL_REVIEW | Có sửa cuối câu 6, tương thích randomUUID và metadata; đã kiểm tra lại |
+| Draft PR hồ sơ và validate | Trước 11:30 18/11 | [Draft PR #52](https://github.com/fossbk-spec/ktpmud-project/pull/52), mở 19/11; [validate đạt](https://github.com/fossbk-spec/ktpmud-project/actions/runs/44567458530) | Trễ hạn PC-2; đợt trước mới chuẩn bị gói cục bộ, chưa công bố PR |
+| Cập nhật báo cáo và xác nhận PC-2 | 09:30–11:30 18/11 | Bổ sung báo cáo ngày 19/11; không có comment đúng khung giờ | Không tự sửa thời gian hoặc nhận là đã hoàn thành đúng hạn |
+| Chốt SHA/tag freeze | Trước 23:59 19/11 | Candidate code d98c33f đã được đại diện yêu cầu giữ nguyên; bản bổ sung chỉ sửa hồ sơ | Cần chốt tag thật sau khi CI của bản bổ sung đạt |
+| Ready for review và demo/viva | 20–21/11 | Draft PR #52; docs/DEMO.md | Chưa đến bước nhóm xác nhận nộp cuối và trình bày |
 
 ### 2.2. Tiến độ acceptance criteria hiện hành
 
-| Mã | Trạng thái | Bằng chứng / giới hạn |
+Bằng chứng code đã kiểm tra: [d98c33f](https://github.com/ndm2006/ktpmud-bkt-vuontoan-starter/tree/d98c33feb787395d3701d2235a354da428cfd20b), [CI đạt](https://github.com/ndm2006/ktpmud-bkt-vuontoan-starter/actions/runs/44129408084). Bản bổ sung tiến độ không thay đổi code. Các mã test và giới hạn xem TEST_PLAN.md, TEST_REPORT.md, docs/FINAL_REVIEW.md. “Xong” là trạng thái triển khai có bằng chứng, không thay nghiệm thu của GV.
+
+| Mã | Trạng thái | Bằng chứng | Giới hạn / ghi chú |
+|---|---|---|---|
+| B-01 | Xong | E01, public/exercise.html, public/lesson.html | Đi từ menu thật tới bài tích hợp |
+| B-02 | Xong | U01, server/estimation-questions.js | 12 fixture cố định, 6 nhân/6 chia; câu 6 là 48 × 6 |
+| B-03 | Xong | U01–U03, server/estimation-scoring.js | Một điểm khi cả hai bước đúng; các khoảng không chồng lấn |
+| B-04 | Xong | I01, allowlist publicQuestion | Không trả đáp án trước nộp |
+| B-05 | Xong | I03–I07, E01–E02 | Lưu ước lượng/kết quả, refresh/restart/retry; số đang gõ chưa nộp không tự lưu |
+| B-06 | Xong | U03/E03 | Hai feedback riêng, đủ bốn tổ hợp |
+| B-07 | Xong | Diff starter, ca hồi quy trong TEST_REPORT | Không đổi auth/session/tài khoản mẫu/deployment |
+| B-08 | Xong | 14 unit/API trong test/estimation-practice.test.js | Có boundary, invalid, scoring, rollback và concurrency |
+| B-09 | Xong | CI checkout sạch, README | Node 22, npm ci + npm test + E2E |
+| B-10 | Xong | CI run 44129408084, PR nội bộ #1 | Bản bổ sung hồ sơ tiếp tục chạy CI qua cùng PR |
+| B-11 | Xong | SECURITY_PRIVACY_CHECKLIST.md, AI_USE.md | Dữ liệu synthetic/alias; không commit DB hoặc env |
+| B-12 | Xong trong phạm vi kiểm thử | E01/E03/E04, ảnh Codex trong artifacts/review | Đủ bàn phím 12 câu, mobile, thông báo lỗi; chưa chứng nhận screen reader thực tế |
+
+### 2.3. Sẵn sàng nộp bài
+
+| Deliverable | Có / Chưa | Đường dẫn / bằng chứng |
 |---|---|---|
-| B-01 | Đạt cục bộ | E01: đi từ menu thật sang lesson.html |
-| B-02 | Đạt cục bộ | U01: 12 fixture/ID cố định, 6 nhân/6 chia |
-| B-03 | Đạt cục bộ | U01–U03; ADR-002, điểm toàn phần |
-| B-04 | Đạt cục bộ | I01, allowlist đề/run trước nộp |
-| B-05 | Đạt cục bộ | I03–I07; E01–E02: lưu, refresh/restart/retry |
-| B-06 | Đạt cục bộ | U03/E03: feedback đủ bốn tổ hợp |
-| B-07 | Đã soát diff | Các file bảo vệ và route auth/teacher/admin khớp starter; PC-1 giữ nguyên |
-| B-08 | Đạt cục bộ | 14 test unit/API; boundary/invalid/scoring/rollback |
-| B-09 | Đạt CI checkout sạch | npm ci + npm test + E2E đạt tại 43e3302; TEST_REPORT |
-| B-10 | Đạt CI code hiện hành | [Run 43e3302](https://github.com/ndm2006/ktpmud-bkt-vuontoan-starter/actions/runs/44123673362), PR #1, npm ci + npm test + E2E |
-| B-11 | Đã soát staged diff | Không phát hiện mẫu secret trong phần thêm; không stage DB/env/artifact |
-| B-12 | Đạt luồng chính cục bộ | E01 keyboard đủ 12; E03 mobile; E04 thiếu randomUUID; Codex IAB thật. Chưa screen reader thực tế |
+| README cài đặt/chạy/test | Có | [README.md](../README.md) |
+| REQUIREMENTS | Có | [REQUIREMENTS.md](../REQUIREMENTS.md) |
+| DECISIONS / ADR | Có | [DECISIONS.md](../DECISIONS.md), ADR-002 |
+| TEST_PLAN | Có | [TEST_PLAN.md](../TEST_PLAN.md) |
+| Test tự động và CI xanh | Có | [14 unit/API + 4 E2E](https://github.com/ndm2006/ktpmud-bkt-vuontoan-starter/actions/runs/44129408084) |
+| TEST_REPORT | Có | [TEST_REPORT.md](../TEST_REPORT.md) |
+| SECURITY_PRIVACY_CHECKLIST | Có | [SECURITY_PRIVACY_CHECKLIST.md](../SECURITY_PRIVACY_CHECKLIST.md) |
+| AI_USE | Có | [AI_USE.md](../AI_USE.md) |
+| CONTRIBUTIONS / phân công | Có | [CONTRIBUTIONS.md](../CONTRIBUTIONS.md), bảng 1.6 giữ nguyên |
+| Demo script ≤7 phút | Có | [docs/DEMO.md](../docs/DEMO.md) |
+| Draft PR vào ktpmud-project | Có, bổ sung muộn | [PR #52](https://github.com/fossbk-spec/ktpmud-project/pull/52) |
+| Check validate của PR | Có | [Run đạt cho bản hồ sơ đầu](https://github.com/fossbk-spec/ktpmud-project/actions/runs/44567458530); mỗi lần push tiếp tục đối chiếu run mới trên PR |
+| source-ref.json, sáu artifacts, alias nhóm | Có | submissions/hoang_mai_toan_n57 trong PR #52; N57-A/N57-B, ngoại lệ hai người theo xác nhận đại diện nhóm |
+| Tag freeze thật | Chưa tại lúc ghi bảng | bkt-2026-N57-rc1 cần chốt đúng SHA và CI; không nhận tag dự kiến là đã phát hành |
 
-### 2.3. Hồ sơ sẵn sàng
+### 2.4. Việc còn lại đến freeze / nộp cuối
 
-README, REQUIREMENTS, DECISIONS/ADR-002, TEST_PLAN/REPORT, SECURITY_PRIVACY_CHECKLIST, AI_USE, CONTRIBUTIONS và docs/DEMO.md được cập nhật theo thiết kế mới. Bằng chứng CI và commit cuối cần đúng SHA hiện hành.
+| Việc | Vai trò phụ trách | Hạn |
+|---|---|---|
+| Push báo cáo bổ sung, CI đúng SHA, đồng bộ source-ref và validate | Codex hỗ trợ theo yêu cầu đại diện; N57-A kiểm tra bàn giao | Trước 23:59 19/11 |
+| Xác nhận bản freeze, tạo tag thật và không di chuyển tag | Đại diện nhóm N57-A theo lựa chọn tự tạo tag trước đó | Trước 23:59 19/11 |
+| Trao đổi xử lý PC-2 bổ sung muộn tại #32 | Đại diện nhóm, Codex hỗ trợ gửi theo yêu cầu mới | 19/11; quyết định ghi nhận thuộc GV |
+| Review hồ sơ cuối và chuyển cùng PR #52 sang Ready for review | N57-A; N57-B đối chiếu demo/bằng chứng | 20/11 |
+| Diễn tập và trình bày demo/viva | N57-A, N57-B | 21/11; demo ≤7 phút, viva ≤8 phút |
 
-Draft PR vào ktpmud-project/check validate: chưa thực hiện trong đợt sửa source. CI fork không thay check validate. Nhóm cần đối chiếu hồ sơ riêng theo docs/SUBMISSION.md và đính chính #28.
+### 2.5. Rủi ro / câu hỏi cho GV
 
-### 2.4. Việc còn lại trước freeze
-
-- Review code, quy tắc khoảng và độ phù hợp sư phạm; xác nhận bằng chứng kiểm thử.
-- Code đã có CI checkout sạch và soát phạm vi; nhóm review và cập nhật hồ sơ nộp bằng SHA cuối.
-- Đại diện nhóm xử lý Draft PR hồ sơ, comment PC-2 đúng khung giờ và chốt tag/release theo đề.
-
-### 2.5. Giới hạn / câu hỏi còn lại
-
-Teacher analytics chỉ chẩn đoán lỗi bước chính xác; điểm trung bình lấy điểm cả hai bước. Các số đang gõ chưa nộp không tự lưu. Nếu nội dung bị sửa giữa lượt, server từ chối chấm và cần thầy cô hỗ trợ; MVP chưa có UI hủy lượt lỗi thời.
-
-### Bổ sung review cuối trước freeze
-
-Nhóm xác nhận ngoại lệ hai người đã được GV chấp thuận. Code có chỉnh cuối tương thích trình duyệt, chặn metadata sai và đồng bộ câu 6 thành 48 × 6. 14/14 unit/API, 4/4 E2E và kiểm thử trực tiếp Codex đạt cục bộ; xem docs/FINAL_REVIEW.md và ảnh artifacts/review. CI của bản chỉnh cuối và gói nộp phải khớp SHA mới, không dùng run cũ ghi ở bảng trên.
+- Nhóm chưa xác nhận PC-2 đúng khung giờ. Xin hướng dẫn ghi nhận hồ sơ bổ sung qua #32; không đề nghị tự động coi là đúng hạn.
+- Teacher analytics chỉ chẩn đoán lỗi bước chính xác; điểm tổng tính cả hai bước. Không sửa route teacher theo phạm vi bảo vệ.
+- Số đang gõ chưa nộp không tự lưu; UI đã thông báo. Nội dung bị sửa giữa lượt sẽ bị từ chối chấm và cần hỗ trợ; bộ fixture giữ ổn định qua demo.
+- Chưa nghiên cứu với học sinh thật, chưa kiểm tra screen reader thực tế. Không ghi kết quả tự động thành xác nhận của người học hoặc GV.
 
 ## Kết quả cuối — Freeze 19/11/2026
 
-- Tag: `bkt-2026-N57-rc1` (dự kiến) · SHA: điền tại Freeze.
-- Trạng thái cuối từng AC: điền tại Freeze.
-- Những việc trong timeline chưa hoàn thành và lý do: điền tại Freeze.
+- Candidate code đã duyệt giữ nguyên: d98c33feb787395d3701d2235a354da428cfd20b. Bản bổ sung chỉ đổi hồ sơ tiến độ/AI, cần lấy SHA mới và CI tương ứng để chốt.
+- Tag: bkt-2026-N57-rc1 dự kiến; đại diện nhóm đã chọn tự tạo tag. Chưa ghi nhận tag thật tại thời điểm cập nhật.
+- Trạng thái AC: như bảng 2.2; các giới hạn vẫn giữ rõ ở 2.5.
+- Việc lệch timeline: Draft PR và báo cáo PC-2 bổ sung ngày 19/11, quá hạn 18/11; chưa có xác nhận tham gia PC-2 đúng giờ. Ready for review và demo do nhóm thực hiện theo lịch.
