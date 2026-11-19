@@ -1,0 +1,77 @@
+# Báo cáo kiểm thử — Track B — N57
+
+## Review cuối trực tiếp tại Codex — chuẩn bị freeze 19/11
+
+- Source nền: 8bdb75a. Baseline chạy lại tại đây đạt 12/12 unit/API và 3/3 E2E.
+- Sau chỉnh cuối theo yêu cầu nhóm: **14/14 unit/API và 4/4 E2E đạt**, Windows x64/Node 22.23.5. Bộ test thêm kiểm tra metadata và migration câu 6; E2E thêm trình duyệt thiếu randomUUID.
+- Lỗi randomUUID đã được tái hiện: E2E trước sửa không render được 36 lựa chọn; sau fallback getRandomValues, cả bộ bốn ca đạt.
+- Trình duyệt tích hợp Codex, DB review synthetic riêng, hocsinh90: đi từ menu, thiếu câu/error/focus, khóa đủ 12, refresh, lỗi ký tự, bốn tổ hợp feedback. 9/12 câu đúng cả hai → 75%, lần đầu +30 sao; làm lại cùng mức điểm không cộng thêm sao; refresh giữ kết quả.
+- Câu 6 được xác nhận trực tiếp chỉ còn `48 × 6`. Migration đúng nhãn cũ giữ ước lượng của lượt chưa nộp; không viết lại kết quả cũ.
+- [Ảnh tổng kết](artifacts/review/codex-live-result.jpg), [toàn trang](artifacts/review/codex-live-result-full.jpg), [phản biện cuối bảy tiêu chí](docs/FINAL_REVIEW.md).
+- Kết quả máy chạy không thay review/nghiệm thu của nhóm/GV. Run CI dưới đây thuộc phiên bản trước chỉnh cuối; ứng viên mới cần run đúng SHA mới. Gói hồ sơ kiểm tra bằng validator chính thức riêng.
+
+## Bằng chứng trước lần chỉnh cuối
+
+## Thiết kế hiện hành ADR-002 — đợt sửa bắt đầu 17/11/2026
+
+Nền trước sửa `3236af604e372bb000ab7d483ae8d051d2435ed3`; Node 22.23.5/npm 10.9.9 trên Windows x64. Bảng PC-1 bên dưới là lịch sử, không phải bằng chứng cho contract mới.
+
+| Kiểm tra | Kết quả |
+|---|---|
+| Baseline trước sửa | npm ci và bộ cũ 8/8 đạt bằng Node 22 |
+| Unit/API/SQLite hiện hành | 12/12 đạt: oracle, input, bốn tổ hợp, không lộ đáp án, thứ tự/ownership, restart, retry/concurrency, progress/sao, rollback, thay nội dung, seed, bốn type cũ |
+| E2E desktop | Luồng 12 câu bằng bàn phím, refresh, làm lại; lỗi mạng khi khóa và mất phản hồi sau server commit: đạt |
+| E2E mobile | 390×844, menu mobile, bốn tổ hợp feedback và không tràn ngang: đạt |
+| CSS | npm run build:css thành công |
+| Dependency | Lockfile vá body-parser 1.20.9 và postcss-selector-parser 6.1.5; npm audit không còn cảnh báo tại lần kiểm tra |
+| Source sạch | Bản xuất Git ngoài workspace: npm ci, 12/12 unit/API và CSS build đạt. Sau sửa đồng bộ selector E2E, chép test mới vào bản xuất và chạy đủ 3/3 E2E đạt; dependency và code ứng dụng không thay đổi. CI đã kiểm chứng checkout commit code bên dưới. |
+
+Ca mobile ban đầu chọn nhầm menu desktop bị ẩn trong bộ test; đã sửa selector chọn menu hiển thị, chờ user-ready trước thao tác bàn phím và chạy đủ 3/3 đạt. E2E chặn tài nguyên Internet. Chưa kiểm tra screen reader thực tế hoặc thử nghiệm với học sinh. Font/icon CDN của starter vẫn có thể fallback khi offline.
+
+CI code hiện hành: [43e3302](https://github.com/ndm2006/ktpmud-bkt-vuontoan-starter/commit/43e33024cc4cb48d1cbcbb15c6d76310afa572fc), [run thành công](https://github.com/ndm2006/ktpmud-bkt-vuontoan-starter/actions/runs/44123673362) trên PR nội bộ #1: Ubuntu/Node 22, npm ci, npm test và E2E đều đạt. Đây là clean checkout của code ADR-002; không dùng các run PC-1 bên dưới để chứng nhận code mới. Check validate hồ sơ nộp là quy trình khác, chưa thực hiện trong đợt sửa code này.
+
+## Hồ sơ PC-1 lịch sử
+
+**MVP đối chiếu:** giao diện tại `0bc0176` trên nhánh `track-b-work`. **Phạm vi:** ước lượng, tính chính xác, khôi phục tiến độ và hồi quy phiếu Bài 9–10. Xem [kế hoạch T01–T14](TEST_PLAN.md) và [tiêu chí B-01–B-12](REQUIREMENTS.md).
+
+## Kết quả có bằng chứng
+
+| Kiểm tra | Môi trường và cách tái hiện | Kết quả |
+|---|---|---|
+| Bộ kiểm thử MVP | Windows build 19045, Node.js 24.22.1, npm 12.2.1, SQLite đã cài trong workspace. Chạy `node --test test/estimation-practice.test.js`. Mỗi lượt tạo DB synthetic tạm. | **8/8 đạt**. |
+| Checkout sạch | Windows x64 build 19045, Node.js 22.23.4, npm 10.9.9, bản xuất Git tại `0408e96`. Chạy `npm ci` rồi `npm test`. | Cài thành công từ lockfile, **8/8 đạt**. `npm audit` ghi nhận hai cảnh báo, xem [checklist](SECURITY_PRIVACY_CHECKLIST.md). |
+| Luồng học sinh | Trình duyệt tích hợp, localhost, tài khoản học sinh mẫu. Xem [kịch bản](docs/PC1-DEMO.md). | Từ Phòng Luyện Tập mở được hai hoạt động; lưu khoảng, mở gợi ý, tính đúng và đọc giải thích. Đổi qua lại giữ được khoảng đã lưu và lựa chọn trên phiếu trong cùng trang. |
+| Bàn phím, T10 | Trình duyệt tích hợp, câu `48 × 6`. Dùng Tab, phím mũi tên và Enter, nhập `a` rồi sửa thành `288`. | Chọn được khoảng 240–299. Focus chuyển đến ô đáp số. Giao diện báo lỗi dễ hiểu, sau đó chấm đúng cả hai bước và chuyển focus đến tiêu đề kết quả. |
+| CI trên PR | [Workflow Track B](.github/workflows/track-b.yml) dùng Ubuntu và Node.js 22, chạy `npm ci` rồi `npm test` tại commit `88f7f127bf6775b140f07d40f720d934f29a53c5`. | **Đạt** trên [PR nội bộ #1](https://github.com/ndm2006/ktpmud-bkt-vuontoan-starter/actions/runs/42870604600). |
+
+## Bằng chứng trình duyệt cho PC-1
+
+| Luồng | Quan sát đã ghi nhận trên bố trí `0bc0176` | Việc kiểm tra trước CP2 |
+|---|---|---|
+| Vào bài | Từ phiên học sinh mẫu, mở Phòng Luyện Tập, chuyển giữa phiếu và bài ước lượng. Hai liên kết đầu trang mở đúng đích. | Tự động hóa luồng đăng nhập và mở bài. |
+| Lưu và khôi phục | Lưu khoảng 80–119, chuyển về phiếu rồi mở lại bài ước lượng. Trang hiện lại khoảng đã chọn và bước nhập đáp số. | Thêm ca tải lại trình duyệt ngay sau khi lưu trên bố trí hiện tại. |
+| Nộp và đọc kết quả | Câu `42 ÷ 6` với khoảng 6–9 và đáp số 7 hiện hai kết quả riêng. Mở được lời giải. Câu `48 × 6` kiểm tra bằng bàn phím và sửa lỗi định dạng trước khi nộp. | Kiểm tra đủ giá trị đã chọn, đã nhập và giá trị đúng cho cả ca đúng lẫn ca sai. |
+| Xem lại | Giao diện có danh sách câu đã làm. | Kiểm tra dấu chọn và nội dung câu khi chuyển giữa các chặng. |
+| Quay lại phiếu | Chọn dấu `=` trên phiếu, chuyển sang ước lượng rồi quay lại. Phiếu vẫn hiện lựa chọn đã nhập trong cùng trang. | Tự động hóa luồng quay lại phiếu và đối chiếu với ca nộp qua API. |
+
+Nhóm dự kiến tự động hóa các luồng trên bằng Playwright trước CP2. Bộ test hiện tại kiểm tra logic và API, còn các quan sát trong bảng đến từ thao tác trên trình duyệt.
+
+## Đối chiếu các ca tự động
+
+| Ca trong [bộ test](test/estimation-practice.test.js) | Bằng chứng |
+|---|---|
+| Bộ câu và hai mốc | 12 câu cố định, 6 nhân và 6 chia hết; mọi số nguyên giữa hai mốc sau phép tính cùng thuộc một khoảng. |
+| Tải bài | Có ba chặng và kiểm tra xác thực; dữ liệu trước khi nộp không chứa lời giải hoặc cờ chấm. |
+| Đầu vào lỗi | Từ chối nộp sai thứ tự, ID câu/khoảng lạ và đáp số sai định dạng. |
+| Ước lượng sai | Vẫn mở bước tính, chưa lộ lời giải và giữ tiến độ phiếu cũ. |
+| Hai phép chấm | Chấm ước lượng và tính độc lập, kiểm tra biên nhập cho phép chia. |
+| Nộp đồng thời và nộp lại | Giữ lựa chọn và đáp số đã lưu. |
+| Khởi động lại server | Khôi phục cả câu đang dở và câu đã hoàn thành. |
+| Phiếu cũ | Vẫn lấy câu và chấm qua hợp đồng hiện có. |
+
+## Giới hạn
+
+- Ca hồi quy bao phủ phiếu Bài 9–10. Chưa xác nhận toàn bộ dạng bài cũ, vai trò giáo viên hoặc các thiết bị.
+- Ca bàn phím bao phủ luồng chính tại một câu, chưa kiểm tra bằng trình đọc màn hình hoặc trên nhiều thiết bị.
+- Chưa có thử nghiệm sư phạm với học sinh thật. Các nhận xét về độ khó của ba chặng là giả thuyết thiết kế.
+- Khi chốt bài nộp cuối, lấy URL CI ứng với SHA freeze.

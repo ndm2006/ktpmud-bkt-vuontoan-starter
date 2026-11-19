@@ -10,6 +10,8 @@ const db = require('./db');
 const { setAuthCookie, clearAuthCookie, requireAuth, requireTeacher } = require('./auth');
 
 const router = express.Router();
+const estimation = require('./estimation-practice');
+router.use('/estimation-practice', estimation.router);
 const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
 if (!GOOGLE_CLIENT_ID) {
   console.warn('[Google Auth] GOOGLE_CLIENT_ID chưa được cấu hình; đăng nhập Google sẽ bị từ chối.');
@@ -157,6 +159,12 @@ router.get('/curriculum', (req, res) => {
 router.get('/question-sets/:setId/questions', requireAuth, (req, res) => {
   const rows = db.prepare('SELECT id,type,prompt,options_json,points,category FROM questions WHERE set_id=? ORDER BY sort_order').all(req.params.setId);
   if (!rows.length) return res.status(404).json({ error: 'Không tìm thấy bộ câu hỏi.' });
+  if (rows.some(r => r.type === 'estimate')) {
+    try {
+      const full = db.prepare('SELECT * FROM questions WHERE set_id=? ORDER BY sort_order').all(req.params.setId);
+      return res.json({ setId: req.params.setId, questions: full.map(require('./estimation-scoring').publicQuestion) });
+    } catch { return res.status(409).json({ error: 'Dữ liệu bộ ước lượng đã thay đổi. Em hãy báo thầy cô.' }); }
+  }
   res.json({ setId: req.params.setId, questions: rows.map(r => ({ ...r, options: r.options_json ? JSON.parse(r.options_json) : undefined, options_json: undefined })) });
 });
 
@@ -166,7 +174,11 @@ function setMeta(setId) {
   const s = db.prepare('SELECT * FROM question_sets WHERE id=?').get(setId);
   return s ? { kind: s.kind, lessonId: s.lesson_id, starReward: s.star_reward } : null;
 }
-router.post('/submissions', requireAuth, (req, res) => {
+router.post('/submissions', requireAuth, (req, res, next) => {
+  if (req.body?.setId === estimation.SET_ID || req.body?.runId ||
+      (typeof req.body?.setId === 'string' && db.prepare("SELECT 1 FROM questions WHERE set_id=? AND type='estimate'").get(req.body.setId))) {
+    return estimation.submit(req, res, next);
+  }
   const { setId, answers = {}, durationSec = 0 } = req.body || {};
   const meta = setMeta(setId);
   if (!meta) return res.status(400).json({ error: 'Bộ bài không hợp lệ.' });

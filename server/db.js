@@ -68,6 +68,16 @@ CREATE TABLE IF NOT EXISTS attempts (
   answers_json  TEXT DEFAULT '{}',
   created_at    TEXT NOT NULL DEFAULT (datetime('now','localtime'))
 );
+CREATE TABLE IF NOT EXISTS estimation_answers (
+  user_id          INTEGER NOT NULL REFERENCES users(id),
+  question_id      TEXT NOT NULL,
+  range_id         TEXT NOT NULL,
+  exact_answer     INTEGER,
+  estimate_correct INTEGER CHECK (estimate_correct IN (0, 1)),
+  exact_correct    INTEGER CHECK (exact_correct IN (0, 1)),
+  completed_at     TEXT,
+  PRIMARY KEY (user_id, question_id)
+);
 CREATE TABLE IF NOT EXISTS progress (
   user_id     INTEGER NOT NULL REFERENCES users(id),
   lesson_id   TEXT NOT NULL REFERENCES lessons(id),
@@ -161,6 +171,26 @@ function seedIfEmpty() {
 }
 seedIfEmpty();
 seedQuestionSets();
+
+// Additive migration: retain the PC-1 table and all existing results.
+// No set_id FK, so the protected teacher delete routes keep their behavior.
+db.exec(`
+CREATE TABLE IF NOT EXISTS estimation_runs (
+  id TEXT PRIMARY KEY,
+  user_id INTEGER NOT NULL REFERENCES users(id),
+  set_id TEXT NOT NULL,
+  request_id TEXT NOT NULL,
+  estimates_json TEXT NOT NULL,
+  snapshot_json TEXT NOT NULL,
+  attempt_id INTEGER REFERENCES attempts(id),
+  result_json TEXT,
+  created_at TEXT NOT NULL DEFAULT (datetime('now')),
+  UNIQUE(user_id,request_id),
+  CHECK ((attempt_id IS NULL AND result_json IS NULL) OR (attempt_id IS NOT NULL AND result_json IS NOT NULL))
+);
+CREATE UNIQUE INDEX IF NOT EXISTS estimation_one_active ON estimation_runs(user_id,set_id) WHERE attempt_id IS NULL;
+`);
+require('./estimation-seed').seedEstimation(db);
 
 // Đảm bảo thông tin Cô Lan Anh (GV Chủ nhiệm minh họa) và học sinh luôn được cập nhật chính xác
 try {

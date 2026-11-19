@@ -8,10 +8,12 @@
   const startedAt = Date.now();
   const answers = {};
   let questions = [];
+  let estimationPlayer = null;
 
   const container = document.getElementById('questions-container');
   const progressBar = document.getElementById('lesson-progress');
   const progressText = document.getElementById('lesson-progress-text');
+  if (setId === window.EstimationPlayer.SET_ID) document.getElementById('btn-submit-lesson').disabled = true;
 
   function updateProgress() {
     const done = questions.filter(q => answers[q.id] != null && String(answers[q.id]).trim() !== '').length;
@@ -65,6 +67,13 @@
           document.getElementById('lesson-desc').textContent = lesson.description || '';
         }
       }
+      if (setId === window.EstimationPlayer.SET_ID) {
+        document.getElementById('lesson-title').textContent = 'Ước lượng trước khi tính đúng';
+        document.getElementById('lesson-desc').textContent = 'Ôn phép nhân và phép chia. Luyện tập tự do: em có thể vào từ Phòng Luyện Tập.';
+        estimationPlayer = window.EstimationPlayer.create(setId);
+        await estimationPlayer.init();
+        return;
+      }
       const data = await window.MathAPI.get(`/api/question-sets/${encodeURIComponent(setId)}/questions`);
       questions = data.questions;
       document.getElementById('set-kind').textContent = `Bộ bài: ${setId} • ${questions.length} câu`;
@@ -73,6 +82,7 @@
   }
 
   document.getElementById('btn-submit-lesson').addEventListener('click', async () => {
+    if (estimationPlayer) return estimationPlayer.submit();
     const missing = questions.length - Object.keys(answers).filter(k => String(answers[k]).trim() !== '').length;
     if (missing > 0 && !confirm(`Em còn ${missing} câu chưa trả lời. Vẫn nộp bài nhé?`)) return;
     try {

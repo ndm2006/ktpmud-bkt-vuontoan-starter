@@ -1,0 +1,32 @@
+/* Estimation extension: native form controls, keyboard focus and mobile layout. */
+[hidden] { display: none !important; }
+body[data-page="lesson"] { font-family: "Quicksand", "Segoe UI", Arial, sans-serif; }
+.practice-modes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.practice-mode { display: flex; align-items: center; gap: 1rem; padding: 1.2rem; border: 2px solid #b7d9c0; border-radius: 1.2rem; background: #fff; color: #13552b; text-decoration: none; }
+.practice-mode strong, .practice-mode small { display: block; }
+.practice-mode small { margin-top: .3rem; color: #42564a; }
+.practice-mode:hover { background: #edf8ef; }
+.practice-mode-icon { font-size: 2rem; }
+.estimate-notice { margin-top: 1rem; padding: 1rem 1.2rem; border-radius: 1rem; background: #e4f2e8; color: #184a2a; line-height: 1.6; }
+.estimate-error { margin: 1rem 0; padding: 1rem; border: 2px solid #b42318; border-radius: .8rem; background: #fff4f2; color: #8c1d14; }
+.estimate-card { min-width: 0; margin: 1rem 0; padding: 1.2rem; background: white; border: 2px solid #c5dfce; border-radius: 1.2rem; }
+.estimate-card legend { max-width: 100%; padding: 0 .5rem; font-weight: 800; font-size: 1.1rem; color: #14532d; overflow-wrap: anywhere; }
+.estimate-options { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .75rem; }
+.estimate-range { display: flex; gap: .6rem; align-items: center; padding: 1rem; border: 2px solid #c5dfce; border-radius: .8rem; cursor: pointer; }
+.estimate-range:has(input:checked) { border-color: #166534; background: #dcfce7; font-weight: 800; }
+.estimate-range input { width: 1.2rem; height: 1.2rem; accent-color: #166534; }
+.estimate-hint { margin-top: 1rem; color: #42564a; }
+.estimate-hint summary { cursor: pointer; padding: .4rem 0; font-weight: 700; }
+.estimate-hint p { margin-top: .5rem; line-height: 1.6; }
+.estimate-answer-label { display: block; margin: .8rem 0 .4rem; font-weight: 700; }
+.estimate-answer { width: 12rem; max-width: 100%; padding: .7rem 1rem; border: 2px solid #5c8066; border-radius: .7rem; font-size: 1.3rem; color: #14532d; }
+.estimate-input-help { margin-top: .3rem; color: #42564a; font-size: .9rem; }
+.estimate-feedback { margin-top: .8rem; line-height: 1.8; }
+.estimate-primary { margin-top: 1rem; padding: .8rem 1.4rem; border: 2px solid #166534; border-radius: .8rem; background: #166534; color: white; font-weight: 800; cursor: pointer; }
+#lesson-result h2 { font-size: 1.3rem; font-weight: 800; margin-bottom: .6rem; }
+#lesson-result p { margin-top: .4rem; }
+.practice-mode:focus-visible, .estimate-primary:focus-visible, .estimate-card input:focus-visible, .estimate-hint summary:focus-visible, #btn-submit-lesson:focus-visible { outline: 3px solid #174ea6; outline-offset: 4px; }
+.estimate-range:focus-within { outline: 3px solid #174ea6; outline-offset: 2px; }
+.estimate-answer[aria-invalid=true] { border-color: #b42318; }
+#btn-submit-lesson:disabled, .estimate-primary:disabled { opacity: .6; cursor: wait; }
+@media (max-width: 640px) { .practice-modes, .estimate-options { grid-template-columns: 1fr; } .estimate-card { padding: 1rem; } }

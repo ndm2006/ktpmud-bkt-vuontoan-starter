@@ -8,6 +8,28 @@
 
 ---
 
+# Phần mở rộng của nhóm N57 — Track B
+
+Nhóm bổ sung type **Ước lượng trước khi tính đúng** trong luồng hiện có: Phòng Luyện Tập → lesson.html → chọn đủ 12 khoảng → lưu/khóa → nhập đáp số → nộp. Mỗi câu 1 điểm khi cả hai bước đúng, phản hồi riêng hai kỹ năng. Kết quả vào attempts, tiến độ bài ôn nhân/chia 41 và sao theo tiến bộ. Đây là luyện tập tự do, không thay chuỗi khóa/mở khác.
+
+Để demo, đăng nhập bằng tài khoản học sinh mẫu, vào **Phòng Luyện Tập** và chọn **Ước lượng trước khi tính đúng**. [Kịch bản hiện hành](docs/DEMO.md). Refresh phục hồi ước lượng đã lưu/kết quả đã nộp; đáp số đang gõ chưa nộp chưa được lưu.
+
+Bộ test hiện hành kiểm tra chính sách, API/SQLite, keyboard, refresh, lỗi mạng và mobile. [Báo cáo](TEST_REPORT.md) · [ADR-002](DECISIONS.md) · [Tiến độ](progress/PROGRESS.md) · [Đóng góp](CONTRIBUTIONS.md). Hồ sơ PC-1 được giữ để truy vết thiết kế cũ.
+
+```bash
+npm ci
+npm test
+npx playwright install chromium
+npm run test:e2e
+npm start
+```
+
+Dùng **Node 22** cho bộ công cụ phát triển/E2E. Mỗi bộ test tự tạo SQLite tạm riêng, không reset DB demo. API và ứng dụng giữ stack starter.
+
+Chuẩn bị freeze: [review cuối](docs/FINAL_REVIEW.md), [hướng dẫn chốt và đóng gói](docs/FREEZE_HANDOFF.md). Công cụ `npm run prepare:submission` sinh gói từ đúng commit có CI xanh; không tự tạo tag hoặc gửi bài. Nhóm N57 gồm hai alias N57-A/N57-B, ngoại lệ đã được GV chấp thuận theo xác nhận của đại diện nhóm.
+
+---
+
 # 🌱 Vườn Toán Lớp 3 — Trường Tiểu học Hoàng Mai
 
 Web học Toán lớp 3 gồm giao diện học sinh (bài học, luyện tập, kiểm tra, trò chơi, bảng xếp hạng)
@@ -16,14 +38,27 @@ và khu vực giáo viên (theo dõi lớp, cấp tài khoản). Đợt 1 đã n
 
 ## 1. Cách chạy
 
-Yêu cầu: máy có **Node.js 18+**.
+Yêu cầu: máy có **Node.js 18+**. Trên **Windows x64**, dùng **Node.js 22** để nhận bản dựng sẵn của `better-sqlite3@11.10.0` đã khóa trong repo.
 
 ```bash
-npm install     # chỉ cần chạy 1 lần đầu
+npm ci          # cài đúng phiên bản từ package-lock.json
 npm start       # mở http://localhost:3000
 ```
 
 Lần chạy đầu, server tự tạo `data/vuon-toan.db` và nạp dữ liệu mẫu từ `data/seed.json`.
+
+**Windows báo `Could not locate the bindings file`:** npm 12 chỉ chạy script cài đặt cho gói đã được cho phép. Repo cho phép riêng `better-sqlite3@11.10.0`. Phiên bản này có tệp dựng sẵn cho Node 22 trên Windows x64, còn Node 24 phải biên dịch tại máy nếu dùng đúng phiên bản khóa.
+
+Để chạy đúng phiên bản repo trên Windows mà không cần đổi Node toàn máy, tải và giải nén [Node.js 22 Windows x64 ZIP](https://nodejs.org/dist/latest-v22.x/), rồi mở CMD trong thư mục dự án. Thay đường dẫn dưới đây bằng **thư mục chứa `node.exe`** đã giải nén:
+
+```cmd
+set "PATH=C:\duong-dan\den\node-v22.x-win-x64;%PATH%"
+node -v
+npm ci
+npm start
+```
+
+`node -v` cần hiện `v22.x.x`. Thay đổi PATH chỉ có hiệu lực trong cửa sổ CMD hiện tại.
 
 ### Tài khoản mẫu
 
@@ -34,6 +69,18 @@ Lần chạy đầu, server tự tạo `data/vuon-toan.db` và nạp dữ liệu
 
 > Khi đưa lên Internet thật: đổi mật khẩu các tài khoản mẫu, và đặt biến môi trường
 > `SESSION_SECRET` bằng một chuỗi bí mật dài trước khi chạy `npm start`.
+
+### Demo Track B — Ước lượng trước khi tính đúng
+
+Từ checkout sạch, chạy `npm ci`, `npm test` rồi `npm start`. Mở http://localhost:3000, đăng nhập bằng tài khoản học sinh mẫu ở trên và chọn **Phòng Luyện Tập** → **Ước lượng trước khi tính đúng**. Có thể mở trực tiếp http://localhost:3000/exercise.html#uoc-luong sau khi đăng nhập. Trên Windows x64, dùng Node.js 22 như trong [hướng dẫn phát triển](docs/DEVELOPMENT.md).
+
+1. Ở câu đầu `6 × 7`, mở **Gợi ý của Ong Vàng**. Chọn **60–88** và bấm **Tiếp tục**.
+2. Tải lại trang, nhập **42** rồi chọn **Nộp đáp số**. Kết quả cho thấy khoảng chưa hợp lý và đáp số đúng. Mở **Xem cách nhẩm** để đọc lời giải.
+3. Bấm **Về phòng luyện tập** rồi mở lại thẻ ước lượng để tiếp tục. Sau 12 câu, tổng kết đếm riêng số ước lượng hợp lý và số tính đúng.
+
+Test tự tạo DB tạm. Để demo từ câu 1, dùng tài khoản mẫu chưa làm bài hoặc chạy dev với một DB riêng. Kết quả ước lượng được lưu riêng với điểm và sao của phiếu cũ.
+
+**Dành cho giảng viên:** [Hồ sơ nộp Track B](docs/SUBMISSION.md) dẫn đến yêu cầu, ADR, báo cáo test, checklist, nhật ký AI và đóng góp. Có thể kiểm chứng MVP theo [kịch bản demo](docs/PC1-DEMO.md) và [báo cáo tiến độ](progress/PROGRESS.md).
 
 ## 2. Cấu trúc thư mục
 
